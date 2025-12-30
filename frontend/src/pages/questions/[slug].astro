@@ -1,0 +1,45 @@
+---
+import QuestionLayout from "@layouts/Question.astro";
+import { isIndexableQuestion, loadQuestions } from "@/lib/generated";
+
+export async function getStaticPaths() {
+  const questions = await loadQuestions();
+  return questions.map((q) => ({
+    params: { slug: q.slug },
+    props: { q },
+  }));
+}
+
+const { q } = Astro.props;
+
+const indexable = isIndexableQuestion(q);
+const robots = indexable ? "index,follow" : "noindex,follow";
+
+// Simple related list: same category, indexable first
+const allQuestions = await loadQuestions();
+const relatedQuestions = allQuestions
+  .filter((x) => x.slug !== q.slug && x.category === q.category)
+  .sort((a, b) => Number(isIndexableQuestion(b)) - Number(isIndexableQuestion(a)))
+  .slice(0, 6)
+  .map((x) => ({ title: x.title, slug: x.slug }));
+---
+
+<QuestionLayout
+  title={q.title}
+  question={q.question}
+  answer={q.answer_html}
+  category={q.category}
+  tags={q.tags}
+  difficulty={(q.difficulty as any) || "intermediate"}
+  slug={q.slug}
+  relatedQuestions={relatedQuestions}
+  robots={robots}
+  isVerified={q.is_verified}
+  publishedAt={q.published_at}
+  codeSnippet={q.code_snippet}
+  codeStdout={q.code_stdout}
+  codeStderr={q.code_stderr}
+  codeRuntimeMs={q.code_runtime_ms}
+  perlVersion={q.perl_version}
+/>
+

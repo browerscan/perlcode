@@ -1,0 +1,848 @@
+[
+  {
+    "question": "How to connect to MySQL database using Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "mysql", "database"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to execute a SELECT query with Perl DBI and fetch all rows?",
+    "category": "dbi",
+    "tags": ["dbi", "select", "query"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use prepared statements in Perl DBI to prevent SQL injection?",
+    "category": "dbi",
+    "tags": ["dbi", "security", "prepared-statements"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle database transactions with commit and rollback in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "transaction", "commit"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to check for DBI errors and retrieve error messages in Perl?",
+    "category": "dbi",
+    "tags": ["dbi", "error-handling"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to insert multiple rows efficiently using Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "insert", "batch"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to fetch data row by row using Perl DBI fetchrow_hashref?",
+    "category": "dbi",
+    "tags": ["dbi", "fetch", "hashref"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to connect to PostgreSQL database using Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "postgresql", "database"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use bind parameters in Perl DBI INSERT statements?",
+    "category": "dbi",
+    "tags": ["dbi", "bind", "insert"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to get the last inserted ID after INSERT in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "insert", "last-insert-id"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to execute UPDATE queries with Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "update", "query"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to connect to SQLite database using Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "sqlite", "database"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Perl DBI execute_array for batch operations?",
+    "category": "dbi",
+    "tags": ["dbi", "batch", "performance"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to handle NULL values in Perl DBI queries?",
+    "category": "dbi",
+    "tags": ["dbi", "null", "data-handling"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to set AutoCommit to false for transactions in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "transaction", "autocommit"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to fetch a single row as array in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "fetch", "array"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Perl DBI quote method to escape SQL strings?",
+    "category": "dbi",
+    "tags": ["dbi", "escape", "security"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to enable RaiseError and PrintError in Perl DBI connection?",
+    "category": "dbi",
+    "tags": ["dbi", "error-handling", "config"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to execute DELETE queries with WHERE clause in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "delete", "query"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get column names from a Perl DBI statement handle?",
+    "category": "dbi",
+    "tags": ["dbi", "metadata", "columns"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Perl DBI selectall_arrayref for fetching all data?",
+    "category": "dbi",
+    "tags": ["dbi", "fetch", "selectall"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle database connection pooling in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "connection-pool", "performance"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use Perl DBI with DBD::ODBC for SQL Server?",
+    "category": "dbi",
+    "tags": ["dbi", "odbc", "sql-server"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to fetch data as hash of hashes in Perl DBI?",
+    "category": "dbi",
+    "tags": ["dbi", "fetch", "data-structure"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Perl DBI do method for simple queries?",
+    "category": "dbi",
+    "tags": ["dbi", "query", "simple"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to define a class with attributes using Moo in Perl?",
+    "category": "oop",
+    "tags": ["moo", "class", "attributes"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create a read-only attribute in Perl Moo?",
+    "category": "oop",
+    "tags": ["moo", "attributes", "readonly"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use type constraints with Moo attributes in Perl?",
+    "category": "oop",
+    "tags": ["moo", "types", "validation"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to define a role with Perl Moo using Role::Tiny?",
+    "category": "oop",
+    "tags": ["moo", "role", "composition"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use lazy attribute builders in Perl Moo?",
+    "category": "oop",
+    "tags": ["moo", "lazy", "builder"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to implement class inheritance with Perl Moo extends?",
+    "category": "oop",
+    "tags": ["moo", "inheritance", "extends"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to add a method modifier with around in Perl Moo?",
+    "category": "oop",
+    "tags": ["moo", "modifier", "around"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use coercion with Moo attributes in Perl?",
+    "category": "oop",
+    "tags": ["moo", "coercion", "types"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to define a Moose class with attributes in Perl?",
+    "category": "oop",
+    "tags": ["moose", "class", "attributes"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Moose type constraints with Int, Str, and ArrayRef?",
+    "category": "oop",
+    "tags": ["moose", "types", "validation"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a role in Perl Moose and consume it?",
+    "category": "oop",
+    "tags": ["moose", "role", "composition"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Moose attribute triggers in Perl?",
+    "category": "oop",
+    "tags": ["moose", "trigger", "callback"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to make a Moose class immutable for performance in Perl?",
+    "category": "oop",
+    "tags": ["moose", "immutable", "performance"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Moose method modifiers before, after, and around?",
+    "category": "oop",
+    "tags": ["moose", "modifier", "aop"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to define custom type constraints in Perl Moose?",
+    "category": "oop",
+    "tags": ["moose", "types", "custom"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use delegation with handles in Perl Moose?",
+    "category": "oop",
+    "tags": ["moose", "delegation", "handles"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a Moose singleton class in Perl?",
+    "category": "oop",
+    "tags": ["moose", "singleton", "pattern"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use MooseX::StrictConstructor to catch typos in Perl?",
+    "category": "oop",
+    "tags": ["moose", "validation", "strict"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to implement multiple inheritance with Moose in Perl?",
+    "category": "oop",
+    "tags": ["moose", "inheritance", "multiple"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use Moo lazy_build for attribute defaults in Perl?",
+    "category": "oop",
+    "tags": ["moo", "lazy", "defaults"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to convert a Perl Moo class to Moose?",
+    "category": "oop",
+    "tags": ["moo", "moose", "migration"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use required attributes in Perl Moo and Moose?",
+    "category": "oop",
+    "tags": ["moo", "moose", "required"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Type::Tiny with Moo for strict typing in Perl?",
+    "category": "oop",
+    "tags": ["moo", "type-tiny", "types"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to implement method delegation in Perl Moo?",
+    "category": "oop",
+    "tags": ["moo", "delegation", "handles"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Moose::Util::TypeConstraints for custom types?",
+    "category": "oop",
+    "tags": ["moose", "types", "custom"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to make an HTTP GET request using LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "get"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to send POST data with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "post"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to handle HTTP response codes with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "response"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to set custom headers in LWP::UserAgent requests in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "headers"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use LWP::UserAgent with HTTP Basic Authentication in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "auth"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle cookies with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "cookies"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use a proxy with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "proxy"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to download a file with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "download"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to set timeout for HTTP requests in Perl LWP::UserAgent?",
+    "category": "http",
+    "tags": ["lwp", "http", "timeout"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to send JSON data in POST request with LWP::UserAgent?",
+    "category": "http",
+    "tags": ["lwp", "http", "json"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle redirects with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "redirect"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to upload a file using multipart/form-data in Perl LWP?",
+    "category": "http",
+    "tags": ["lwp", "http", "upload"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use HTTP::Request to build complex requests in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "request"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to parse response content from LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "response"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to enable SSL verification in Perl LWP::UserAgent?",
+    "category": "http",
+    "tags": ["lwp", "http", "ssl"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use LWP::UserAgent with custom User-Agent string?",
+    "category": "http",
+    "tags": ["lwp", "http", "user-agent"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to make asynchronous HTTP requests in Perl?",
+    "category": "http",
+    "tags": ["http", "async", "mojo"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to handle HTTP errors and exceptions with LWP in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "error-handling"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use LWP::Protocol::https for HTTPS requests in Perl?",
+    "category": "http",
+    "tags": ["lwp", "https", "ssl"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to set connection keep-alive with LWP::UserAgent in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "keep-alive"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use Mojo::UserAgent for HTTP requests in Perl?",
+    "category": "http",
+    "tags": ["mojo", "http", "user-agent"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to parse HTML response with HTML::TreeBuilder in Perl?",
+    "category": "http",
+    "tags": ["lwp", "html", "parsing"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use LWP::Simple for quick GET requests in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "simple"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to handle gzip compressed responses with LWP in Perl?",
+    "category": "http",
+    "tags": ["lwp", "http", "compression"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to encode Perl hash to JSON using JSON module?",
+    "category": "serialization",
+    "tags": ["json", "encode", "hash"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to decode JSON string to Perl data structure?",
+    "category": "serialization",
+    "tags": ["json", "decode", "parse"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to read JSON file and parse it in Perl?",
+    "category": "serialization",
+    "tags": ["json", "file", "parse"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to write Perl data structure to JSON file?",
+    "category": "serialization",
+    "tags": ["json", "file", "write"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to pretty print JSON with indentation in Perl?",
+    "category": "serialization",
+    "tags": ["json", "pretty", "format"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to handle Unicode characters in JSON with Perl?",
+    "category": "serialization",
+    "tags": ["json", "unicode", "encoding"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use JSON::XS for faster JSON parsing in Perl?",
+    "category": "serialization",
+    "tags": ["json", "json-xs", "performance"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to parse YAML file in Perl using YAML::XS?",
+    "category": "serialization",
+    "tags": ["yaml", "parse", "file"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to dump Perl data structure to YAML format?",
+    "category": "serialization",
+    "tags": ["yaml", "dump", "serialize"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to convert JSON to YAML in Perl?",
+    "category": "serialization",
+    "tags": ["json", "yaml", "conversion"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle JSON arrays in Perl?",
+    "category": "serialization",
+    "tags": ["json", "array", "parse"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to serialize Perl objects to JSON with custom encoding?",
+    "category": "serialization",
+    "tags": ["json", "object", "serialize"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to read multi-document YAML file in Perl?",
+    "category": "serialization",
+    "tags": ["yaml", "multi-document", "parse"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to handle JSON boolean values true and false in Perl?",
+    "category": "serialization",
+    "tags": ["json", "boolean", "types"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Cpanel::JSON::XS for JSON processing in Perl?",
+    "category": "serialization",
+    "tags": ["json", "cpanel", "performance"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to escape special characters when encoding JSON in Perl?",
+    "category": "serialization",
+    "tags": ["json", "escape", "encoding"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to load YAML configuration file in Perl script?",
+    "category": "serialization",
+    "tags": ["yaml", "config", "load"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to convert Perl hash to YAML string?",
+    "category": "serialization",
+    "tags": ["yaml", "hash", "serialize"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to handle JSON parsing errors in Perl?",
+    "category": "serialization",
+    "tags": ["json", "error-handling", "parse"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use JSON::MaybeXS for automatic backend selection in Perl?",
+    "category": "serialization",
+    "tags": ["json", "maybexs", "backend"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to validate JSON schema in Perl?",
+    "category": "serialization",
+    "tags": ["json", "validation", "schema"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to write basic tests with Test::More in Perl?",
+    "category": "testing",
+    "tags": ["test", "test-more", "unit-test"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use ok and is functions in Perl Test::More?",
+    "category": "testing",
+    "tags": ["test", "test-more", "assertions"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to test for exceptions with Test::Exception in Perl?",
+    "category": "testing",
+    "tags": ["test", "exception", "error"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use done_testing in Perl Test::More?",
+    "category": "testing",
+    "tags": ["test", "test-more", "plan"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to test subroutine output with is_deeply in Perl?",
+    "category": "testing",
+    "tags": ["test", "test-more", "deep-comparison"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to skip tests conditionally in Perl Test::More?",
+    "category": "testing",
+    "tags": ["test", "skip", "conditional"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use subtest for grouped tests in Perl?",
+    "category": "testing",
+    "tags": ["test", "subtest", "grouping"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to test file operations with Test::File in Perl?",
+    "category": "testing",
+    "tags": ["test", "file", "test-file"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Test2::V0 for modern Perl testing?",
+    "category": "testing",
+    "tags": ["test2", "modern", "unit-test"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to test warnings with Test::Warn in Perl?",
+    "category": "testing",
+    "tags": ["test", "warnings", "test-warn"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to mock objects with Test::Mock::Simple in Perl?",
+    "category": "testing",
+    "tags": ["test", "mock", "objects"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to measure test coverage with Devel::Cover in Perl?",
+    "category": "testing",
+    "tags": ["test", "coverage", "devel-cover"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use plan tests count in Perl Test::More?",
+    "category": "testing",
+    "tags": ["test", "plan", "count"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to test regular expressions with like in Perl Test::More?",
+    "category": "testing",
+    "tags": ["test", "regex", "like"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Test::Fatal for exception testing in Perl?",
+    "category": "testing",
+    "tags": ["test", "fatal", "exception"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to test database code with Test::mysqld in Perl?",
+    "category": "testing",
+    "tags": ["test", "database", "mysql"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use prove command to run Perl tests?",
+    "category": "testing",
+    "tags": ["test", "prove", "harness"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to test HTTP responses with Test::WWW::Mechanize in Perl?",
+    "category": "testing",
+    "tags": ["test", "http", "mechanize"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Test::Class for object-oriented testing in Perl?",
+    "category": "testing",
+    "tags": ["test", "oop", "test-class"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to test Mojolicious applications in Perl?",
+    "category": "testing",
+    "tags": ["test", "mojo", "web"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Test::Deep for complex data structure comparison?",
+    "category": "testing",
+    "tags": ["test", "deep", "comparison"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to format dates with DateTime in Perl?",
+    "category": "cpan",
+    "tags": ["datetime", "format", "date"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to parse date string with DateTime::Format::Strptime?",
+    "category": "cpan",
+    "tags": ["datetime", "parse", "strptime"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to add days to DateTime object in Perl?",
+    "category": "cpan",
+    "tags": ["datetime", "arithmetic", "add"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get current timestamp with DateTime in Perl?",
+    "category": "cpan",
+    "tags": ["datetime", "now", "timestamp"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Path::Tiny to read file contents in Perl?",
+    "category": "cpan",
+    "tags": ["path-tiny", "file", "read"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to write to file using Path::Tiny in Perl?",
+    "category": "cpan",
+    "tags": ["path-tiny", "file", "write"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to list directory contents with Path::Tiny in Perl?",
+    "category": "cpan",
+    "tags": ["path-tiny", "directory", "list"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use Try::Tiny for exception handling in Perl?",
+    "category": "cpan",
+    "tags": ["try-tiny", "exception", "error"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use List::Util sum function in Perl?",
+    "category": "cpan",
+    "tags": ["list-util", "sum", "array"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use List::Util max and min in Perl?",
+    "category": "cpan",
+    "tags": ["list-util", "max", "min"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use List::MoreUtils uniq to remove duplicates in Perl?",
+    "category": "cpan",
+    "tags": ["list-moreutils", "unique", "array"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use File::Temp to create temporary file in Perl?",
+    "category": "cpan",
+    "tags": ["file-temp", "temp", "file"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create temporary directory with File::Temp in Perl?",
+    "category": "cpan",
+    "tags": ["file-temp", "temp", "directory"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to copy file using File::Copy in Perl?",
+    "category": "cpan",
+    "tags": ["file-copy", "copy", "file"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to move file with File::Copy in Perl?",
+    "category": "cpan",
+    "tags": ["file-copy", "move", "file"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to parse command line options with Getopt::Long in Perl?",
+    "category": "cpan",
+    "tags": ["getopt-long", "cli", "arguments"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Getopt::Long with boolean flags in Perl?",
+    "category": "cpan",
+    "tags": ["getopt-long", "flags", "boolean"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to encode string to Base64 with MIME::Base64 in Perl?",
+    "category": "cpan",
+    "tags": ["mime-base64", "encode", "base64"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to decode Base64 string in Perl using MIME::Base64?",
+    "category": "cpan",
+    "tags": ["mime-base64", "decode", "base64"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use DateTime::Duration for time periods in Perl?",
+    "category": "cpan",
+    "tags": ["datetime", "duration", "period"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to compare two DateTime objects in Perl?",
+    "category": "cpan",
+    "tags": ["datetime", "compare", "comparison"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use List::Util reduce for custom aggregation in Perl?",
+    "category": "cpan",
+    "tags": ["list-util", "reduce", "fold"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Path::Tiny touch to create empty file in Perl?",
+    "category": "cpan",
+    "tags": ["path-tiny", "touch", "file"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get file modification time with Path::Tiny in Perl?",
+    "category": "cpan",
+    "tags": ["path-tiny", "stat", "mtime"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use File::Slurp to read entire file into variable in Perl?",
+    "category": "cpan",
+    "tags": ["file-slurp", "read", "file"],
+    "difficulty": "beginner"
+  }
+]

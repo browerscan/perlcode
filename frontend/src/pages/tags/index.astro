@@ -1,0 +1,47 @@
+---
+import Base from "@layouts/Base.astro";
+import { isIndexableQuestion, loadQuestions } from "@/lib/generated";
+
+const questions = await loadQuestions();
+const tags = new Map<string, number>();
+
+for (const q of questions.filter(isIndexableQuestion)) {
+  for (const tag of q.tags || []) {
+    tags.set(tag, (tags.get(tag) || 0) + 1);
+  }
+}
+
+const topTags = [...tags.entries()]
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 100)
+  .map(([tag, count]) => ({ tag, count }));
+---
+
+<Base title="Tags" description="Browse tags (noindex)." robots="noindex,follow">
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-2">Tags</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Tag pages are for navigation and are not intended for search indexing.
+    </p>
+
+    {topTags.length === 0 ? (
+      <div class="p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
+        <p class="text-gray-700 dark:text-gray-300">
+          No tags yet. Publish a batch of verified pages, then rebuild.
+        </p>
+      </div>
+    ) : (
+      <div class="flex flex-wrap gap-2">
+        {topTags.map((t) => (
+          <a
+            href={`/tags/${t.tag}`}
+            class="px-3 py-1 rounded-full text-sm border border-gray-200 dark:border-dark-700 hover:border-perl-500 dark:hover:border-perl-500 transition-colors"
+          >
+            #{t.tag} <span class="text-gray-500">({t.count})</span>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>
+

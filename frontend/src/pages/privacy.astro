@@ -1,0 +1,28 @@
+---
+import Base from "@layouts/Base.astro";
+---
+
+<Base title="Privacy Policy" description="How PerlCode handles basic analytics and chat metadata.">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+    <h1>Privacy Policy</h1>
+    <p>
+      PerlCode is built to be useful without requiring an account. We may collect lightweight,
+      privacy-preserving analytics to improve content quality and reliability.
+    </p>
+    <h2>What we collect</h2>
+    <ul>
+      <li>Anonymous pageview events (e.g., page slug, referrer, user agent, country code if provided by CDN).</li>
+      <li>Chat session metadata for rate limiting (a random session token and a hashed IP).</li>
+      <li>Execution telemetry when you click “Run” (exit code, runtime, stderr) for debugging and safety.</li>
+    </ul>
+    <h2>What we don’t do</h2>
+    <ul>
+      <li>No selling of personal data.</li>
+      <li>No tracking pixels or third-party ad networks by default.</li>
+    </ul>
+    <p>
+      If you have questions, contact the site owner.
+    </p>
+  </section>
+</Base>
+

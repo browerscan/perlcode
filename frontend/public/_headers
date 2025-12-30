@@ -1,0 +1,6 @@
+/webperl/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/webperl/*.wasm
+  Content-Type: application/wasm
+

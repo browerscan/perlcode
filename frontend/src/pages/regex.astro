@@ -1,0 +1,29 @@
+---
+import Base from "@layouts/Base.astro";
+---
+
+<Base
+  title="Perl Regex Guide"
+  description="A practical Perl regular expression guide with runnable examples."
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+    <h1>Perl Regex Guide</h1>
+    <p>
+      Perl’s regex engine is one of the reasons Perl is still a powerhouse for text processing.
+      This page is a lightweight hub; deep-dives live in individual Q&amp;A pages.
+    </p>
+    <h2>Quick examples</h2>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+	my $s = "Perl 5.38";
+	if ($s =~ /perl\\s+(\\d+\\.\\d+)/i) &#123;
+	  print "version=$1\\n";
+	&#125;</code></pre>
+    <h2>Next steps</h2>
+    <ul>
+      <li>Use <a href="/search">Search</a> for specific patterns.</li>
+      <li>Browse <a href="/topics/regex">Regex topics</a>.</li>
+    </ul>
+  </section>
+</Base>

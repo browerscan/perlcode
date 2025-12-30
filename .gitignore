@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.bun-cache/
+
+# Build outputs
+dist/
+.astro/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Wrangler config (contains account_id)
+wrangler.toml
+frontend/wrangler.toml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/
+.turbo/
+
+# Generated files (can be regenerated from database)
+frontend/src/generated/*.json
+
+# Local database
+*.sqlite
+*.db
+
+# Temporary files
+tmp/
+temp/

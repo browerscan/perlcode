@@ -1,0 +1,302 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  robots?: string;
+}
+
+const {
+  title,
+  description = 'The AI-powered knowledge base for Perl developers. Get instant answers to your Perl questions with working code examples.',
+  canonical,
+  ogImage = '/og-default.png',
+  robots = 'index,follow',
+} = Astro.props;
+
+const siteTitle = 'PerlCode';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+
+    <!-- Canonical -->
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
+    <meta name="theme-color" content="#3B82F6" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Syntax Highlighting -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      integrity="sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body
+    class="min-h-screen bg-white dark:bg-dark-900 text-gray-900 dark:text-gray-100 font-sans antialiased"
+  >
+    <slot name="header">
+      <header
+        class="sticky top-0 z-50 border-b border-gray-200 dark:border-dark-700 bg-white/80 dark:bg-dark-900/80 backdrop-blur-sm"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2 text-xl font-bold">
+              <span class="text-perl-500">Perl</span><span>Code</span>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center gap-6">
+              <a
+                href="/topics"
+                class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Topics
+              </a>
+              <a
+                href="/functions"
+                class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                Functions
+              </a>
+              <a
+                href="/about"
+                class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                About
+              </a>
+            </nav>
+
+            <!-- Search + Theme Toggle -->
+            <div class="flex items-center gap-4">
+              <button
+                id="search-btn"
+                class="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Search"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
+              <button
+                id="theme-toggle"
+                class="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                aria-label="Toggle theme"
+              >
+                <svg
+                  class="w-5 h-5 hidden dark:block"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  ></path>
+                </svg>
+                <svg
+                  class="w-5 h-5 dark:hidden"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    </slot>
+
+    <main>
+      <slot />
+    </main>
+
+    <slot name="footer">
+      <footer class="border-t border-gray-200 dark:border-dark-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 class="font-semibold mb-4">Resources</h3>
+              <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <li><a href="/topics" class="hover:underline">Topics</a></li>
+                <li>
+                  <a href="/functions" class="hover:underline">Functions</a>
+                </li>
+                <li><a href="/regex" class="hover:underline">Regex Guide</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-4">Compare</h3>
+              <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <li>
+                  <a href="/compare/perl-vs-python" class="hover:underline"
+                    >Perl vs Python</a
+                  >
+                </li>
+                <li>
+                  <a href="/compare/perl-vs-ruby" class="hover:underline"
+                    >Perl vs Ruby</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-4">Community</h3>
+              <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <li>
+                  <a
+                    href="https://metacpan.org"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:underline">MetaCPAN</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.perlmonks.org"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:underline">PerlMonks</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.reddit.com/r/perl"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:underline">r/perl</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-semibold mb-4">About</h3>
+              <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                <li><a href="/about" class="hover:underline">About Us</a></li>
+                <li>
+                  <a href="/privacy" class="hover:underline">Privacy Policy</a>
+                </li>
+                <li><a href="/terms" class="hover:underline">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="mt-8 pt-8 border-t border-gray-200 dark:border-dark-700 text-center text-sm text-gray-600 dark:text-gray-400"
+          >
+            <p>
+              &copy; {new Date().getFullYear()} PerlCode. The AI that actually understands
+              Perl.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </slot>
+
+    <!-- Theme toggle script -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem(
+          'theme',
+          document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        );
+      });
+    </script>
+
+    <!-- Search shortcut -->
+    <script is:inline>
+      const goSearch = () => {
+        window.location.href = '/search';
+      };
+
+      document.getElementById('search-btn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        goSearch();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        const key = e.key?.toLowerCase?.() || '';
+        if ((e.ctrlKey || e.metaKey) && key === 'k') {
+          e.preventDefault();
+          goSearch();
+        }
+      });
+    </script>
+  </body>
+</html>

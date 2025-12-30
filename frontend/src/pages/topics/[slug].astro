@@ -1,0 +1,74 @@
+---
+import Base from "@layouts/Base.astro";
+import { isIndexableQuestion, loadCategories, loadQuestions } from "@/lib/generated";
+
+export async function getStaticPaths() {
+  const categories = await loadCategories();
+  return categories.map((c) => ({
+    params: { slug: c.slug },
+    props: { category: c },
+  }));
+}
+
+const { category } = Astro.props;
+const questions = await loadQuestions();
+
+const allInTopic = questions.filter((q) => q.category === category.slug);
+const indexable = allInTopic.filter(isIndexableQuestion);
+const robots = indexable.length > 0 ? "index,follow" : "noindex,follow";
+---
+
+<Base
+  title={`Perl ${category.name} Questions`}
+  description={`Browse ${category.name} questions with verified, runnable Perl examples.`}
+  canonical={`https://perlcode.dev/topics/${category.slug}`}
+  robots={robots}
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-3">{category.name}</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Published: {indexable.length} • Verified: {category.verified} • Total generated:{" "}
+      {category.total}
+    </p>
+
+    <div class="mb-10 p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
+      <h2 class="font-semibold mb-2">What you’ll find here</h2>
+      <ul class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+        <li>Short, practical answers with runnable Perl code blocks.</li>
+        <li>Sandbox-verified output (proof that the example actually runs).</li>
+        <li>Notes on common pitfalls and version differences.</li>
+      </ul>
+    </div>
+
+    {indexable.length === 0 ? (
+      <div class="p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+        <p class="text-gray-700 dark:text-gray-300">
+          This topic is ready, but pages are being published gradually. Check back soon.
+        </p>
+      </div>
+    ) : (
+      <ul class="space-y-3">
+        {indexable.slice(0, 200).map((q) => (
+          <li>
+            <a
+              href={`/questions/${q.slug}`}
+              class="block p-4 rounded-lg border border-gray-200 dark:border-dark-700 hover:border-perl-500 dark:hover:border-perl-500 transition-colors"
+            >
+              <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">
+                {q.difficulty} • {q.published_at?.slice(0, 10)}
+              </div>
+              <div class="font-medium">{q.title}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {indexable.length > 200 && (
+      <p class="mt-8 text-sm text-gray-600 dark:text-gray-400">
+        Showing first 200 pages. Use search for more.
+      </p>
+    )}
+  </section>
+</Base>
+

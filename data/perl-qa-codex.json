@@ -1,0 +1,992 @@
+[
+  {
+    "question": "How to declare and assign a scalar variable in Perl?",
+    "category": "variables",
+    "tags": ["scalar", "variables", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create an array in Perl and access its elements?",
+    "category": "variables",
+    "tags": ["array", "variables", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to initialize a hash in Perl with key-value pairs?",
+    "category": "variables",
+    "tags": ["hash", "variables", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create a reference to an array in Perl?",
+    "category": "variables",
+    "tags": ["reference", "array", "intermediate"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to dereference a hash reference in Perl?",
+    "category": "variables",
+    "tags": ["reference", "hash", "dereference"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create an anonymous array in Perl?",
+    "category": "variables",
+    "tags": ["reference", "array", "anonymous"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create an anonymous hash in Perl?",
+    "category": "variables",
+    "tags": ["reference", "hash", "anonymous"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to check if a scalar variable is defined in Perl?",
+    "category": "variables",
+    "tags": ["scalar", "defined", "testing"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to check if a variable is a reference in Perl?",
+    "category": "variables",
+    "tags": ["reference", "ref", "testing"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to get the type of a reference in Perl using ref()?",
+    "category": "variables",
+    "tags": ["reference", "ref", "type-checking"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a reference to a scalar in Perl?",
+    "category": "variables",
+    "tags": ["reference", "scalar", "intermediate"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to access array elements through a reference in Perl?",
+    "category": "variables",
+    "tags": ["reference", "array", "dereference"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to iterate over hash keys using a reference in Perl?",
+    "category": "variables",
+    "tags": ["reference", "hash", "iteration"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a multidimensional array using references in Perl?",
+    "category": "variables",
+    "tags": ["reference", "array", "multidimensional"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use the $# array index variable in Perl?",
+    "category": "variables",
+    "tags": ["array", "index", "special-variables"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to swap two scalar variables in Perl?",
+    "category": "variables",
+    "tags": ["scalar", "assignment", "tricks"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create a reference to a subroutine in Perl?",
+    "category": "variables",
+    "tags": ["reference", "subroutine", "code-ref"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use the defined-or operator // in Perl?",
+    "category": "variables",
+    "tags": ["scalar", "defined-or", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to check if a hash key exists in Perl?",
+    "category": "variables",
+    "tags": ["hash", "exists", "testing"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to delete a hash key in Perl?",
+    "category": "variables",
+    "tags": ["hash", "delete", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get all keys from a hash in Perl?",
+    "category": "variables",
+    "tags": ["hash", "keys", "iteration"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get all values from a hash in Perl?",
+    "category": "variables",
+    "tags": ["hash", "values", "iteration"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the each() function to iterate over a hash in Perl?",
+    "category": "variables",
+    "tags": ["hash", "each", "iteration"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a nested hash structure in Perl?",
+    "category": "variables",
+    "tags": ["hash", "nested", "reference"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use autovivification with hash references in Perl?",
+    "category": "variables",
+    "tags": ["hash", "reference", "autovivification"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to perform a simple regex match in Perl?",
+    "category": "regex",
+    "tags": ["regex", "match", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the case-insensitive modifier /i in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "modifier", "case-insensitive"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the global modifier /g in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "modifier", "global"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to substitute text using s/// in Perl?",
+    "category": "regex",
+    "tags": ["regex", "substitution", "replace"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use capture groups in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "capture", "groups"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to access captured groups using $1, $2 in Perl?",
+    "category": "regex",
+    "tags": ["regex", "capture", "variables"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use named capture groups in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "capture", "named", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use non-capturing groups (?:...) in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "groups", "non-capturing"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to perform a global substitution in Perl?",
+    "category": "regex",
+    "tags": ["regex", "substitution", "global"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the /x modifier for readable regex in Perl?",
+    "category": "regex",
+    "tags": ["regex", "modifier", "extended"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to match across multiple lines with /s modifier in Perl?",
+    "category": "regex",
+    "tags": ["regex", "modifier", "multiline"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use the /m modifier for multi-line anchors in Perl?",
+    "category": "regex",
+    "tags": ["regex", "modifier", "anchors"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use lookahead assertions (?=...) in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "lookahead", "assertions"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use negative lookahead (?!...) in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "lookahead", "negative"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use lookbehind assertions (?<=...) in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "lookbehind", "assertions"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use negative lookbehind (?<!...) in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "lookbehind", "negative"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to match word boundaries with \\b in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "boundaries", "word"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to escape special characters in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "escape", "quotemeta"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use character classes [a-z] in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "character-class", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use negated character classes [^...] in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "character-class", "negated"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use the \\d, \\w, \\s character classes in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "character-class", "shortcuts"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to perform regex match and extract all matches in Perl?",
+    "category": "regex",
+    "tags": ["regex", "match", "global", "capture"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use the /e modifier for code evaluation in substitution?",
+    "category": "regex",
+    "tags": ["regex", "substitution", "eval"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to match Unicode characters in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "unicode", "utf8"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use the qr// operator to compile regex in Perl?",
+    "category": "regex",
+    "tags": ["regex", "qr", "compile"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use alternation | in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "alternation", "or"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to match start and end of string with ^ and $ in Perl?",
+    "category": "regex",
+    "tags": ["regex", "anchors", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use greedy vs non-greedy quantifiers in Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "quantifiers", "greedy"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to split a string by regex pattern in Perl?",
+    "category": "regex",
+    "tags": ["regex", "split", "pattern"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to validate email addresses using Perl regex?",
+    "category": "regex",
+    "tags": ["regex", "validation", "email"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to push elements onto an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "push", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to pop elements from an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "pop", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to shift elements from the beginning of an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "shift", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to unshift elements to the beginning of an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "unshift", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to reverse an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "reverse", "manipulation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to sort an array alphabetically in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "sort", "alphabetical"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to sort an array numerically in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "sort", "numerical"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use a custom comparison function with sort in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "sort", "custom"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use the map function to transform array elements in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "map", "transformation"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use grep to filter array elements in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "grep", "filter"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to join array elements into a string in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "join", "string"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to split a string into an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "split", "string"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get the length of an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "length", "scalar"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to slice an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "slice", "extraction"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to remove duplicates from an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "unique", "duplicates"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to find the index of an element in an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "index", "search"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to check if an element exists in an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "exists", "search"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to merge two arrays in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "merge", "concatenation"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to copy an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "copy", "clone"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use splice to modify an array in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "splice", "manipulation"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to iterate over an array with foreach in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "foreach", "iteration"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to iterate over an array with index using for in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "for", "iteration", "index"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to create a hash from two arrays in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "array", "conversion"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to invert a hash (swap keys and values) in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "invert", "reverse"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to merge two hashes in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "merge", "combination"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to sort hash keys in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "sort", "keys"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to sort hash by values in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "sort", "values"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to create an array of hashes in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "hash", "complex"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to create a hash of arrays in Perl?",
+    "category": "data-structures",
+    "tags": ["hash", "array", "complex"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use the reduce function from List::Util in Perl?",
+    "category": "data-structures",
+    "tags": ["array", "reduce", "list-util"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use if-else conditional in Perl?",
+    "category": "control-flow",
+    "tags": ["if", "conditional", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use unless conditional in Perl?",
+    "category": "control-flow",
+    "tags": ["unless", "conditional", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use elsif for multiple conditions in Perl?",
+    "category": "control-flow",
+    "tags": ["if", "elsif", "conditional"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the ternary operator ?: in Perl?",
+    "category": "control-flow",
+    "tags": ["ternary", "conditional", "operator"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use postfix if in Perl?",
+    "category": "control-flow",
+    "tags": ["if", "postfix", "modifier"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use postfix unless in Perl?",
+    "category": "control-flow",
+    "tags": ["unless", "postfix", "modifier"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use while loop in Perl?",
+    "category": "control-flow",
+    "tags": ["while", "loop", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use until loop in Perl?",
+    "category": "control-flow",
+    "tags": ["until", "loop", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use for loop with C-style syntax in Perl?",
+    "category": "control-flow",
+    "tags": ["for", "loop", "c-style"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use foreach loop to iterate over arrays in Perl?",
+    "category": "control-flow",
+    "tags": ["foreach", "loop", "iteration"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use foreach loop to iterate over hash keys in Perl?",
+    "category": "control-flow",
+    "tags": ["foreach", "loop", "hash"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the $_ default variable in loops in Perl?",
+    "category": "control-flow",
+    "tags": ["loop", "default-variable", "special"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use next to skip to the next iteration in Perl?",
+    "category": "control-flow",
+    "tags": ["next", "loop", "control"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use last to exit a loop in Perl?",
+    "category": "control-flow",
+    "tags": ["last", "loop", "control"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use redo to restart the current iteration in Perl?",
+    "category": "control-flow",
+    "tags": ["redo", "loop", "control"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use loop labels with next and last in Perl?",
+    "category": "control-flow",
+    "tags": ["loop", "labels", "control"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use the given-when switch statement in Perl?",
+    "category": "control-flow",
+    "tags": ["given", "when", "switch", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use continue block with loops in Perl?",
+    "category": "control-flow",
+    "tags": ["continue", "loop", "block"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use do-while loop in Perl?",
+    "category": "control-flow",
+    "tags": ["do", "while", "loop"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use logical AND operator && in Perl conditionals?",
+    "category": "control-flow",
+    "tags": ["logical", "and", "operators"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use logical OR operator || in Perl conditionals?",
+    "category": "control-flow",
+    "tags": ["logical", "or", "operators"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use the defined-or operator // in Perl?",
+    "category": "control-flow",
+    "tags": ["defined-or", "operator", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use smartmatch operator ~~ in Perl?",
+    "category": "control-flow",
+    "tags": ["smartmatch", "operator", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use eval for exception handling in Perl?",
+    "category": "control-flow",
+    "tags": ["eval", "exception", "error-handling"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use die to throw exceptions in Perl?",
+    "category": "control-flow",
+    "tags": ["die", "exception", "error"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use warn to print warnings in Perl?",
+    "category": "control-flow",
+    "tags": ["warn", "warning", "debugging"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to define a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "function", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to call a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "call", "basics"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to pass arguments to a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "arguments", "@_"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to access subroutine arguments using @_ in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "@_", "parameters"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to return values from a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "return", "values"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to return multiple values from a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "return", "multiple"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use named parameters in Perl subroutines?",
+    "category": "subroutines",
+    "tags": ["sub", "parameters", "named"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to set default values for subroutine parameters in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "parameters", "defaults"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a closure in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "closure", "lexical"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use wantarray to detect context in Perl subroutines?",
+    "category": "subroutines",
+    "tags": ["sub", "wantarray", "context"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to create anonymous subroutines in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "anonymous", "reference"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to pass arrays to subroutines without flattening in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "arrays", "references"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to pass hashes to subroutines in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "hash", "references"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use prototypes in Perl subroutines?",
+    "category": "subroutines",
+    "tags": ["sub", "prototype", "signature"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use subroutine signatures in modern Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "signatures", "perl5.20"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create recursive subroutines in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "recursion", "advanced"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use goto &subroutine for tail call optimization in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "goto", "tail-call"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to check the number of arguments passed to a subroutine in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "arguments", "validation"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use state variables in Perl subroutines?",
+    "category": "subroutines",
+    "tags": ["sub", "state", "perl5.10"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to call a subroutine as a method in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "method", "oop"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use caller() to get subroutine call information in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "caller", "debugging"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use shift to get subroutine arguments in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "shift", "arguments"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create higher-order functions in Perl?",
+    "category": "subroutines",
+    "tags": ["sub", "higher-order", "functional"],
+    "difficulty": "advanced"
+  },
+  {
+    "question": "How to use the return statement early in a Perl subroutine?",
+    "category": "subroutines",
+    "tags": ["sub", "return", "control-flow"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to open a file for reading in Perl?",
+    "category": "file-io",
+    "tags": ["open", "file", "read"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to open a file for writing in Perl?",
+    "category": "file-io",
+    "tags": ["open", "file", "write"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to open a file for appending in Perl?",
+    "category": "file-io",
+    "tags": ["open", "file", "append"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to use three-argument open in Perl?",
+    "category": "file-io",
+    "tags": ["open", "file", "best-practice"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to read a file line by line in Perl?",
+    "category": "file-io",
+    "tags": ["file", "read", "line"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to read an entire file into an array in Perl?",
+    "category": "file-io",
+    "tags": ["file", "read", "array"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to read an entire file into a scalar in Perl?",
+    "category": "file-io",
+    "tags": ["file", "read", "slurp"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to write to a file in Perl?",
+    "category": "file-io",
+    "tags": ["file", "write", "print"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to close a filehandle in Perl?",
+    "category": "file-io",
+    "tags": ["file", "close", "filehandle"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to check if a file exists in Perl?",
+    "category": "file-io",
+    "tags": ["file", "test", "-e"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to check if a file is readable in Perl?",
+    "category": "file-io",
+    "tags": ["file", "test", "-r"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to check if a file is writable in Perl?",
+    "category": "file-io",
+    "tags": ["file", "test", "-w"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to get the file size in Perl?",
+    "category": "file-io",
+    "tags": ["file", "test", "-s"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to check if a path is a directory in Perl?",
+    "category": "file-io",
+    "tags": ["file", "test", "-d"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to delete a file in Perl?",
+    "category": "file-io",
+    "tags": ["file", "unlink", "delete"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to rename a file in Perl?",
+    "category": "file-io",
+    "tags": ["file", "rename", "move"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to copy a file in Perl?",
+    "category": "file-io",
+    "tags": ["file", "copy", "file-copy"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to create a directory in Perl?",
+    "category": "file-io",
+    "tags": ["directory", "mkdir", "create"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to remove a directory in Perl?",
+    "category": "file-io",
+    "tags": ["directory", "rmdir", "delete"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to read directory contents in Perl?",
+    "category": "file-io",
+    "tags": ["directory", "opendir", "readdir"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use glob to get files matching a pattern in Perl?",
+    "category": "file-io",
+    "tags": ["glob", "file", "pattern"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to get the current working directory in Perl?",
+    "category": "file-io",
+    "tags": ["directory", "cwd", "getcwd"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to change the current directory in Perl?",
+    "category": "file-io",
+    "tags": ["directory", "chdir", "cd"],
+    "difficulty": "beginner"
+  },
+  {
+    "question": "How to open a file with specific encoding in Perl?",
+    "category": "file-io",
+    "tags": ["file", "open", "encoding", "utf8"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use autodie for automatic error handling in Perl?",
+    "category": "file-io",
+    "tags": ["file", "autodie", "error-handling"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use File::Slurp to read files in Perl?",
+    "category": "file-io",
+    "tags": ["file", "slurp", "module"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to get file modification time in Perl?",
+    "category": "file-io",
+    "tags": ["file", "stat", "mtime"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use File::Copy to copy files in Perl?",
+    "category": "file-io",
+    "tags": ["file", "copy", "module"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use Path::Tiny for file operations in Perl?",
+    "category": "file-io",
+    "tags": ["file", "path-tiny", "module"],
+    "difficulty": "intermediate"
+  },
+  {
+    "question": "How to use File::Find to recursively search directories in Perl?",
+    "category": "file-io",
+    "tags": ["file", "find", "recursive"],
+    "difficulty": "advanced"
+  }
+]

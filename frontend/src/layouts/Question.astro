@@ -1,0 +1,164 @@
+---
+import Base from './Base.astro';
+import CodeRunner from '@components/CodeRunner';
+
+interface Props {
+  title: string;
+  question: string;
+  answer: string;
+  category: string;
+  tags: string[];
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  slug: string;
+  relatedQuestions?: Array<{ title: string; slug: string }>;
+  robots?: string;
+  isVerified?: boolean;
+  publishedAt?: string | null;
+  codeSnippet?: string | null;
+  codeStdout?: string | null;
+  codeStderr?: string | null;
+  codeRuntimeMs?: number | null;
+  perlVersion?: string | null;
+}
+
+const {
+  title,
+  question,
+  answer,
+  category,
+  tags,
+  difficulty,
+  slug,
+  relatedQuestions = [],
+  robots = 'index,follow',
+  isVerified = false,
+  publishedAt = null,
+  codeSnippet = null,
+  codeStdout = null,
+  codeStderr = null,
+  codeRuntimeMs = null,
+  perlVersion = null,
+} = Astro.props;
+
+const difficultyColors = {
+  beginner: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
+  intermediate: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
+  advanced: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
+};
+
+const canonical = `https://perlcode.dev/questions/${slug}`;
+---
+
+<Base
+  title={title}
+  description={question}
+  canonical={canonical}
+  robots={robots}
+>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="mb-6 text-sm">
+      <ol class="flex items-center gap-2 text-gray-500 dark:text-gray-400">
+        <li><a href="/" class="hover:underline">Home</a></li>
+        <li>/</li>
+        <li><a href="/questions" class="hover:underline">Questions</a></li>
+        <li>/</li>
+        <li class="text-gray-900 dark:text-white truncate">{title}</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        <a
+          href={`/topics/${category}`}
+          class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-perl-100 dark:bg-perl-900/30 text-perl-700 dark:text-perl-400 hover:bg-perl-200 dark:hover:bg-perl-900/50 transition-colors"
+        >
+          {category}
+        </a>
+        <span class={`inline-block px-3 py-1 text-sm font-medium rounded-full ${difficultyColors[difficulty]}`}>
+          {difficulty}
+        </span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">{title}</h1>
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <a
+              href={`/tags/${tag}`}
+              class="text-sm text-gray-500 dark:text-gray-400 hover:text-perl-500 dark:hover:text-perl-400"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <!-- Question Box -->
+    <div class="mb-8 p-6 bg-gray-50 dark:bg-dark-800 rounded-xl border border-gray-200 dark:border-dark-700">
+      <h2 class="text-lg font-semibold mb-2">Question</h2>
+      <p class="text-gray-700 dark:text-gray-300">{question}</p>
+    </div>
+
+    <!-- Answer -->
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12" set:html={answer} />
+
+    {codeSnippet && (
+      <div class="mb-12">
+        <CodeRunner
+          client:load
+          slug={slug}
+          code={codeSnippet}
+          initialStdout={codeStdout}
+          initialStderr={codeStderr}
+          initialRuntimeMs={codeRuntimeMs}
+          initialPerlVersion={perlVersion}
+          isVerified={isVerified && Boolean(publishedAt)}
+        />
+      </div>
+    )}
+
+    <!-- Feedback -->
+    <div class="mb-12 p-6 bg-gray-50 dark:bg-dark-800 rounded-xl border border-gray-200 dark:border-dark-700">
+      <h3 class="text-lg font-semibold mb-4">Was this helpful?</h3>
+      <div class="flex gap-4">
+        <button
+          id="helpful-yes"
+          class="px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 hover:border-green-500 hover:text-green-500 transition-colors"
+        >
+          👍 Yes
+        </button>
+        <button
+          id="helpful-no"
+          class="px-4 py-2 rounded-lg border border-gray-300 dark:border-dark-600 hover:border-red-500 hover:text-red-500 transition-colors"
+        >
+          👎 No
+        </button>
+      </div>
+    </div>
+
+    <!-- Related Questions -->
+    {relatedQuestions.length > 0 && (
+      <section>
+        <h2 class="text-xl font-bold mb-4">Related Questions</h2>
+        <ul class="space-y-3">
+          {relatedQuestions.map((rq) => (
+            <li>
+              <a
+                href={`/questions/${rq.slug}`}
+                class="block p-4 rounded-lg border border-gray-200 dark:border-dark-700 hover:border-perl-500 dark:hover:border-perl-500 transition-colors"
+              >
+                {rq.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </article>
+
+  <!-- Syntax highlighting -->
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-perl.min.js"></script>
+</Base>
