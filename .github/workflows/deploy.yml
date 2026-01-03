@@ -11,14 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy Frontend
 
+    # Security: prevent unauthorized access to secrets
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: read
+
+    env:
+      # Use environment variables instead of hardcoding
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PUBLIC_API_URL: https://api.freeperlcode.com
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -28,22 +34,14 @@ jobs:
       - name: Install dependencies
         run: |
           cd frontend
-          bun install
+          bun install --frozen-lockfile
 
       - name: Build
         run: |
           cd frontend
           bun run build
         env:
-          PUBLIC_API_URL: https://api.freeperlcode.com
-
-      - name: Create Cloudflare Pages project
-        uses: cloudflare/wrangler-action@v3
-        continue-on-error: true
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages project create perlcode --production-branch=main
+          PUBLIC_API_URL: ${{ env.PUBLIC_API_URL }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
@@ -51,4 +49,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: frontend
-          command: pages deploy dist --project-name=perlcode --branch=main --commit-dirty=true
+          command: pages deploy dist --project-name=perlcode
