@@ -43,10 +43,18 @@ jobs:
         env:
           PUBLIC_API_URL: ${{ env.PUBLIC_API_URL }}
 
+      - name: Create Cloudflare Pages project
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create perlcode --production-branch=main
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: frontend
-          command: pages deploy dist --project-name=perlcode
+          command: pages deploy dist --project-name=perlcode --commit-dirty=true
