@@ -1,5 +1,7 @@
-import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+// Static imports for Vite/Astro build compatibility
+import questionsData from "../generated/questions.json";
+import categoriesData from "../generated/categories.json";
+import metaData from "../generated/meta.json";
 
 export interface GeneratedQuestion {
   slug: string;
@@ -35,45 +37,58 @@ export interface GeneratedMeta {
   indexable_questions: number;
 }
 
-let questionsCache: GeneratedQuestion[] | null = null;
-let categoriesCache: GeneratedCategory[] | null = null;
-let metaCache: GeneratedMeta | null = null;
-
-async function readJsonFile<T>(relativeToThisFile: string): Promise<T | null> {
-  try {
-    const url = new URL(relativeToThisFile, import.meta.url);
-    const text = await readFile(fileURLToPath(url), "utf8");
-    return JSON.parse(text) as T;
-  } catch {
-    return null;
-  }
-}
-
 export async function loadQuestions(): Promise<GeneratedQuestion[]> {
-  if (questionsCache) return questionsCache;
-  const data = await readJsonFile<GeneratedQuestion[]>(
-    "../generated/questions.json",
-  );
-  questionsCache = Array.isArray(data) ? data : [];
-  return questionsCache;
+  return questionsData as GeneratedQuestion[];
 }
 
 export async function loadCategories(): Promise<GeneratedCategory[]> {
-  if (categoriesCache) return categoriesCache;
-  const data = await readJsonFile<GeneratedCategory[]>(
-    "../generated/categories.json",
-  );
-  categoriesCache = Array.isArray(data) ? data : [];
-  return categoriesCache;
+  return categoriesData as GeneratedCategory[];
 }
 
 export async function loadMeta(): Promise<GeneratedMeta | null> {
-  if (metaCache) return metaCache;
-  const data = await readJsonFile<GeneratedMeta>("../generated/meta.json");
-  metaCache = data ?? null;
-  return metaCache;
+  return metaData as GeneratedMeta;
 }
 
 export function isIndexableQuestion(q: GeneratedQuestion): boolean {
   return Boolean(q.is_verified && q.published_at);
+}
+
+// Normalize category names for display
+const categoryDisplayNames: Record<string, string> = {
+  'general': 'General',
+  'file-io': 'File I/O',
+  'regex': 'Regular Expressions',
+  'data-structures': 'Data Structures',
+  'one-liners': 'One-Liners',
+  'text-processing': 'Text Processing',
+  'system-admin': 'System Administration',
+  'cpan': 'CPAN Modules',
+  'oop': 'Object-Oriented Perl',
+  'dbi': 'Database (DBI)',
+  'control-flow': 'Control Flow',
+  'variables': 'Variables & Scalars',
+  'networking': 'Networking',
+  'http': 'HTTP & Web',
+  'subroutines': 'Subroutines',
+  'testing': 'Testing',
+  'serialization': 'Serialization (JSON/YAML)',
+  'debugging': 'Debugging',
+  'basics': 'Perl Basics',
+  'devops': 'DevOps',
+  'sysadmin': 'System Admin',
+  'advanced': 'Advanced Topics',
+  'data': 'Data Processing',
+};
+
+export function formatCategoryName(slug: string): string {
+  if (categoryDisplayNames[slug]) {
+    return categoryDisplayNames[slug];
+  }
+  // Clean up ugly names like "Programming Languages > Perl"
+  const cleaned = slug
+    .replace(/[>\\/]/g, ' - ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  // Title case
+  return cleaned.replace(/\b\w/g, (c) => c.toUpperCase());
 }

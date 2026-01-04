@@ -1,10 +1,19 @@
 ---
-import Base from "@layouts/Base.astro";
-import { isIndexableQuestion, loadCategories, loadQuestions } from "@/lib/generated";
+import Base from "../../layouts/Base.astro";
+import {
+  isIndexableQuestion,
+  loadCategories,
+  loadQuestions,
+  formatCategoryName,
+} from "../../lib/generated";
 
 export async function getStaticPaths() {
   const categories = await loadCategories();
-  return categories.map((c) => ({
+  // Filter out invalid slugs (must be URL-safe: no spaces, slashes, etc.)
+  const validCategories = categories.filter(
+    (c) => c.slug && /^[a-z0-9-]+$/i.test(c.slug)
+  );
+  return validCategories.map((c) => ({
     params: { slug: c.slug },
     props: { category: c },
   }));
@@ -12,23 +21,29 @@ export async function getStaticPaths() {
 
 const { category } = Astro.props;
 const questions = await loadQuestions();
+const displayName = formatCategoryName(category.slug);
 
-const allInTopic = questions.filter((q) => q.category === category.slug);
-const indexable = allInTopic.filter(isIndexableQuestion);
+const allInTopic = questions.filter((q) => q.category === category.slug || q.category === category.name);
+const indexable = allInTopic
+  .filter(isIndexableQuestion)
+  .sort((a, b) => {
+    const aTime = new Date(a.published_at ?? a.created_at ?? 0).getTime();
+    const bTime = new Date(b.published_at ?? b.created_at ?? 0).getTime();
+    return bTime - aTime;
+  });
 const robots = indexable.length > 0 ? "index,follow" : "noindex,follow";
 ---
 
 <Base
-  title={`Perl ${category.name} Questions`}
-  description={`Browse ${category.name} questions with verified, runnable Perl examples.`}
+  title={`${displayName} - Perl Questions`}
+  description={`Browse ${displayName} questions with verified, runnable Perl examples.`}
   canonical={`https://perlcode.dev/topics/${category.slug}`}
   robots={robots}
 >
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold mb-3">{category.name}</h1>
+    <h1 class="text-3xl font-bold mb-3">{displayName}</h1>
     <p class="text-gray-600 dark:text-gray-400 mb-8">
-      Published: {indexable.length} • Verified: {category.verified} • Total generated:{" "}
-      {category.total}
+      {indexable.length} published questions
     </p>
 
     <div class="mb-10 p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
@@ -71,4 +86,3 @@ const robots = indexable.length > 0 ? "index,follow" : "noindex,follow";
     )}
   </section>
 </Base>
-

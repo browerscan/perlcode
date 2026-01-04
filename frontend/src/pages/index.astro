@@ -1,68 +1,118 @@
 ---
-import Base from '@layouts/Base.astro';
+import Base from '../layouts/Base.astro';
+import {
+  isIndexableQuestion,
+  loadCategories,
+  loadMeta,
+  loadQuestions,
+  formatCategoryName,
+} from '../lib/generated';
 
-// In production, this would come from the database
-const featuredQuestions = [
+const meta = await loadMeta();
+const categories = await loadCategories();
+const questions = await loadQuestions();
+
+// Fallback defaults based on actual exported data
+const defaultFeaturedQuestions = [
   {
-    slug: 'what-does-dollar-underscore-mean-in-perl',
-    title: 'What does $_ mean in Perl?',
-    category: 'basics',
+    slug: 'how-to-write-to-file-in-perl',
+    title: 'How to Write to a File in Perl',
+    category: 'file-io',
   },
   {
-    slug: 'how-to-read-file-in-perl',
-    title: 'How to read a file in Perl?',
-    category: 'file-handling',
+    slug: 'who-uses-perl',
+    title: 'Who Uses Perl? Real-World Users and Use Cases',
+    category: 'general',
   },
   {
-    slug: 'perl-regex-match-operator',
-    title: 'How does the =~ regex match operator work?',
+    slug: 'how-to-knit-and-perl',
+    title: 'Knitting + Perl: Pattern Generation with Code',
+    category: 'general',
+  },
+  {
+    slug: 'how-to-use-regex-in-perl',
+    title: 'How to Use Regular Expressions in Perl',
     category: 'regex',
   },
-  {
-    slug: 'perl-hash-vs-array',
-    title: 'What is the difference between hash and array in Perl?',
-    category: 'data-structures',
-  },
 ];
 
-const topics = [
-  { name: 'Regex', slug: 'regex', count: 245 },
-  { name: 'File Handling', slug: 'file-handling', count: 189 },
-  { name: 'One-Liners', slug: 'one-liners', count: 156 },
-  { name: 'Data Structures', slug: 'data-structures', count: 134 },
-  { name: 'CPAN Modules', slug: 'cpan-modules', count: 312 },
-  { name: 'Legacy Code', slug: 'legacy-code', count: 98 },
+const defaultTopics = [
+  { name: 'General', slug: 'general', count: 45 },
+  { name: 'Regex', slug: 'regex', count: 32 },
+  { name: 'File I/O', slug: 'file-io', count: 31 },
+  { name: 'Data Structures', slug: 'data-structures', count: 30 },
+  { name: 'Text Processing', slug: 'text-processing', count: 28 },
+  { name: 'One-Liners', slug: 'one-liners', count: 25 },
 ];
+
+const indexableQuestions = questions.filter(isIndexableQuestion);
+const featuredQuestions = indexableQuestions.length
+  ? [...indexableQuestions]
+      .sort((a, b) => {
+        const aTime = new Date(a.published_at ?? a.created_at ?? 0).getTime();
+        const bTime = new Date(b.published_at ?? b.created_at ?? 0).getTime();
+        return bTime - aTime;
+      })
+      .slice(0, 4)
+      .map((q) => ({ slug: q.slug, title: q.title, category: q.category }))
+  : defaultFeaturedQuestions;
+
+const topics = categories.length
+  ? [...categories]
+      .filter((c) => c.indexable > 0)
+      .sort((a, b) => b.indexable - a.indexable)
+      .slice(0, 6)
+      .map((c) => ({ name: formatCategoryName(c.slug), slug: c.slug, count: c.indexable }))
+  : defaultTopics;
+
+const totalQuestions = meta?.indexable_questions ?? 490;
+const totalTopics = categories.length > 0 ? categories.length : 35;
+const totalVerified = meta?.verified_questions ?? 490;
+const formatCount = (value: number) => value.toLocaleString();
+
+const canonical = 'https://perlcode.dev/';
 ---
 
-<Base title="PerlCode - The AI that actually understands Perl">
+<Base
+  title="PerlCode - AI-Powered Perl Knowledge Base"
+  description="Perlcode.dev is an AI-powered Perl knowledge base with 3,000+ Q&As-fast answers, runnable examples, and best practices for modern Perl developers, in seconds."
+  canonical={canonical}
+>
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-b from-perl-50 to-white dark:from-dark-800 dark:to-dark-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <div class="text-center">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-          The AI that actually<br />
-          <span class="text-perl-500">understands Perl</span>
+          The AI That Actually<br />
+          <span class="text-perl-500">Understands Perl</span>
         </h1>
         <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
-          Get instant answers to your Perl questions with working code examples.
-          Built for developers maintaining legacy code, DevOps engineers, and Perl enthusiasts.
+          PerlCode is an AI-native knowledge base with {totalQuestions}+ verified Q&A pages.
+          Every code example is tested and displays actual output. Get instant answers
+          for legacy code maintenance, system administration, and Perl development.
         </p>
 
         <!-- Search Box -->
         <div class="max-w-xl mx-auto">
-          <div class="relative">
+          <form class="relative" action="/search" method="get" role="search">
+            <label for="home-search" class="sr-only">Search PerlCode</label>
             <input
+              id="home-search"
+              name="q"
               type="text"
               placeholder="Search questions... (Ctrl+K)"
               class="w-full px-6 py-4 rounded-xl border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-800 focus:ring-2 focus:ring-perl-500 focus:border-transparent outline-none text-lg"
             />
-            <button class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-perl-500 text-white rounded-lg hover:bg-perl-600 transition-colors">
+            <button
+              type="submit"
+              class="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-perl-500 text-white rounded-lg hover:bg-perl-600 transition-colors"
+              aria-label="Search"
+            >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </button>
-          </div>
+          </form>
           <p class="mt-3 text-sm text-gray-500 dark:text-gray-500">
             Try: "What does $_ mean?" or "How to parse CSV in Perl?"
           </p>
@@ -83,20 +133,131 @@ const topics = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
-          <div class="text-3xl font-bold text-perl-500">3,000+</div>
+          <div class="text-3xl font-bold text-perl-500">{formatCount(totalQuestions)}+</div>
           <div class="text-gray-600 dark:text-gray-400">Questions</div>
         </div>
         <div>
-          <div class="text-3xl font-bold text-perl-500">500+</div>
+          <div class="text-3xl font-bold text-perl-500">{totalTopics}</div>
           <div class="text-gray-600 dark:text-gray-400">Topics</div>
         </div>
         <div>
-          <div class="text-3xl font-bold text-perl-500">200+</div>
-          <div class="text-gray-600 dark:text-gray-400">Functions</div>
+          <div class="text-3xl font-bold text-perl-500">{formatCount(totalVerified)}</div>
+          <div class="text-gray-600 dark:text-gray-400">Verified</div>
         </div>
         <div>
           <div class="text-3xl font-bold text-perl-500">AI</div>
           <div class="text-gray-600 dark:text-gray-400">Powered Chat</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is PerlCode Section -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">What is PerlCode?</h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p>
+          PerlCode is a modern, AI-native knowledge base designed specifically for Perl developers.
+          Whether you're maintaining legacy enterprise systems, automating DevOps workflows, or
+          learning Perl for the first time, PerlCode delivers accurate, verified answers with
+          runnable code examples.
+        </p>
+        <p>
+          Unlike traditional documentation sites, every code snippet on PerlCode is executed in
+          a sandbox environment during content generation. This means you see the actual output
+          (STDOUT) and errors (STDERR) that the code produces. No more guessing whether an
+          example will work in your environment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Perl Programming Section -->
+  <section class="py-16 bg-gray-50 dark:bg-dark-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Practical Perl programming, from idea to working script</h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p>
+          perlcode.dev is a learning hub for developers who want clear answers and ready to run solutions. Instead of long
+          theory, you'll find concise explanations paired with snippets for common jobs: parsing text, transforming data,
+          automating sysadmin chores, scraping safely, and building reliable CLI tools. Each page helps you solve a problem in
+          minutes, with tested patterns, edge case notes, and links to deeper context when you need it.
+        </p>
+
+        <h3>A Perl tutorial that respects your time</h3>
+        <p>
+          Whether you're returning to Perl or starting fresh, our step by step Perl tutorial walks through syntax, modules,
+          file handling, regex techniques, and modern best practices. You'll learn how to structure scripts, write maintainable
+          subroutines, and debug with confidence, then apply it immediately to tasks you actually have at work.
+        </p>
+
+        <h3>Perl examples for everyday automation and data</h3>
+        <p>Browse practical Perl examples that you can adapt quickly:</p>
+        <ul>
+          <li>Read and clean CSV and TSV files, validate fields, and write reports.</li>
+          <li>Search logs with regex, capture groups, and safer replacements.</li>
+          <li>Call REST APIs, handle JSON, and retry politely on failures.</li>
+          <li>Schedule jobs, manage config, and ship scripts with documentation.</li>
+        </ul>
+
+        <p>
+          Expect real inputs and outputs. We show how to handle Unicode, large files, and inconsistent delimiters, how to write
+          tests with Test::More, and how to package reusable code into modules. You'll also get references for core functions,
+          CPAN gems, and command line flags, plus checklists for security, performance, and readability. When you need a fast
+          answer, start with the snippet, then explore the explanation. Keep your scripts modern across Perl versions and
+          deployments today.
+        </p>
+
+        <p>
+          From quick one liners to production utilities, perlcode.dev helps you move from question to solution. Save favorites,
+          share snippets with your team, and build a library of proven patterns for your next deployment, with confidence and
+          clarity.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Perl in 2025 Section -->
+  <section class="py-16 bg-gray-50 dark:bg-dark-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-6">Why Perl in 2025?</h2>
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <p>
+          Perl is experiencing a remarkable resurgence. In September 2025, Perl jumped from
+          27th to 10th place in the TIOBE Index—one of the most dramatic gains in the index's
+          history. This comeback reflects what developers have known all along: Perl remains
+          unbeatable for text processing, system administration, and maintaining legacy codebases.
+        </p>
+        <p>
+          Organizations worldwide rely on Perl for critical systems in finance, bioinformatics,
+          telecommunications, and enterprise infrastructure. With over 37 years of development
+          and more than 200,000 modules on CPAN, Perl offers a battle-tested ecosystem that
+          newer languages simply cannot match.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div class="p-6 bg-white dark:bg-dark-900 rounded-xl border border-gray-200 dark:border-dark-700">
+          <div class="text-3xl mb-3">Legacy Code</div>
+          <p class="text-gray-600 dark:text-gray-400">
+            Millions of lines of Perl code power enterprise systems. PerlCode helps you understand,
+            debug, and modernize legacy applications with confidence.
+          </p>
+        </div>
+        <div class="p-6 bg-white dark:bg-dark-900 rounded-xl border border-gray-200 dark:border-dark-700">
+          <div class="text-3xl mb-3">Text Processing</div>
+          <p class="text-gray-600 dark:text-gray-400">
+            Perl's regex capabilities remain unmatched. From log analysis to data extraction,
+            Perl handles text processing tasks that would require hundreds of lines in other languages.
+          </p>
+        </div>
+        <div class="p-6 bg-white dark:bg-dark-900 rounded-xl border border-gray-200 dark:border-dark-700">
+          <div class="text-3xl mb-3">DevOps & Sysadmin</div>
+          <p class="text-gray-600 dark:text-gray-400">
+            Perl continues to power system administration scripts, automation tools, and
+            infrastructure management in enterprises worldwide.
+          </p>
         </div>
       </div>
     </div>
@@ -118,7 +279,7 @@ const topics = [
         ))}
       </div>
       <div class="mt-6 text-center">
-        <a href="/topics" class="text-perl-500 hover:underline">View all topics →</a>
+        <a href="/topics" class="text-perl-500 hover:underline">View all topics &rarr;</a>
       </div>
     </div>
   </section>
@@ -142,6 +303,58 @@ const topics = [
           </a>
         ))}
       </div>
+      <div class="mt-6 text-center">
+        <a href="/questions" class="text-perl-500 hover:underline">Browse all questions &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8">How PerlCode Works</h2>
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-perl-500 text-white flex items-center justify-center font-bold">1</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-2">AI-Powered Question Generation</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Our system analyzes real Perl questions from developers worldwide and generates
+              comprehensive answers with code examples.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-perl-500 text-white flex items-center justify-center font-bold">2</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-2">Code Verification</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Every code snippet is executed in a Docker sandbox using multiple Perl versions.
+              Output and errors are captured and displayed alongside the code.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-perl-500 text-white flex items-center justify-center font-bold">3</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-2">Semantic Search</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              All content is indexed with vector embeddings, enabling intelligent RAG-powered
+              search that understands the context of your question.
+            </p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-perl-500 text-white flex items-center justify-center font-bold">4</div>
+          <div>
+            <h3 class="font-semibold text-lg mb-2">AI Chat Assistant</h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Ask questions in natural language and receive answers grounded in verified
+              PerlCode content. The AI cites specific pages for further reading.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -157,10 +370,10 @@ const topics = [
           the official documentation to give you accurate, grounded answers.
         </p>
         <button
-          id="open-chat"
+          data-open-chat="true"
           class="px-6 py-3 bg-white text-perl-600 font-medium rounded-lg hover:bg-perl-50 transition-colors"
         >
-          Ask a Question →
+          Ask a Question &rarr;
         </button>
       </div>
     </div>
