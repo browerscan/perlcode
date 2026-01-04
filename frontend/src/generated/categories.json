@@ -1,0 +1,247 @@
+[
+  {
+    "name": "general",
+    "slug": "general",
+    "total": 45,
+    "verified": 45,
+    "indexable": 45
+  },
+  {
+    "name": "file-io",
+    "slug": "file-io",
+    "total": 33,
+    "verified": 31,
+    "indexable": 31
+  },
+  {
+    "name": "regex",
+    "slug": "regex",
+    "total": 33,
+    "verified": 32,
+    "indexable": 32
+  },
+  {
+    "name": "data-structures",
+    "slug": "data-structures",
+    "total": 30,
+    "verified": 30,
+    "indexable": 30
+  },
+  {
+    "name": "one-liners",
+    "slug": "one-liners",
+    "total": 29,
+    "verified": 25,
+    "indexable": 25
+  },
+  {
+    "name": "text-processing",
+    "slug": "text-processing",
+    "total": 28,
+    "verified": 28,
+    "indexable": 28
+  },
+  {
+    "name": "system-admin",
+    "slug": "system-admin",
+    "total": 25,
+    "verified": 23,
+    "indexable": 23
+  },
+  {
+    "name": "cpan",
+    "slug": "cpan",
+    "total": 25,
+    "verified": 25,
+    "indexable": 25
+  },
+  {
+    "name": "oop",
+    "slug": "oop",
+    "total": 25,
+    "verified": 25,
+    "indexable": 25
+  },
+  {
+    "name": "dbi",
+    "slug": "dbi",
+    "total": 25,
+    "verified": 23,
+    "indexable": 23
+  },
+  {
+    "name": "control-flow",
+    "slug": "control-flow",
+    "total": 25,
+    "verified": 21,
+    "indexable": 21
+  },
+  {
+    "name": "variables",
+    "slug": "variables",
+    "total": 25,
+    "verified": 25,
+    "indexable": 25
+  },
+  {
+    "name": "networking",
+    "slug": "networking",
+    "total": 24,
+    "verified": 20,
+    "indexable": 20
+  },
+  {
+    "name": "http",
+    "slug": "http",
+    "total": 24,
+    "verified": 23,
+    "indexable": 23
+  },
+  {
+    "name": "subroutines",
+    "slug": "subroutines",
+    "total": 24,
+    "verified": 24,
+    "indexable": 24
+  },
+  {
+    "name": "testing",
+    "slug": "testing",
+    "total": 22,
+    "verified": 18,
+    "indexable": 18
+  },
+  {
+    "name": "serialization",
+    "slug": "serialization",
+    "total": 21,
+    "verified": 21,
+    "indexable": 21
+  },
+  {
+    "name": "debugging",
+    "slug": "debugging",
+    "total": 17,
+    "verified": 16,
+    "indexable": 16
+  },
+  {
+    "name": "Perl",
+    "slug": "Perl",
+    "total": 7,
+    "verified": 7,
+    "indexable": 7
+  },
+  {
+    "name": "basics",
+    "slug": "basics",
+    "total": 7,
+    "verified": 7,
+    "indexable": 7
+  },
+  {
+    "name": "devops",
+    "slug": "devops",
+    "total": 4,
+    "verified": 4,
+    "indexable": 4
+  },
+  {
+    "name": "sysadmin",
+    "slug": "sysadmin",
+    "total": 3,
+    "verified": 3,
+    "indexable": 3
+  },
+  {
+    "name": "Programming Languages",
+    "slug": "Programming Languages",
+    "total": 2,
+    "verified": 2,
+    "indexable": 2
+  },
+  {
+    "name": "Craft + Programming",
+    "slug": "Craft + Programming",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Security",
+    "slug": "Security",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Programming / Developer Tools",
+    "slug": "Programming / Developer Tools",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Perl / Development Tools",
+    "slug": "Perl / Development Tools",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "programming_languages",
+    "slug": "programming_languages",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Programming Languages / Perl",
+    "slug": "Programming Languages / Perl",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Developer Tools",
+    "slug": "Developer Tools",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Programming Languages > Perl",
+    "slug": "Programming Languages > Perl",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Programming > Perl > Windows",
+    "slug": "Programming > Perl > Windows",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "Linux Administration",
+    "slug": "Linux Administration",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "data",
+    "slug": "data",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  },
+  {
+    "name": "advanced",
+    "slug": "advanced",
+    "total": 1,
+    "verified": 1,
+    "indexable": 1
+  }
+]

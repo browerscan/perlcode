@@ -33,9 +33,6 @@ npm-debug.log*
 .cache/
 .turbo/
 
-# Generated files (can be regenerated from database)
-frontend/src/generated/*.json
-
 # Local database
 *.sqlite
 *.db
