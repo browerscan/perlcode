@@ -5,290 +5,65 @@ const canonical = "https://freeperlcode.com/regex";
 ---
 
 <Base
-  title="Perl Regular Expressions - Complete Guide"
-  description="Master Perl regex with practical examples. Learn pattern matching, substitutions, capture groups, and advanced text processing."
+  title="Perl Regular Expressions Guide"
+  description="Learn Perl regex patterns, matching, substitutions, and text processing techniques."
   canonical={canonical}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
-    <h1>Perl Regular Expressions: The Complete Guide</h1>
+    <h1>Perl Regular Expressions Guide</h1>
 
     <p>
       Perl's regex engine is legendary. For over 35 years, it has been the gold standard for
       pattern matching, inspiring regex implementations in Python, JavaScript, Java, and countless
-      other languages. This guide shows you how to use Perl regex effectively in real-world
-      text processing tasks.
+      other languages.
     </p>
 
     <h2>Why Perl Regex is Different</h2>
 
     <p>
-      Unlike other languages where regex is an add-on library, Perl integrates regular expressions
-      directly into the language syntax. This integration makes regex operations concise, readable,
-      and powerful. The binding operators (<code>=~</code> for matching, <code>!~</code> for
-      non-matching) work seamlessly with Perl's control structures.
+      Perl integrates regular expressions directly into the language syntax. The binding operators
+      work seamlessly with Perl's control structures for powerful text processing.
     </p>
 
-    <h2>The Basic Matching Operator</h2>
+    <h2>Pattern Matching</h2>
 
     <p>
-      The match operator searches a string for a pattern. You can bind it to any variable using
-      the binding operator.
+      Use the match operator to search strings for patterns. The binding operator connects
+      a variable to a pattern for matching.
     </p>
-
-    <p><strong>Basic matching examples:</strong></p>
-    <ul>
-      <li>Matches if text contains "Perl"</li>
-      <li>Case-insensitive match with the <code>/i</code> modifier</li>
-      <li>True if text does NOT contain "Python"</li>
-    </ul>
 
     <h2>Character Classes</h2>
 
     <p>
-      Character classes let you match any character from a set. Perl provides predefined classes
-      for common patterns like digits, whitespace, and word characters.
+      Character classes match sets of characters. Perl provides predefined classes for
+      common patterns like digits, whitespace, and word characters.
     </p>
-
-    <h3>Predefined Character Classes</h3>
-
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-      <thead class="bg-gray-50 dark:bg-dark-800">
-        <tr>
-          <th class="px-4 py-2 text-left">Class</th>
-          <th class="px-4 py-2 text-left">Matches</th>
-          <th class="px-4 py-2 text-left">Negation</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>backslash-d</code></td>
-          <td>Digits 0-9</td>
-          <td><code>backslash-D</code> for non-digits</td>
-        </tr>
-        <tr>
-          <td><code>backslash-w</code></td>
-          <td>Word characters (letters, digits, underscore)</td>
-          <td><code>backslash-W</code> for non-word</td>
-        </tr>
-        <tr>
-          <td><code>backslash-s</code></td>
-          <td>Whitespace (spaces, tabs, newlines)</td>
-          <td><code>backslash-S</code> for non-whitespace</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3>Custom Character Classes</h3>
-    <ul>
-      <li><code>[aeiou]</code> - Matches any vowel</li>
-      <li><code>[^aeiou]</code> - Matches any non-vowel (caret negates)</li>
-      <li><code>[a-zA-Z]</code> - Matches any letter</li>
-      <li><code>[0-9a-fA-F]</code> - Matches hexadecimal digits</li>
-    </ul>
 
     <h2>Quantifiers</h2>
 
     <p>
-      Quantifiers specify how many times a pattern should match. Understanding greedy vs non-greedy
-      matching is crucial for correct regex behavior.
+      Quantifiers specify how many times a pattern should match. Use asterisk for zero or more,
+      plus for one or more, and question mark for optional matches.
     </p>
-
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-      <thead class="bg-gray-50 dark:bg-dark-800">
-        <tr>
-          <th class="px-4 py-2 text-left">Quantifier</th>
-          <th class="px-4 py-2 text-left">Meaning</th>
-          <th class="px-4 py-2 text-left">Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>*</code></td>
-          <td>0 or more times</td>
-          <td>Matches empty, "a", "aa", "aaa"...</td>
-        </tr>
-        <tr>
-          <td><code>+</code></td>
-          <td>1 or more times</td>
-          <td>Matches "a", "aa", "aaa"...</td>
-        </tr>
-        <tr>
-          <td><code>?</code></td>
-          <td>0 or 1 time (optional)</td>
-          <td>Matches empty or "a"</td>
-        </tr>
-        <tr>
-          <td><code>{n}</code></td>
-          <td>Exactly n times</td>
-          <td><code>a{3}</code> matches "aaa"</td>
-        </tr>
-        <tr>
-          <td><code>{n,m}</code></td>
-          <td>n to m times</td>
-          <td><code>a{2,4}</code> matches "aa", "aaa", "aaaa"</td>
-        </tr>
-        <tr>
-          <td><code>*?</code></td>
-          <td>0 or more (non-greedy)</td>
-          <td>Stops at first match</td>
-        </tr>
-      </tbody>
-    </table>
 
     <h2>Capture Groups</h2>
 
     <p>
-      Capture groups let you extract parts of a match. Parentheses create capturing groups,
-      and you reference the captured content with special variables.
+      Parentheses create capture groups that let you extract parts of a match. Reference captured
+      content using numbered variables.
     </p>
-
-    <p><strong>Examples:</strong></p>
-    <ul>
-      <li>Date parsing: Capture year, month, day from "2025-01-05"</li>
-      <li><code>$&</code> - The entire matched string</li>
-      <li><code>$1</code>, <code>$2</code> - First and second captured groups</li>
-      <li>Named groups: Use descriptive names instead of numbers</li>
-    </ul>
 
     <h2>Substitutions</h2>
 
     <p>
-      The substitution operator finds and replaces text. The basic syntax is
-      pattern, replacement, and optional modifiers.
+      The substitution operator finds and replaces text. Use modifiers for global replacement,
+      case-insensitive matching, and more.
     </p>
-
-    <p><strong>Common substitutions:</strong></p>
-    <ul>
-      <li>Replace first occurrence of "foo" with "bar"</li>
-      <li>Global replacement (all occurrences) with <code>/g</code></li>
-      <li>Case-insensitive replacement with <code>/i</code></li>
-      <li>Replace multiple whitespace with single space</li>
-      <li>Swap "Last, First" to "First Last" format</li>
-    </ul>
-
-    <h2>Useful Regex Modifiers</h2>
-
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-      <thead class="bg-gray-50 dark:bg-dark-800">
-        <tr>
-          <th class="px-4 py-2 text-left">Modifier</th>
-          <th class="px-4 py-2 text-left">Effect</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>/i</code></td>
-          <td>Case-insensitive matching</td>
-        </tr>
-        <tr>
-          <td><code>/g</code></td>
-          <td>Global (find all matches)</td>
-        </tr>
-        <tr>
-          <td><code>/m</code></td>
-          <td>Multi-line mode (anchors match per line)</td>
-        </tr>
-        <tr>
-          <td><code>/s</code></td>
-          <td>Single-line mode (dot matches newlines)</td>
-        </tr>
-        <tr>
-          <td><code>/x</code></td>
-          <td>Allow whitespace and comments in pattern</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>Practical Examples</h2>
-
-    <h3>Email Validation</h3>
-    <p>
-      Match email addresses with a pattern that checks for local part, @ symbol, domain, and extension.
-    </p>
-
-    <h3>URL Extraction</h3>
-    <p>
-      Find HTTP/HTTPS URLs in text using pattern matching for protocol, domain, and optional path.
-    </p>
-
-    <h3>Log Parsing</h3>
-    <p>
-      Parse Apache log format to extract IP address, timestamp, HTTP method, requested path,
-      status code, and response size.
-    </p>
-
-    <h2>Advanced Features</h2>
-
-    <h3>Lookahead Assertions</h3>
-    <ul>
-      <li>Positive lookahead: match only if followed by pattern</li>
-      <li>Negative lookahead: match only if NOT followed by pattern</li>
-    </ul>
-
-    <h3>Lookbehind Assertions</h3>
-    <ul>
-      <li>Positive lookbehind: match only if preceded by pattern</li>
-      <li>Negative lookbehind: match only if NOT preceded by pattern</li>
-    </ul>
-
-    <h3>Named Capture Groups</h3>
-    <p>
-      Instead of numbered variables like <code>$1</code> and <code>$2</code>, use descriptive names
-      for better code readability.
-    </p>
-
-    <h2>Common Patterns Reference</h2>
-
-    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
-      <thead class="bg-gray-50 dark:bg-dark-800">
-        <tr>
-          <th class="px-4 py-2 text-left">Pattern</th>
-          <th class="px-4 py-2 text-left">Matches</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Anchor + digits + anchor</td>
-          <td>Whole positive integer</td>
-        </tr>
-        <tr>
-          <td>Word chars + @ + word chars + dot + letters</td>
-          <td>Simple email format</td>
-        </tr>
-        <tr>
-          <td>http or https protocol</td>
-          <td>HTTP/HTTPS URL</td>
-        </tr>
-        <tr>
-          <td>DDD-DD-DDDD format</td>
-          <td>SSN format</td>
-        </tr>
-        <tr>
-          <td>Optional parentheses + 3 digits + optional separator</td>
-          <td>US phone number</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>Perl Command-Line One-Liners</h2>
-
-    <p>
-      Perl's command-line mode makes regex operations incredibly convenient for quick text
-      processing tasks:
-    </p>
-
-    <ul>
-      <li>Find lines containing "error" (case-insensitive)</li>
-      <li>Print specific line ranges from a file</li>
-      <li>Replace text in multiple files at once</li>
-      <li>Sum values from a specific CSV column</li>
-    </ul>
 
     <h2>Learn More</h2>
 
     <p>
-      Perl's regex capabilities go far beyond what's covered here. For deeper dives into specific
-      patterns and techniques, explore our question database:
+      Explore our question database for specific regex patterns and techniques:
     </p>
 
     <ul>
@@ -296,11 +71,5 @@ const canonical = "https://freeperlcode.com/regex";
       <li><a href="/topics/regex">Regex topics</a> for categorized tutorials</li>
       <li><a href="/questions">All questions</a> for regex examples</li>
     </ul>
-
-    <p>
-      Remember: Perl regex is powerful, but with great power comes responsibility. Always test your
-      patterns with edge cases, use strict and warnings, and consider readability when writing
-      complex regex patterns.
-    </p>
   </section>
 </Base>
