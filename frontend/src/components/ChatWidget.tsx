@@ -289,7 +289,7 @@ export default function ChatWidget() {
                 <div className="flex items-center gap-2 mb-2">
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-perl-500/20">
                     <span className="text-perl-500 font-mono font-bold text-xs">
-                      $
+                      F
                     </span>
                   </div>
                   <span className="font-semibold text-white">
@@ -333,7 +333,7 @@ export default function ChatWidget() {
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-perl-500 to-perl-600 shadow-lg shadow-perl-500/25">
                       <span className="text-white font-mono font-bold text-lg">
-                        $
+                        F
                       </span>
                     </div>
                     <div>
@@ -380,7 +380,7 @@ export default function ChatWidget() {
                   <div className="flex flex-col items-center justify-center h-full text-center py-8">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-perl-500/20 to-perl-600/20 flex items-center justify-center mb-4">
                       <span className="text-perl-400 font-mono font-bold text-3xl">
-                        $
+                        F
                       </span>
                     </div>
                     <h4 className="text-white font-medium mb-2">
@@ -427,9 +427,9 @@ export default function ChatWidget() {
                           {message.role === "assistant" && (
                             <div className="flex items-center gap-1.5 mb-2 text-[10px] uppercase tracking-widest text-gray-500">
                               <span className="text-perl-400 font-mono font-bold">
-                                $
+                                F
                               </span>
-                              <span>PerlCode</span>
+                              <span>FreePerlCode</span>
                             </div>
                           )}
                           <div className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -565,7 +565,7 @@ export default function ChatWidget() {
               />
             </svg>
           ) : (
-            <span className="text-white font-mono font-bold text-xl">$</span>
+            <span className="text-white font-mono font-bold text-xl">F</span>
           )}
         </button>
       </div>

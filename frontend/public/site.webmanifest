@@ -1,7 +1,7 @@
 {
-  "name": "PerlCode",
-  "short_name": "PerlCode",
-  "description": "The AI-powered knowledge base for Perl developers",
+  "name": "Free Perl Code",
+  "short_name": "FreePerlCode",
+  "description": "The AI-powered knowledge base for Perl developers with 3,000+ verified Q&A pages",
   "icons": [
     {
       "src": "/favicon-192x192.png",
@@ -14,7 +14,7 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#3B82F6",
-  "background_color": "#ffffff",
+  "theme_color": "#e68a0b",
+  "background_color": "#1a1a2e",
   "display": "standalone"
 }
