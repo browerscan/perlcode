@@ -24,7 +24,7 @@ const canonical = "https://freeperlcode.com/regex";
     <p>
       Unlike other languages where regex is an add-on library, Perl integrates regular expressions
       directly into the language syntax. This integration makes regex operations concise, readable,
-      and powerful. The regex operators (<code>=~</code> for matching, <code>!~</code> for
+      and powerful. The binding operators (<code>=~</code> for matching, <code>!~</code> for
       non-matching) work seamlessly with Perl's control structures.
     </p>
 
@@ -32,21 +32,21 @@ const canonical = "https://freeperlcode.com/regex";
 
     <p>
       The match operator searches a string for a pattern. You can bind it to any variable using
-      the binding operator <code>=~</code>.
+      the binding operator.
     </p>
 
     <p><strong>Basic matching examples:</strong></p>
     <ul>
-      <li><code>$text =~ /Perl/</code> - Matches if text contains "Perl"</li>
-      <li><code>$text =~ /perl/i</code> - Case-insensitive match with <code>/i</code> modifier</li>
-      <li><code>$text !~ /Python/</code> - True if text does NOT contain "Python"</li>
+      <li>Matches if text contains "Perl"</li>
+      <li>Case-insensitive match with the <code>/i</code> modifier</li>
+      <li>True if text does NOT contain "Python"</li>
     </ul>
 
     <h2>Character Classes</h2>
 
     <p>
       Character classes let you match any character from a set. Perl provides predefined classes
-      for common patterns.
+      for common patterns like digits, whitespace, and word characters.
     </p>
 
     <h3>Predefined Character Classes</h3>
@@ -61,19 +61,19 @@ const canonical = "https://freeperlcode.com/regex";
       </thead>
       <tbody>
         <tr>
-          <td><code>\\d</code></td>
-          <td>Digits [0-9]</td>
-          <td><code>\\D</code> - non-digits</td>
+          <td><code>backslash-d</code></td>
+          <td>Digits 0-9</td>
+          <td><code>backslash-D</code> for non-digits</td>
         </tr>
         <tr>
-          <td><code>\\w</code></td>
-          <td>Word characters [a-zA-Z0-9_]</td>
-          <td><code>\\W</code> - non-word</td>
+          <td><code>backslash-w</code></td>
+          <td>Word characters (letters, digits, underscore)</td>
+          <td><code>backslash-W</code> for non-word</td>
         </tr>
         <tr>
-          <td><code>\\s</code></td>
-          <td>Whitespace [ \t\n\r\f]</td>
-          <td><code>\\S</code> - non-whitespace</td>
+          <td><code>backslash-s</code></td>
+          <td>Whitespace (spaces, tabs, newlines)</td>
+          <td><code>backslash-S</code> for non-whitespace</td>
         </tr>
       </tbody>
     </table>
@@ -105,27 +105,27 @@ const canonical = "https://freeperlcode.com/regex";
         <tr>
           <td><code>*</code></td>
           <td>0 or more times</td>
-          <td><code>/a*/</code> matches "", "a", "aa", "aaa"...</td>
+          <td>Matches empty, "a", "aa", "aaa"...</td>
         </tr>
         <tr>
           <td><code>+</code></td>
           <td>1 or more times</td>
-          <td><code>/a+/</code> matches "a", "aa", "aaa"...</td>
+          <td>Matches "a", "aa", "aaa"...</td>
         </tr>
         <tr>
           <td><code>?</code></td>
           <td>0 or 1 time (optional)</td>
-          <td><code>/a?/</code> matches "" or "a"</td>
+          <td>Matches empty or "a"</td>
         </tr>
         <tr>
           <td><code>{n}</code></td>
           <td>Exactly n times</td>
-          <td><code>/a{3}/</code> matches "aaa"</td>
+          <td><code>a{3}</code> matches "aaa"</td>
         </tr>
         <tr>
           <td><code>{n,m}</code></td>
           <td>n to m times</td>
-          <td><code>/a{2,4}/</code> matches "aa", "aaa", "aaaa"</td>
+          <td><code>a{2,4}</code> matches "aa", "aaa", "aaaa"</td>
         </tr>
         <tr>
           <td><code>*?</code></td>
@@ -139,31 +139,31 @@ const canonical = "https://freeperlcode.com/regex";
 
     <p>
       Capture groups let you extract parts of a match. Parentheses create capturing groups,
-      and you reference the captured content with <code>$1</code>, <code>$2</code>, etc.
+      and you reference the captured content with special variables.
     </p>
 
     <p><strong>Examples:</strong></p>
     <ul>
-      <li><code>if ($text =~ /(\\d{4})-(\\d{2})-(\\d{2})/)</code> - Captures year, month, day as <code>$1</code>, <code>$2</code>, <code>$3</code></li>
+      <li>Date parsing: Capture year, month, day from "2025-01-05"</li>
       <li><code>$&</code> - The entire matched string</li>
-      <li><code>$`</code> - Text before the match</li>
-      <li><code>$'</code> - Text after the match</li>
+      <li><code>$1</code>, <code>$2</code> - First and second captured groups</li>
+      <li>Named groups: Use descriptive names instead of numbers</li>
     </ul>
 
-    <h2>Substitutions with s///</h2>
+    <h2>Substitutions</h2>
 
     <p>
       The substitution operator finds and replaces text. The basic syntax is
-      <code>s/pattern/replacement/modifiers</code>.
+      pattern, replacement, and optional modifiers.
     </p>
 
     <p><strong>Common substitutions:</strong></p>
     <ul>
-      <li><code>$text =~ s/foo/bar/</code> - Replace first "foo" with "bar"</li>
-      <li><code>$text =~ s/foo/bar/g</code> - Global replacement (all occurrences)</li>
-      <li><code>$text =~ s/foo/bar/i</code> - Case-insensitive replacement</li>
-      <li><code>$text =~ s/\\s+/ /g</code> - Replace multiple whitespace with single space</li>
-      <li><code>$name =~ s/(\\w+),\\s+(\\w+)/$2 $1/</code> - Swap "Last, First" to "First Last"</li>
+      <li>Replace first occurrence of "foo" with "bar"</li>
+      <li>Global replacement (all occurrences) with <code>/g</code></li>
+      <li>Case-insensitive replacement with <code>/i</code></li>
+      <li>Replace multiple whitespace with single space</li>
+      <li>Swap "Last, First" to "First Last" format</li>
     </ul>
 
     <h2>Useful Regex Modifiers</h2>
@@ -186,19 +186,15 @@ const canonical = "https://freeperlcode.com/regex";
         </tr>
         <tr>
           <td><code>/m</code></td>
-          <td>Multi-line mode (^ and $ match per line)</td>
+          <td>Multi-line mode (anchors match per line)</td>
         </tr>
         <tr>
           <td><code>/s</code></td>
-          <td>Single-line mode (.) matches newlines</td>
+          <td>Single-line mode (dot matches newlines)</td>
         </tr>
         <tr>
           <td><code>/x</code></td>
           <td>Allow whitespace and comments in pattern</td>
-        </tr>
-        <tr>
-          <td><code>/e</code></td>
-          <td>Evaluate replacement as code</td>
         </tr>
       </tbody>
     </table>
@@ -207,37 +203,38 @@ const canonical = "https://freeperlcode.com/regex";
 
     <h3>Email Validation</h3>
     <p>
-      Basic email pattern: <code>/^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$/</code>
+      Match email addresses with a pattern that checks for local part, @ symbol, domain, and extension.
     </p>
 
     <h3>URL Extraction</h3>
     <p>
-      Find URLs: <code>/(https?:\/\/[\\w\-\\.~:\/?#\[\]@!\$&'()*+,;=]+)/g</code>
+      Find HTTP/HTTPS URLs in text using pattern matching for protocol, domain, and optional path.
     </p>
 
     <h3>Log Parsing</h3>
     <p>
-      Parse Apache log format to extract IP, timestamp, method, path, status, and bytes.
+      Parse Apache log format to extract IP address, timestamp, HTTP method, requested path,
+      status code, and response size.
     </p>
 
     <h2>Advanced Features</h2>
 
     <h3>Lookahead Assertions</h3>
     <ul>
-      <li><code>(?=pattern)</code> - Positive lookahead: match only if followed by pattern</li>
-      <li><code>(?!pattern)</code> - Negative lookahead: match only if NOT followed by pattern</li>
+      <li>Positive lookahead: match only if followed by pattern</li>
+      <li>Negative lookahead: match only if NOT followed by pattern</li>
     </ul>
 
     <h3>Lookbehind Assertions</h3>
     <ul>
-      <li><code>(?<=pattern)</code> - Positive lookbehind: match only if preceded by pattern</li>
-      <li><code>(?<!pattern)</code> - Negative lookbehind: match only if NOT preceded by pattern</li>
+      <li>Positive lookbehind: match only if preceded by pattern</li>
+      <li>Negative lookbehind: match only if NOT preceded by pattern</li>
     </ul>
 
-    <h3>Named Capture Groups (Perl 5.10+)</h3>
+    <h3>Named Capture Groups</h3>
     <p>
-      Instead of <code>$1</code>, <code>$2</code>, use descriptive names:
-      <code>/(?<name>\\w+):\\s+(?<age>\\d+)/</code> then access via <code>$+{name}</code>
+      Instead of numbered variables like <code>$1</code> and <code>$2</code>, use descriptive names
+      for better code readability.
     </p>
 
     <h2>Common Patterns Reference</h2>
@@ -251,39 +248,40 @@ const canonical = "https://freeperlcode.com/regex";
       </thead>
       <tbody>
         <tr>
-          <td><code>^\\d+$</code></td>
+          <td>Anchor + digits + anchor</td>
           <td>Whole positive integer</td>
         </tr>
         <tr>
-          <td><code>^\\w+@\\w+\\.\\w+</code></td>
+          <td>Word chars + @ + word chars + dot + letters</td>
           <td>Simple email format</td>
         </tr>
         <tr>
-          <td><code>^https?://</code></td>
-          <td>HTTP or HTTPS URL</td>
+          <td>http or https protocol</td>
+          <td>HTTP/HTTPS URL</td>
         </tr>
         <tr>
-          <td><code>^\\d{3}-\\d{2}-\\d{4}$</code></td>
+          <td>DDD-DD-DDDD format</td>
           <td>SSN format</td>
         </tr>
         <tr>
-          <td><code>^\(?\\d{3}\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$</code></td>
+          <td>Optional parentheses + 3 digits + optional separator</td>
           <td>US phone number</td>
         </tr>
       </tbody>
     </table>
 
-    <h2>Perl One-Liners</h2>
+    <h2>Perl Command-Line One-Liners</h2>
 
     <p>
-      Perl's command-line mode makes regex operations incredibly convenient:
+      Perl's command-line mode makes regex operations incredibly convenient for quick text
+      processing tasks:
     </p>
 
     <ul>
-      <li><code>perl -ne 'print if /error/i' logfile.txt</code> - Find lines with "error"</li>
-      <li><code>perl -ne 'print if $. >= 50 && $. <= 60' file.txt</code> - Print lines 50-60</li>
-      <li><code>perl -i -pe 's/foo/bar/g' *.txt</code> - Replace in all files</li>
-      <li><code>perl -F, -ane '$sum += $F[2]; END { print $sum }' data.csv</code> - Sum column 3</li>
+      <li>Find lines containing "error" (case-insensitive)</li>
+      <li>Print specific line ranges from a file</li>
+      <li>Replace text in multiple files at once</li>
+      <li>Sum values from a specific CSV column</li>
     </ul>
 
     <h2>Learn More</h2>
@@ -301,8 +299,8 @@ const canonical = "https://freeperlcode.com/regex";
 
     <p>
       Remember: Perl regex is powerful, but with great power comes responsibility. Always test your
-      patterns with edge cases, use <code>use strict;</code> and <code>use warnings;</code>, and
-      consider readability when writing complex regex.
+      patterns with edge cases, use strict and warnings, and consider readability when writing
+      complex regex patterns.
     </p>
   </section>
 </Base>
