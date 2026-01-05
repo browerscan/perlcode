@@ -43,17 +43,17 @@ my $text = "Perl 5.38 was released in 2023";
 
 # Simple match - returns true if pattern found
 if ($text =~ /Perl/) {
-    print "Found 'Perl'\n";
+    print "Found 'Perl'\\n";
 }
 
 # Case-insensitive match with /i modifier
 if ($text =~ /perl/i) {
-    print "Found 'perl' (case-insensitive)\n";
+    print "Found 'perl' (case-insensitive)\\n";
 }
 
 # Matching with capture groups
-if ($text =~ /Perl\s+(\d+\.\d+)/) {
-    print "Version: $1\n";  # $1 contains the captured group
+if ($text =~ /Perl\\s+(\\d+\\.\\d+)/) {
+    print "Version: $1\\n";  # $1 contains the captured group
 }</code></pre>
 
     <h2>Character Classes</h2>
@@ -70,14 +70,14 @@ use warnings;
 my $data = "user@example.com 123-456-7890";
 
 # Predefined character classes
-\d    # Matches any digit [0-9]
-\w    # Matches any word character [a-zA-Z0-9_]
-\s    # Matches any whitespace [ \t\n\r\f]
+\\d    # Matches any digit [0-9]
+\\w    # Matches any word character [a-zA-Z0-9_]
+\\s    # Matches any whitespace [ \\t\\n\\r\\f]
 
 # Negated classes
-\D    # Matches any non-digit
-\W    # Matches any non-word character
-\S    # Matches any non-whitespace
+\\D    # Matches any non-digit
+\\W    # Matches any non-word character
+\\S    # Matches any non-whitespace
 
 # Custom character classes
 [aeiou]       # Matches any vowel
@@ -86,12 +86,12 @@ my $data = "user@example.com 123-456-7890";
 [0-9a-fA-F]   # Matches any hexadecimal digit
 
 # Extract email and phone
-if ($data =~ /([\w.-]+@[\w.-]+)/) {
-    print "Email: $1\n";
+if ($data =~ /([\\w.-]+@[\\w.-]+)/) {
+    print "Email: $1\\n";
 }
 
-if ($data =~ /(\d{3}-\d{3}-\d{4})/) {
-    print "Phone: $1\n";
+if ($data =~ /(\\d{3}-\\d{3}-\\d{4})/) {
+    print "Phone: $1\\n";
 }</code></pre>
 
     <h2>Quantifiers</h2>
@@ -116,13 +116,13 @@ my $html = '&lt;div&gt;Content&lt;/div&gt;&lt;div&gt;More&lt;/div&gt;';
 {n,m} # Match n to m times
 
 # Greedy match - grabs too much
-if ($html =~ /&lt;div&gt;.*&lt;\/div&gt;/) {
-    print "Greedy: $&amp;\n";  # Matches entire string
+if ($html =~ /&lt;div&gt;.*&lt;\\/div&gt;/) {
+    print "Greedy: $&\\n";  # Matches entire string
 }
 
 # Non-greedy (minimal) matching
-if ($html =~ /&lt;div&gt;.*?&lt;\/div&gt;/) {
-    print "Non-greedy: $&amp;\n";  # Matches first div only
+if ($html =~ /&lt;div&gt;.*?&lt;\\/div&gt;/) {
+    print "Non-greedy: $&\\n";  # Matches first div only
 }</code></pre>
 
     <h2>Capture Groups and Backreferences</h2>
@@ -139,17 +139,17 @@ use warnings;
 my $log = "2025-01-05 10:30:45 [ERROR] Database connection failed";
 
 # Multiple capture groups
-if ($log =~ /^(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.*)$/) {
-    print "Date: $1\n";
-    print "Time: $2\n";
-    print "Level: $3\n";
-    print "Message: $4\n";
+if ($log =~ /^(\\d{4}-\\d{2}-\\d{2})\\s+(\\d{2}:\\d{2}:\\d{2})\\s+\\[(\\w+)\\]\\s+(.*)$/) {
+    print "Date: $1\\n";
+    print "Time: $2\\n";
+    print "Level: $3\\n";
+    print "Message: $4\\n";
 }
 
 # Named capture groups (Perl 5.10+)
 my $text = "John: 25 years old";
-if ($text =~ /^(?&lt;name&gt;\w+):\s+(?&lt;age&gt;\d+)\s+years/) {
-    print "Name: $+{name}, Age: $+{age}\n";
+if ($text =~ /^(?&lt;name&gt;\\w+):\\s+(?&lt;age&gt;\\d+)\\s+years/) {
+    print "Name: $+{name}, Age: $+{age}\\n";
 }</code></pre>
 
     <h2>Substitutions with s///</h2>
@@ -167,26 +167,26 @@ my $text = "Hello perl programmers";
 
 # Simple substitution
 $text =~ s/perl/Perl/;
-print "$text\n";  # Hello Perl programmers
+print "$text\\n";  # Hello Perl programmers
 
 # Global substitution with /g
 my $colors = "red blue red green red";
 $colors =~ s/red/yellow/g;
-print "$colors\n";  # yellow blue yellow green yellow
+print "$colors\\n";  # yellow blue yellow green yellow
 
 # Case-insensitive substitution
 $text =~ s/PROGRAMMERS/Developers/i;
-print "$text\n";  # Hello Perl Developers
+print "$text\\n";  # Hello Perl Developers
 
 # Using capture groups in replacement
 my $name = "Smith, John";
-$name =~ s/(\w+),\s+(\w+)/$2 $1/;
-print "$name\n";  # John Smith
+$name =~ s/(\\w+),\\s+(\\w+)/$2 $1/;
+print "$name\\n";  # John Smith
 
 # Removing extra whitespace
 my $messy = "too    many   spaces";
-$messy =~ s/\s+/ /g;
-print "$messy\n";  # too many spaces</code></pre>
+$messy =~ s/\\s+/ /g;
+print "$messy\\n";  # too many spaces</code></pre>
 
     <h2>Splitting and Joining</h2>
 
@@ -200,25 +200,25 @@ print "$messy\n";  # too many spaces</code></pre>
 use warnings;
 
 # Split on whitespace
-my $line = "one  two\tthree\nfour";
-my @words = split(/\s+/, $line);
-print join(", ", @words), "\n";  # one, two, three, four
+my $line = "one  two\\tthree\\nfour";
+my @words = split(/\\s+/, $line);
+print join(", ", @words), "\\n";  # one, two, three, four
 
 # Split on comma with optional spaces
 my $csv = "apple, banana, cherry, date";
-my @fruits = split(/,\s*/, $csv);
+my @fruits = split(/,\\s*/, $csv);
 foreach my $fruit (@fruits) {
-    print "- $fruit\n";
+    print "- $fruit\\n";
 }
 
 # Parse key-value pairs
 my $config = "host=localhost|port=3306|database=test";
 my %settings;
-foreach my $pair (split(/\|/, $config)) {
+foreach my $pair (split(/\\|/, $config)) {
     my ($key, $value) = split(/=/, $pair);
     $settings{$key} = $value;
 }
-print "Host: $settings{host}\n";</code></pre>
+print "Host: $settings{host}\\n";</code></pre>
 
     <h2>Practical Regex Examples</h2>
 
@@ -228,7 +228,7 @@ use warnings;
 
 sub is_valid_email {
     my ($email) = @_;
-    return $email =~ /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+    return $email =~ /^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$/;
 }
 
 my @emails = (
@@ -240,7 +240,7 @@ my @emails = (
 
 foreach my $email (@emails) {
     my $valid = is_valid_email($email) ? "Valid" : "Invalid";
-    print "$email: $valid\n";
+    print "$email: $valid\\n";
 }</code></pre>
 
     <h3>Extracting URLs from Text</h3>
@@ -250,36 +250,36 @@ use warnings;
 my $text = "Visit https://freeperlcode.com or http://perl.org for more info";
 
 my @urls;
-while ($text =~ /(https?:\/\/[\w\-\.~:\/?#\[\]@!\$&'()*+,;=]+)/g) {
+while ($text =~ /(https?:\\/\\/[\\w\\-\\.~:\\/?#\\[\\]@!\\$&'()*+,;=]+)/g) {
     push @urls, $1;
 }
 
 foreach my $url (@urls) {
-    print "Found URL: $url\n";
+    print "Found URL: $url\\n";
 }</code></pre>
 
     <h3>Log File Parsing</h3>
     <pre><code class="language-perl">use strict;
-use warnings";
+use warnings;
 
 # Simulated Apache log line
 my $log_line = '127.0.0.1 - - [05/Jan/2025:10:30:45 +0000] "GET /index.html HTTP/1.1" 200 2326';
 
 my $log_pattern = qr{
-    ^(\S+)                     # IP address
-    \s+\S+\s+\S+               # identd and authuser
-    \s\[([^\]]+)\]             # timestamp
-    \s+"(\w+)\s+(\S+)"         # method and path
-    \s+(\d+)\s+(\d+)           # status and size
+    ^(\\S+)                     # IP address
+    \\s+\\S+\\s+\\S+               # identd and authuser
+    \\s\\[([^\\]]+)\\]             # timestamp
+    \\s+"(\\w+)\\s+(\\S+)"         # method and path
+    \\s+(\\d+)\\s+(\\d+)           # status and size
 }x;
 
 if ($log_line =~ /$log_pattern/) {
-    print "IP: $1\n";
-    print "Time: $2\n";
-    print "Method: $3\n";
-    print "Path: $4\n";
-    print "Status: $5\n";
-    print "Bytes: $6\n";
+    print "IP: $1\\n";
+    print "Time: $2\\n";
+    print "Method: $3\\n";
+    print "Path: $4\\n";
+    print "Status: $5\\n";
+    print "Bytes: $6\\n";
 }</code></pre>
 
     <h2>Advanced Perl Regex Features</h2>
@@ -292,23 +292,23 @@ my $text = "foo123bar baz456qux";
 
 # Positive lookahead - match "foo" only if followed by "123"
 if ($text =~ /foo(?=123)/) {
-    print "Found 'foo' before '123'\n";
+    print "Found 'foo' before '123'\\n";
 }
 
 # Negative lookahead - match "bar" only if NOT followed by "456"
 if ($text =~ /bar(?!456)/) {
-    print "Found 'bar' not followed by '456'\n";
+    print "Found 'bar' not followed by '456'\\n";
 }
 
 # Positive lookbehind - match "123" only if preceded by "foo"
 if ($text =~ /(?&lt;=foo)123/) {
-    print "Found '123' after 'foo'\n";
+    print "Found '123' after 'foo'\\n";
 }
 
 # Practical example: find numbers not preceded by $
 my $code = "price = $100 + 50";
-my @numbers = $code =~ /(?&lt;!$)\d+/g;
-print join(", ", @numbers), "\n";  # 50</code></pre>
+my @numbers = $code =~ /(?&lt;!$)\\d+/g;
+print join(", ", @numbers), "\\n";  # 50</code></pre>
 
     <h3>The /x Modifier for Readable Regex</h3>
     <pre><code class="language-perl">use strict;
@@ -317,23 +317,23 @@ use warnings;
 my $date = "2025-01-05";
 
 # Hard to read
-if ($date =~ /^\d{4}-\d{2}-\d{2}$/) {
-    print "Valid date format\n";
+if ($date =~ /^\\d{4}-\\d{2}-\\d{2}$/) {
+    print "Valid date format\\n";
 }
 
 # Easy to read with /x modifier
 my $date_pattern = qr{
     ^                # Start of string
-    \d{4}            # Four digits for year
+    \\d{4}            # Four digits for year
     -                # Literal hyphen
-    \d{2}            # Two digits for month
+    \\d{2}            # Two digits for month
     -                # Literal hyphen
-    \d{2}            # Two digits for day
+    \\d{2}            # Two digits for day
     $                # End of string
 }x;
 
 if ($date =~ /$date_pattern/) {
-    print "Valid date format\n";
+    print "Valid date format\\n";
 }</code></pre>
 
     <h2>Common Perl Regex Patterns</h2>
@@ -348,12 +348,12 @@ if ($date =~ /$date_pattern/) {
       </thead>
       <tbody>
         <tr>
-          <td><code>^\d+$</code></td>
+          <td><code>^\\d+$</code></td>
           <td>Whole number (positive integer)</td>
           <td><code>123</code></td>
         </tr>
         <tr>
-          <td><code>^\w+@\w+\.\w+</code></td>
+          <td><code>^\\w+@\\w+\\.\\w+</code></td>
           <td>Simple email</td>
           <td><code>user@domain.com</code></td>
         </tr>
@@ -363,12 +363,12 @@ if ($date =~ /$date_pattern/) {
           <td><code>https://example.com</code></td>
         </tr>
         <tr>
-          <td><code>^\d{3}-\d{2}-\d{4}$</code></td>
+          <td><code>^\\d{3}-\\d{2}-\\d{4}$</code></td>
           <td>SSN format</td>
           <td><code>123-45-6789</code></td>
         </tr>
         <tr>
-          <td><code>^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$</code></td>
+          <td><code>^\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$</code></td>
           <td>US phone</td>
           <td><code>(555) 123-4567</code></td>
         </tr>
@@ -392,10 +392,10 @@ perl -ne 'print if $. >= 50 && $. <= 60' file.txt
 perl -i -pe 's/foo/bar/g' *.txt
 
 # Extract email addresses from a file
-perl -ne 'print "$&amp;\n" while /[\w.-]+@[\w.-]+\.[a-z]{2,}/gi' contacts.txt
+perl -ne 'print "$&\\n" while /[\\w.-]+@[\\w.-]+\\.[a-z]{2,}/gi' contacts.txt
 
 # Sum values in column 3 of CSV
-perl -F, -ane '$sum += $F[2]; END { print "$sum\n"}' data.csv</code></pre>
+perl -F, -ane '$sum += $F[2]; END { print "$sum\\n"}' data.csv</code></pre>
 
     <h2>Learn More</h2>
 
