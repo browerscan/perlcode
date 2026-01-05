@@ -1,21 +1,208 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/compare/perl-vs-python";
 ---
 
 <Base
-  title="Perl vs Python"
-  description="A pragmatic comparison for developers maintaining Perl codebases."
-  robots="noindex,follow"
+  title="Perl vs Python: A Pragmatic Comparison for Developers"
+  description="Perl vs Python: compare syntax, tooling, performance, ecosystems, and best use cases-plus clear pros and cons-so you pick the right language for your project."
+  canonical={canonical}
+  robots="index,follow"
 >
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
-    <h1>Perl vs Python</h1>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
+    <h1>Perl vs Python: A Pragmatic Comparison</h1>
+
     <p>
-      This page is a lightweight placeholder. The goal is to capture practical tradeoffs
-      from a legacy-maintainer perspective (tooling, deployment, text processing, ecosystem).
+      The Perl vs Python debate has raged for decades, but the conversation has shifted. Rather
+      than declaring one language universally superior, smart developers choose the right tool
+      for the job. This comparison focuses on practical considerations for developers working
+      in 2025.
     </p>
+
+    <h2>The Quick Answer</h2>
+
     <p>
-      For now, use <a href="/search">Search</a> to find specific topics (regex, file handling, DBI, etc.).
+      <strong>Choose Python for:</strong> New projects, data science, machine learning, web backends,
+      and when you need to hire developers quickly.
+    </p>
+
+    <p>
+      <strong>Choose Perl for:</strong> Text processing, legacy code maintenance, one-liners,
+      system administration, and when you need battle-tested reliability.
+    </p>
+
+    <h2>Text Processing and Regex</h2>
+
+    <p>
+      Perl was built for text processing, and it shows. The language integrates regular expressions
+      at the syntax level, making text manipulation concise and readable (once you know the idioms).
+    </p>
+
+    <h3>Perl Example:</h3>
+    <pre><code>perl -ne 'print if /error|warning/i' logfile.txt</code></pre>
+
+    <h3>Python Equivalent:</h3>
+    <pre><code>import re
+for line in open('logfile.txt'):
+    if re.search(r'error|warning', line, re.IGNORECASE):
+        print(line, end='')</code></pre>
+
+    <p>
+      Perl's one-liner culture makes it unbeatable for quick text processing tasks. Python requires
+      more boilerplate but may be more readable to developers unfamiliar with Perl's idioms.
+    </p>
+
+    <h2>Legacy Code and Enterprise Systems</h2>
+
+    <p>
+      This is where Perl dominates. Millions of lines of Perl code power financial systems,
+      telecommunications infrastructure, bioinformatics pipelines, and enterprise applications.
+      Rewriting these systems in Python is often impractical due to cost, risk, and the simple
+      fact that Perl code often works fine.
+    </p>
+
+    <p>
+      If you're maintaining legacy Perl code, Free Perl Code is designed specifically for you. Our
+      knowledge base covers the patterns, idioms, and techniques used in real-world Perl
+      applications.
+    </p>
+
+    <h2>Ecosystem and Libraries</h2>
+
+    <h3>CPAN (Perl)</h3>
+
+    <p>
+      The Comprehensive Perl Archive Network (CPAN) predates Python's PyPI and contains over
+      200,000 modules. While some modules are unmaintained, core modules like DBI (database
+      interface), LWP (web requests), and Mojolicious (web framework) are battle-tested and
+      reliable.
+    </p>
+
+    <h3>PyPI (Python)</h3>
+
+    <p>
+      Python's package index is larger and more active. For modern applications, you'll find
+      well-maintained libraries for everything from web development (Django, FastAPI) to data
+      science (pandas, numpy) to machine learning (scikit-learn, PyTorch).
+    </p>
+
+    <p>
+      <strong>Winner:</strong> Python for modern applications, Perl for specialized domains
+      (bioinformatics, system administration).
+    </p>
+
+    <h2>System Administration and DevOps</h2>
+
+    <p>
+      Both languages are capable, but they have different strengths:
+    </p>
+
+    <h3>Perl Advantages:</h3>
+    <ul>
+      <li>Better for log file parsing and text-heavy tasks</li>
+      <li>Excellent one-liner support for quick tasks</li>
+      <li>Lower memory footprint</li>
+      <li>Pervasive in older Unix environments</li>
+    </ul>
+
+    <h3>Python Advantages:</h3>
+    <ul>
+      <li>Better integration with modern DevOps tools (Ansible, Terraform providers)</li>
+      <li>More readable for complex automation scripts</li>
+      <li>Larger community of DevOps engineers using Python</li>
+      <li>Better cross-platform consistency</li>
+    </ul>
+
+    <p>
+      <strong>Reality check:</strong> Bash has largely replaced both for simple DevOps tasks,
+      while Python dominates complex automation. Perl remains relevant for text-heavy automation
+      and environments where it's already deployed.
+    </p>
+
+    <h2>Performance</h2>
+
+    <p>
+      The performance difference between Perl and Python is often overstated. Both are interpreted
+      languages with similar performance characteristics. For CPU-bound tasks, neither is ideal—
+      you'd use Rust, Go, or compiled extensions. For I/O-bound tasks (web requests, file
+      operations), both are perfectly adequate.
+    </p>
+
+    <p>
+      Perl generally has lower memory overhead and faster startup time, making it better suited
+      for CGI scripts and command-line utilities. Python's performance has improved significantly
+      with recent versions, but still requires more memory for equivalent tasks.
+    </p>
+
+    <h2>Learning Curve and Developer Availability</h2>
+
+    <p>
+      Python is widely taught in universities and bootcamps. Finding Python developers is easy,
+      and onboarding new team members is straightforward.
+    </p>
+
+    <p>
+      Perl has a steeper learning curve due to its syntax density and emphasis on idiomatic
+      expressions. However, Perl developers tend to be experienced professionals who have
+      maintained legacy systems for years—exactly the expertise you need for critical systems.
+    </p>
+
+    <h2>Perl Programming in Production</h2>
+
+    <p>
+      Perl programming remains essential for maintaining <strong>legacy code</strong> in production environments.
+      Organizations worldwide depend on Perl codebases that have been running reliably for decades—
+      from financial trading systems to telecommunications infrastructure. These systems aren't going
+      anywhere, and the developers who maintain them need reliable resources.
+    </p>
+
+    <p>
+      When you're working with legacy code, Free Perl Code provides the answers you need. Browse our
+      <a href="/topics">topics</a> for specific patterns, or explore <a href="/questions">questions</a>
+      addressing real-world maintenance scenarios. Whether you're debugging a decades-old script
+      or adding new features to an existing Perl application, practical guidance is available.
+    </p>
+
+    <p>
+      Perl's strength in production comes from its stability, extensive CPAN ecosystem, and the
+      fact that Perl code that worked 20 years ago typically still works today. This backward
+      compatibility is a feature, not a bug—especially for critical systems where "if it ain't broke,
+      don't fix it" is the guiding philosophy.
+    </p>
+
+    <h2>The 2025 Context</h2>
+
+    <p>
+      Python is undeniably more popular for new projects. It dominates the TIOBE index and has
+      become the default choice for general-purpose programming. However, Perl's recent resurgence
+      (jumping from 27th to 10th in TIOBE) reflects the enduring value of Perl in specific domains.
+    </p>
+
+    <p>
+      The smart choice isn't Perl or Python—it's knowing when to use each:
+    </p>
+
+    <ul>
+      <li><strong>Use Python</strong> for new applications, data science, machine learning, and
+          when team familiarity matters most.</li>
+      <li><strong>Use Perl</strong> for text processing, legacy code maintenance, one-liners,
+          and when you need reliability proven over decades.</li>
+      <li><strong>Use both</strong>—many organizations successfully leverage Perl for critical
+          systems while adopting Python for new development.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+
+    <p>
+      The Perl vs Python debate is less relevant in 2025 than practical considerations: your
+      existing codebase, your team's expertise, and your specific problem domain. Free Perl Code exists
+      to support developers working with Perl, regardless of what other languages they use.
+    </p>
+
+    <p>
+      Browse our <a href="/topics">topics</a> for Perl-specific guidance, or use our
+      <a href="/search">search</a> to find answers to your Perl questions.
     </p>
   </section>
 </Base>
-

@@ -1,20 +1,246 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/compare/perl-vs-ruby";
 ---
 
 <Base
-  title="Perl vs Ruby"
-  description="A pragmatic comparison for developers maintaining Perl codebases."
-  robots="noindex,follow"
+  title="Perl vs Ruby: Practical Comparison"
+  description="Perl vs Ruby: a practical comparison of readability, ecosystems, speed, and strengths-helping you pick the best fit for scripts, CLIs, or web apps today."
+  canonical={canonical}
+  robots="index,follow"
 >
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
-    <h1>Perl vs Ruby</h1>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
+    <h1>Perl vs Ruby: A Practical Comparison</h1>
+
     <p>
-      This page is a lightweight placeholder. It will evolve into a maintainer-focused comparison.
+      Perl and Ruby share a common philosophy: both languages prioritize programmer happiness and
+      expressiveness. Larry Wall (Perl's creator) and Yukihiro Matsumoto (Ruby's creator) both
+      designed languages that feel natural to write and can express complex ideas concisely.
+      However, they've evolved to serve different purposes.
     </p>
+
+    <h2>The Quick Answer</h2>
+
     <p>
-      For now, use <a href="/search">Search</a> and <a href="/topics">Topics</a>.
+      <strong>Choose Ruby for:</strong> Web development (especially with Rails), modern applications,
+      and when you want an object-oriented language with elegant syntax.
+    </p>
+
+    <p>
+      <strong>Choose Perl for:</strong> Text processing, system administration, one-liners, and
+      maintaining the vast amount of existing Perl code in production.
+    </p>
+
+    <h2>Historical Context</h2>
+
+    <p>
+      Perl predates Ruby by about a decade. Perl was released in 1987 as a Unix scripting language
+      optimized for text processing and report generation. Ruby emerged in 1995, inspired by Perl's
+      expressiveness but with a stronger emphasis on object-oriented programming and a cleaner
+      syntax.
+    </p>
+
+    <p>
+      Ruby on Rails, released in 2005, catapulted Ruby to prominence for web development. Perl's
+      web frameworks (Mason, Catalyst, Mojolicious) never achieved the same mainstream adoption,
+      though they remain capable and are actively maintained.
+    </p>
+
+    <h2>Philosophy and Design</h2>
+
+    <h3>Perl: TMTOWTDI</h3>
+
+    <p>
+      Perl's motto is "There's More Than One Way To Do It." This flexibility allows experienced
+      developers to write highly expressive code, but it can make Perl codebases difficult for
+      newcomers to navigate. Perl supports procedural, object-oriented, and functional programming
+      styles, often within the same file.
+    </p>
+
+    <h3>Ruby: Principle of Least Surprise</h3>
+
+    <p>
+      Ruby aims to minimize surprises for programmers. The language is consistently object-oriented
+      (everything is an object), and the syntax is designed to be readable and predictable. While
+      Ruby also allows multiple approaches to problems, the community tends to converge on
+      "Ruby-ish" ways of doing things.
+    </p>
+
+    <h2>Text Processing and One-Liners</h2>
+
+    <p>
+      This remains Perl's domain. The language was literally built for processing text, and it shows.
+    </p>
+
+    <h3>Perl Example (extract email addresses from a file):</h3>
+    <pre><code>perl -ne 'print if /\b[\w.-]+@[\w.-]+\.\w+\b/' emails.txt</code></pre>
+
+    <h3>Ruby Equivalent:</h3>
+    <pre><code>ruby -ne 'puts $_ if $_ =~ /\b[\w.-]+@[\w.-]+\.\w+\b/' emails.txt</code></pre>
+
+    <p>
+      While Ruby can handle one-liners, Perl's command-line options (-n, -p, -a, -F, -e) are
+      specifically designed for text processing workflows. Perl culture embraces one-liners;
+      Ruby culture generally prefers writing scripts, even for simple tasks.
+    </p>
+
+    <h2>Web Development</h2>
+
+    <p>
+      Ruby wins decisively here. Ruby on Rails revolutionized web development with its convention
+      over configuration approach, and Rails remains one of the most popular web frameworks
+      worldwide. Other Ruby frameworks like Sinatra and Hanami offer alternatives for different
+      use cases.
+    </p>
+
+    <p>
+      Perl has capable web frameworks (Mojolicious is excellent), but Perl's role in web development
+      has diminished since the early 2000s. Most new web projects choose Ruby, Python, JavaScript,
+      or Go instead.
+    </p>
+
+    <p>
+      <strong>Exception:</strong> Perl remains popular for CGI scripts and legacy web applications
+      where rewriting isn't justified.
+    </p>
+
+    <h2>Ecosystem and Libraries</h2>
+
+    <h3>CPAN (Perl)</h3>
+
+    <p>
+      The Comprehensive Perl Archive Network contains over 200,000 modules. Many are mature,
+      battle-tested, and reliable. CPAN was the gold standard for language package managers—
+      RubyGems and PyPI were both inspired by CPAN.
+    </p>
+
+    <h3>RubyGems (Ruby)</h3>
+
+    <p>
+      Ruby's package manager is active and well-maintained. The ecosystem is smaller than Python's
+      but more focused on web development and DevOps tools. Popular gems include Rails, Sinatra,
+      Sidekiq, and Puma.
+    </p>
+
+    <p>
+      <strong>Key difference:</strong> CPAN has broader coverage (scientific computing, system
+      administration, network programming), while RubyGems focuses on web development and
+      modern applications.
+    </p>
+
+    <h2>System Administration</h2>
+
+    <p>
+      Perl has been a standard tool for system administration since the 1990s. Many Unix systems
+      include Perl by default, and countless administration scripts are written in Perl.
+    </p>
+
+    <p>
+      Ruby can handle system administration tasks, but it never achieved Perl's penetration in
+      this domain. Tools like Chef (written in Ruby) brought Ruby into DevOps, but for direct
+      system scripting, Perl remains more common.
+    </p>
+
+    <h2>Syntax and Readability</h2>
+
+    <p>
+      Ruby's syntax is often praised for its elegance and readability:
+    </p>
+
+    <pre><code># Ruby
+5.times {"{"} puts "Hello" {"}"}
+
+users.map(&amp;:name).select {"{"} |n| n.start_with?('A') {"}"}</code></pre>
+
+    <p>
+      Perl's syntax is more dense and can be cryptic to newcomers:
+    </p>
+
+    <pre><code># Perl
+print "Hello\n" for 1..5;
+
+grep {"{"} /^A/ {"}"} map {"{"} $_->{"{"}name{"}"} } @users;</code></pre>
+
+    <p>
+      However, Perl's expressiveness allows experienced developers to write very concise code.
+      Whether this is good or bad depends on your perspective and team context.
+    </p>
+
+    <h2>Performance</h2>
+
+    <p>
+      Perl and Ruby have similar performance characteristics. Both are interpreted languages with
+      global interpreter locks (GIL). For most applications, the difference is negligible compared
+      to I/O and database operations.
+    </p>
+
+    <p>
+      Perl generally has faster startup time and lower memory usage, making it better suited for
+      small scripts and CGI. Ruby's performance has improved significantly with recent versions,
+      but it still requires more overhead.
+    </p>
+
+    <h2>Perl Programming in Production</h2>
+
+    <p>
+      Perl programming remains essential for maintaining <strong>legacy code</strong> in production environments.
+      Organizations worldwide depend on Perl codebases that have been running reliably for decades—
+      from financial trading systems to telecommunications infrastructure. These systems aren't going
+      anywhere, and the developers who maintain them need reliable resources.
+    </p>
+
+    <p>
+      When you're working with legacy code, Free Perl Code provides the answers you need. Browse our
+      <a href="/topics">topics</a> for specific patterns, or explore <a href="/questions">questions</a>
+      addressing real-world maintenance scenarios. Whether you're debugging a decades-old script
+      or adding new features to an existing Perl application, practical guidance is available.
+    </p>
+
+    <p>
+      Perl's strength in production comes from its stability, extensive CPAN ecosystem, and the
+      fact that Perl code that worked 20 years ago typically still works today. This backward
+      compatibility is a feature, not a bug—especially for critical systems where "if it ain't broke,
+      don't fix it" is the guiding philosophy.
+    </p>
+
+    <h2>The 2025 Reality</h2>
+
+    <p>
+      Ruby's popularity has declined somewhat as JavaScript (Node.js) and Python have dominated
+      new web development. However, Rails remains popular, and many successful companies run
+      on Ruby codebases.
+    </p>
+
+    <p>
+      Perl, meanwhile, has seen a surprising resurgence—jumping from 27th to 10th in the TIOBE
+      Index in September 2025. This reflects Perl's enduring value in text processing, system
+      administration, and legacy code maintenance.
+    </p>
+
+    <h2>Conclusion</h2>
+
+    <p>
+      Perl and Ruby both prioritize developer expressiveness, but they've evolved to serve
+      different needs:
+    </p>
+
+    <ul>
+      <li><strong>Choose Ruby</strong> for new web applications, especially if you're using Rails
+          or working with a team that prefers Ruby's syntax.</li>
+      <li><strong>Choose Perl</strong> for text processing, one-liners, system administration,
+          and maintaining existing Perl codebases.</li>
+    </ul>
+
+    <p>
+      The choice often comes down to existing infrastructure and team expertise rather than
+      intrinsic language superiority. Free Perl Code is here to help developers working with Perl,
+      regardless of what other languages they use.
+    </p>
+
+    <p>
+      Browse our <a href="/topics">topics</a> for Perl-specific guidance, or use our
+      <a href="/search">search</a> to find answers to your Perl questions.
     </p>
   </section>
 </Base>
-
