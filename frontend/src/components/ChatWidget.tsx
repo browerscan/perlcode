@@ -7,7 +7,7 @@ interface Message {
   timestamp: Date;
 }
 
-const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.perlcode.dev";
+const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.freeperlcode.com";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,16 +20,29 @@ export default function ChatWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const getSessionToken = () => {
+    const gen = () => {
+      if (typeof crypto !== "undefined" && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return `sess_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+    };
+
+    try {
+      if (typeof localStorage === "undefined") return gen();
+      const stored = localStorage.getItem("perlcode_session");
+      if (stored) return stored;
+      const token = gen();
+      localStorage.setItem("perlcode_session", token);
+      return token;
+    } catch {
+      return gen();
+    }
+  };
+
   // Initialize session token
   useEffect(() => {
-    const stored = localStorage.getItem("perlcode_session");
-    if (stored) {
-      setSessionToken(stored);
-    } else {
-      const token = crypto.randomUUID();
-      localStorage.setItem("perlcode_session", token);
-      setSessionToken(token);
-    }
+    setSessionToken(getSessionToken());
   }, []);
 
   // Scroll to bottom when messages change
@@ -44,19 +57,24 @@ export default function ChatWidget() {
     }
   }, [isOpen]);
 
-  // Listen for external open trigger
+  // Listen for external open triggers
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
-    document.getElementById("open-chat")?.addEventListener("click", handleOpen);
+    const nodes = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-open-chat="true"]'),
+    );
+    nodes.forEach((node) => node.addEventListener("click", handleOpen));
     return () => {
-      document
-        .getElementById("open-chat")
-        ?.removeEventListener("click", handleOpen);
+      nodes.forEach((node) => node.removeEventListener("click", handleOpen));
     };
   }, []);
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
+    const activeToken = sessionToken ?? getSessionToken();
+    if (!sessionToken) {
+      setSessionToken(activeToken);
+    }
 
     const userMessage: Message = {
       id: crypto.randomUUID(),
@@ -78,7 +96,7 @@ export default function ChatWidget() {
         },
         body: JSON.stringify({
           message: userMessage.content,
-          sessionToken,
+          sessionToken: activeToken,
           pageSlug: window.location.pathname,
         }),
       });

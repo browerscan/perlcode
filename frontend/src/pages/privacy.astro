@@ -1,28 +1,172 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/privacy";
 ---
 
-<Base title="Privacy Policy" description="How PerlCode handles basic analytics and chat metadata.">
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+<Base
+  title="Privacy Policy - Free Perl Code"
+  description="Free Perl Code privacy policy: what data we collect, how cookies and analytics are used, how we protect information, and the choices you control and manage."
+  canonical={canonical}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
     <h1>Privacy Policy</h1>
+
     <p>
-      PerlCode is built to be useful without requiring an account. We may collect lightweight,
-      privacy-preserving analytics to improve content quality and reliability.
+      At Free Perl Code, we believe you shouldn't have to trade your privacy for useful answers.
+      This privacy policy explains how we handle data with transparency and respect for your
+      privacy.
     </p>
-    <h2>What we collect</h2>
-    <ul>
-      <li>Anonymous pageview events (e.g., page slug, referrer, user agent, country code if provided by CDN).</li>
-      <li>Chat session metadata for rate limiting (a random session token and a hashed IP).</li>
-      <li>Execution telemetry when you click “Run” (exit code, runtime, stderr) for debugging and safety.</li>
-    </ul>
-    <h2>What we don’t do</h2>
-    <ul>
-      <li>No selling of personal data.</li>
-      <li>No tracking pixels or third-party ad networks by default.</li>
-    </ul>
+
+    <h2>Last Updated</h2>
+
+    <p>December 2025</p>
+
+    <h2>Our Privacy-First Approach</h2>
+
     <p>
-      If you have questions, contact the site owner.
+      Free Perl Code is designed to be useful without requiring an account or sacrificing your privacy.
+      We collect only the minimum data necessary to improve the service and prevent abuse.
+      We don't sell your data, and we don't use third-party tracking networks.
+    </p>
+
+    <h2>What We Collect</h2>
+
+    <h3>Anonymous Analytics</h3>
+
+    <p>
+      We may collect lightweight, privacy-preserving analytics to understand how the site is used:
+    </p>
+
+    <ul>
+      <li>Page URLs visited (to understand which Perl topics are most in demand)</li>
+      <li>Referrer (to know how users found us)</li>
+      <li>User agent (browser and OS information)</li>
+      <li>Country/region (based on IP, for content localization decisions)</li>
+    </ul>
+
+    <p>
+      These analytics are collected without personally identifying information. We cannot link
+      this data to individual users.
+    </p>
+
+    <h3>Chat Session Data</h3>
+
+    <p>
+      Our AI chat feature uses rate limiting to prevent abuse. To implement this fairly:
+    </p>
+
+    <ul>
+      <li>A random session identifier is stored in your browser (localStorage)</li>
+      <li>Your IP address is hashed (one-way transformation) for rate limit counting</li>
+      <li>Chat messages are temporarily processed to generate responses but not permanently stored</li>
+    </ul>
+
+    <h3>Code Execution Telemetry</h3>
+
+    <p>
+      When you use the "Run" button to execute Perl code in your browser:
+    </p>
+
+    <ul>
+      <li>Code runs in your browser using WebPerl (WebAssembly)</li>
+      <li>Execution happens locally—code is NOT sent to our servers</li>
+      <li>No execution results are collected or stored</li>
+    </ul>
+
+    <h2>What We Don't Do</h2>
+
+    <ul>
+      <li><strong>No account requirement:</strong> Use the site without signing up</li>
+      <li><strong>No personal data collection:</strong> We don't ask for your name, email, or location</li>
+      <li><strong>No tracking pixels:</strong> We don't use invisible trackers from third parties</li>
+      <li><strong>No ad networks:</strong> We don't sell ad space or use third-party advertising services</li>
+      <li><strong>No data selling:</strong> Your data will never be sold to third parties</li>
+      <li><strong>No cross-site tracking:</strong> We don't track you across other websites</li>
+    </ul>
+
+    <h2>Cookies</h2>
+
+    <p>
+      We use minimal cookies and local storage:
+    </p>
+
+    <ul>
+      <li><strong>Essential cookies:</strong> Theme preference (dark/light mode)</li>
+      <li><strong>Functional storage:</strong> Chat session state for rate limiting</li>
+      <li><strong>Optional cookies:</strong> Analytics (only with your consent via the cookie banner)</li>
+    </ul>
+
+    <p>
+      You can reject non-essential cookies through the cookie banner or your browser settings.
+    </p>
+
+    <h2>Third-Party Services</h2>
+
+    <h3>Content Delivery Network (CDN)</h3>
+
+    <p>
+      Free Perl Code may use a CDN to deliver content faster. Your IP address is temporarily processed
+      by the CDN to route traffic efficiently, but not logged or stored by us.
+    </p>
+
+    <h3>AI Services</h3>
+
+    <p>
+      Chat messages are sent to our AI provider (VectorEngine API) to generate responses. These
+      messages are not used to train AI models and are not permanently stored.
+    </p>
+
+    <h2>Data Security</h2>
+
+    <p>
+      We implement reasonable security measures to protect the limited data we collect:
+    </p>
+
+    <ul>
+      <li>HTTPS encryption for all data in transit</li>
+      <li>No storage of personal identifying information</li>
+      <li>Hashed IP addresses (one-way encryption)</li>
+      <li>Regular security reviews of our infrastructure</li>
+    </ul>
+
+    <h2>Your Rights</h2>
+
+    <p>
+      Because we don't collect personal data, there's little data to manage. However, you have
+      the right to:
+    </p>
+
+    <ul>
+      <li><strong>Opt out of analytics:</strong> Use the cookie banner or your browser's privacy controls</li>
+      <li><strong>Clear local storage:</strong> Clear your browser data to reset chat limits and preferences</li>
+      <li><strong>Access information:</strong> Contact us if you have questions about data practices</li>
+    </ul>
+
+    <h2>Children's Privacy</h2>
+
+    <p>
+      Free Perl Code is not directed to children under 13. We don't knowingly collect personal
+      information from children. If you believe we've inadvertently collected data from a child,
+      please contact us.
+    </p>
+
+    <h2>Changes to This Policy</h2>
+
+    <p>
+      We may update this privacy policy from time to time. Significant changes will be
+      prominently displayed on the site. We encourage periodic review of this policy.
+    </p>
+
+    <h2>Contact Us</h2>
+
+    <p>
+      If you have questions about this privacy policy or our data practices, please contact us at
+      <a href="mailto:hello@freeperlcode.com">hello@freeperlcode.com</a>.
+    </p>
+
+    <p>
+      We value your trust and will respond to privacy inquiries promptly.
     </p>
   </section>
 </Base>
-

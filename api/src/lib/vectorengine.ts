@@ -1,8 +1,10 @@
-// VectorEngine API client for AI chat and embeddings
-// OpenAI-compatible API at vectorengine.app
+// OpenRouter API client for AI chat
+// OpenAI-compatible API at openrouter.ai
 
-const VECTORENGINE_URL = "https://api.vectorengine.app/v1";
-const VECTORENGINE_TOKEN = process.env.VECTORENGINE_TOKEN || "";
+import { getEnv } from "../env";
+
+const OPENROUTER_URL = "https://openrouter.ai/api/v1";
+const env = getEnv();
 
 interface ChatMessage {
   role: "system" | "user" | "assistant";
@@ -33,7 +35,7 @@ interface EmbeddingResponse {
   };
 }
 
-// Chat completion with streaming
+// Chat completion with streaming via OpenRouter
 export async function createChatCompletion(
   messages: ChatMessage[],
   options: {
@@ -43,16 +45,18 @@ export async function createChatCompletion(
   } = {},
 ): Promise<Response> {
   const {
-    model = "grok-4-fast-non-reasoning",
+    model = env.OPENROUTER_MODEL,
     temperature = 0.7,
     maxTokens = 1024,
   } = options;
 
-  const response = await fetch(`${VECTORENGINE_URL}/chat/completions`, {
+  const response = await fetch(`${OPENROUTER_URL}/chat/completions`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${VECTORENGINE_TOKEN}`,
+      Authorization: `Bearer ${env.OPENROUTER_API_KEY}`,
+      "HTTP-Referer": "https://freeperlcode.com",
+      "X-Title": "PerlCode",
     },
     body: JSON.stringify({
       model,
@@ -65,35 +69,20 @@ export async function createChatCompletion(
 
   if (!response.ok) {
     const error = await response.text();
-    throw new Error(`VectorEngine API error: ${response.status} ${error}`);
+    throw new Error(`OpenRouter API error: ${response.status} ${error}`);
   }
 
   return response;
 }
 
-// Create embeddings for RAG
+// Create embeddings for RAG (temporarily disabled - returns empty)
+// TODO: Integrate with OpenAI or other embedding provider
 export async function createEmbedding(
-  input: string | string[],
+  _input: string | string[],
 ): Promise<number[][]> {
-  const response = await fetch(`${VECTORENGINE_URL}/embeddings`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${VECTORENGINE_TOKEN}`,
-    },
-    body: JSON.stringify({
-      model: "text-embedding-3-small",
-      input,
-    } as EmbeddingRequest),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`VectorEngine API error: ${response.status} ${error}`);
-  }
-
-  const data: EmbeddingResponse = await response.json();
-  return data.data.map((d) => d.embedding);
+  // Embeddings disabled - RAG will fall back to keyword search
+  console.log("Embeddings disabled: RAG context unavailable");
+  return [];
 }
 
 // Build system prompt for Perl assistant

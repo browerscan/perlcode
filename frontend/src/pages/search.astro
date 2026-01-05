@@ -1,9 +1,21 @@
 ---
-import Base from "@layouts/Base.astro";
-import SearchPage from "@components/SearchPage";
+import Base from "../layouts/Base.astro";
+import SearchPage from "../components/SearchPage";
+
+const canonical = "https://freeperlcode.com/search";
 ---
 
-<Base title="Search" description="Search verified Perl Q&A pages.">
-  <SearchPage client:load />
+<Base
+  title="Search Perl Questions - AI-Powered Knowledge Base"
+  description="Search 3,000+ verified Perl questions and answers. Find code examples, explanations, and solutions for your Perl programming challenges."
+  canonical={canonical}
+  robots="noindex,follow"
+>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-bold mb-2">Search Free Perl Code</h1>
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Find answers to your Perl questions from our knowledge base of verified examples.
+    </p>
+    <SearchPage client:load />
+  </section>
 </Base>
-

@@ -7,11 +7,11 @@
 import { sql } from "./db";
 import { extractFirstPerlCodeBlockFromHtml } from "./html";
 import { executePerlInSandbox } from "./sandbox";
+import { getEnv } from "./env";
 
-const VECTORENGINE_URL =
-  process.env.VECTORENGINE_BASE_URL || "https://api.vectorengine.ai";
-const VECTORENGINE_API_URL = `${VECTORENGINE_URL}/v1`;
-const VECTORENGINE_TOKEN = process.env.VECTORENGINE_TOKEN || "";
+const env = getEnv();
+const VECTORENGINE_API_URL = `${env.VECTORENGINE_BASE_URL}/v1`;
+const VECTORENGINE_TOKEN = env.VECTORENGINE_TOKEN;
 
 const SYSTEM_PROMPT = `You are an expert Perl programmer writing answers for a Perl knowledge base website called PerlCode.
 

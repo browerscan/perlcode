@@ -5,19 +5,30 @@ import { chatRoute } from "./routes/chat";
 import { searchRoute } from "./routes/search";
 import { analyticsRoute } from "./routes/analytics";
 import { executeRoute } from "./routes/execute";
+import { getEnv } from "./env";
 
 const app = new Hono();
+
+const defaultOrigins = [
+  "https://perlcode.dev",
+  "https://www.perlcode.dev",
+  "https://freeperlcode.com",
+  "https://www.freeperlcode.com",
+  "http://localhost:4321",
+];
+
+const env = getEnv();
+
+const allowedOrigins = env.CORS_ORIGINS.split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 // Middleware
 app.use("*", logger());
 app.use(
   "*",
   cors({
-    origin: [
-      "https://freeperlcode.com",
-      "https://www.freeperlcode.com",
-      "http://localhost:4321",
-    ],
+    origin: allowedOrigins.length ? allowedOrigins : defaultOrigins,
     allowMethods: ["GET", "POST", "OPTIONS"],
     allowHeaders: ["Content-Type"],
     maxAge: 86400,
@@ -31,6 +42,10 @@ app.get("/", (c) => {
     service: "perlcode-api",
     version: "0.1.0",
   });
+});
+
+app.get("/api/health", (c) => {
+  return c.json({ status: "ok" });
 });
 
 // Routes
@@ -50,7 +65,7 @@ app.onError((err, c) => {
   return c.json({ error: "Internal server error" }, 500);
 });
 
-const port = Number(process.env.PORT) || 3000;
+const port = env.PORT;
 
 console.log(`PerlCode API running on http://localhost:${port}`);
 

@@ -1,6 +1,6 @@
 ---
-import Base from "@layouts/Base.astro";
-import { isIndexableQuestion, loadQuestions } from "@/lib/generated";
+import Base from "../../layouts/Base.astro";
+import { isIndexableQuestion, loadQuestions } from "../../lib/generated";
 
 const questions = await loadQuestions();
 const tags = new Map<string, number>();
@@ -44,4 +44,3 @@ const topTags = [...tags.entries()]
     )}
   </section>
 </Base>
-

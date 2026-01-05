@@ -361,7 +361,7 @@ RETURNS TABLE (
     slug VARCHAR(255),
     title VARCHAR(500),
     question TEXT,
-    rank FLOAT
+    rank REAL
 ) AS $$
 BEGIN
     RETURN QUERY

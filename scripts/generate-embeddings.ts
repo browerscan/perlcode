@@ -5,11 +5,11 @@
  */
 
 import { sql, toPgvector } from "./db";
+import { getEnv } from "./env";
 
-const VECTORENGINE_BASE =
-  process.env.VECTORENGINE_BASE_URL || "https://api.vectorengine.ai";
-const VECTORENGINE_URL = `${VECTORENGINE_BASE}/v1`;
-const VECTORENGINE_TOKEN = process.env.VECTORENGINE_TOKEN || "";
+const env = getEnv();
+const VECTORENGINE_URL = `${env.VECTORENGINE_BASE_URL}/v1`;
+const VECTORENGINE_TOKEN = env.VECTORENGINE_TOKEN;
 
 interface Question {
   id: string;

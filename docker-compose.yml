@@ -1,0 +1,57 @@
+# PerlCode Production Docker Compose
+# Uses shared Supabase database and nginx-proxy gateway
+
+services:
+  # Local dev database (not used in production)
+  db:
+    profiles: ["dev"]
+    image: pgvector/pgvector:pg16
+    container_name: perlcode-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-perlcode}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "${POSTGRES_BIND_IP:-127.0.0.1}:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Production API
+  api:
+    profiles: ["prod"]
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: perlcode-api
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
+      VECTORENGINE_TOKEN: ${VECTORENGINE_TOKEN}
+      VIRTUAL_HOST: api.freeperlcode.com
+      LETSENCRYPT_HOST: api.freeperlcode.com
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - proxy-tier
+      - supabase-tier
+
+networks:
+  proxy-tier:
+    external: true
+    name: nginx-proxy_default
+  supabase-tier:
+    external: true
+    name: supabase_default

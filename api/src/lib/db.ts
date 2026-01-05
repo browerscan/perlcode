@@ -1,12 +1,11 @@
 import postgres from "postgres";
+import { getEnv } from "../env";
 
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL is required");
-}
+const env = getEnv();
+const databaseUrl = env.DATABASE_URL;
 
 export const sql = postgres(databaseUrl, {
-  max: Number(process.env.DATABASE_MAX_CONNECTIONS || "10"),
+  max: env.DATABASE_MAX_CONNECTIONS,
 });
 
 export interface QuestionRow {

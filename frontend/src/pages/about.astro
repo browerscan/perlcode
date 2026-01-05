@@ -1,21 +1,146 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/about";
 ---
 
-<Base title="About PerlCode" description="PerlCode is a verified Perl knowledge base with runnable examples.">
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
-    <h1>About PerlCode</h1>
+<Base
+  title="About Free Perl Code - AI-Native Perl Knowledge Base"
+  description="Discover the mission of Free Perl Code: make Perl easier to learn, search, and ship with AI-assisted answers grounded in practical, real-world Perl work."
+  canonical={canonical}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
+    <h1>About Free Perl Code</h1>
+
     <p>
-      PerlCode is a static-first Perl knowledge base focused on one thing: answers you can
-      trust. Many pages include code that was executed in a sandbox, with captured output
-      shown on the page (proof-of-work).
+      Free Perl Code is a modern, AI-native knowledge base designed specifically for Perl developers.
+      Born from the realization that traditional documentation often fails to address real-world
+      questions, Free Perl Code combines artificial intelligence with rigorous code verification to
+      deliver answers you can trust.
     </p>
-    <h2>What makes it different</h2>
+
+    <h2>Our Mission</h2>
+
+    <p>
+      Perl remains one of the most powerful programming languages for text processing, system
+      administration, and legacy code maintenance. Yet, finding reliable answers to Perl questions
+      online can be frustrating. Outdated forum posts, incomplete documentation, and unverified
+      code examples waste developer time and introduce bugs into production systems.
+    </p>
+
+    <p>
+      Free Perl Code exists to solve this problem. We're building the most comprehensive, reliable,
+      and accessible Perl knowledge base—one that combines the breadth of community-generated
+      content with the reliability of verified code execution.
+    </p>
+
+    <h2>What Makes Free Perl Code Different</h2>
+
+    <h3>Verified Code Examples</h3>
+
+    <p>
+      Every code snippet on Free Perl Code is executed in a Docker sandbox during content generation.
+      We capture the actual output (STDOUT), errors (STDERR), execution time, and Perl version.
+      This "proof of work" approach means you can trust that the examples work as shown.
+    </p>
+
+    <h3>AI-Powered Content Generation</h3>
+
+    <p>
+      Our system analyzes real Perl questions from developers worldwide and generates comprehensive
+      answers. Each answer is reviewed, verified, and only published after passing quality checks.
+      This scalable approach allows us to maintain thousands of high-quality pages.
+    </p>
+
+    <h3>Semantic Search with RAG</h3>
+
+    <p>
+      Free Perl Code uses vector embeddings to index all content, enabling intelligent search that
+      understands the context of your question. When you search for "how to parse JSON," our
+      system understands the concept and returns relevant answers even if they don't contain
+      the exact phrase.
+    </p>
+
+    <h3>AI Chat Assistant</h3>
+
+    <p>
+      Our AI chat assistant is trained on the entire Free Perl Code knowledge base. Ask questions in
+      natural language and receive answers grounded in verified content. The AI cites specific
+      pages for further reading, making it easy to dive deeper into any topic.
+    </p>
+
+    <h2>Who Is Free Perl Code For?</h2>
+
+    <h3>Legacy Code Maintainers</h3>
+
+    <p>
+      Millions of lines of Perl code power enterprise systems worldwide. If you're responsible
+      for maintaining, debugging, or modernizing legacy Perl applications, Free Perl Code provides
+      quick answers to the specific challenges you face.
+    </p>
+
+    <h3>DevOps Engineers</h3>
+
+    <p>
+      Perl has long been a staple in system administration and automation. Free Perl Code helps DevOps
+      professionals find efficient solutions for text processing, log analysis, file manipulation,
+      and infrastructure automation.
+    </p>
+
+    <h3>Bioinformatics Researchers</h3>
+
+    <p>
+      Perl remains widely used in bioinformatics for sequence analysis, data parsing, and pipeline
+      automation. Free Perl Code covers many domain-specific patterns and techniques used in
+      computational biology.
+    </p>
+
+    <h3>Perl Learners</h3>
+
+    <p>
+      Whether you're new to programming or coming from another language, Free Perl Code's verified
+      examples and clear explanations help you learn Perl concepts correctly from the start.
+    </p>
+
+    <h2>Technology Stack</h2>
+
+    <p>
+      Free Perl Code is built with modern web technologies to deliver a fast, responsive experience:
+    </p>
+
     <ul>
-      <li>Runnability-first examples (designed to run with <code>perl -</code>).</li>
-      <li>Gradual publishing to keep quality high and SEO safe.</li>
-      <li>Search + chat to help you navigate legacy code quickly.</li>
+      <li><strong>Frontend:</strong> Astro static site generator with Preact components and Tailwind CSS</li>
+      <li><strong>API:</strong> Bun runtime with Hono framework for low-latency responses</li>
+      <li><strong>Database:</strong> PostgreSQL with pgvector extension for semantic search</li>
+      <li><strong>AI:</strong> VectorEngine API for embeddings and chat completions</li>
+      <li><strong>Search:</strong> Pagefind for instant client-side search</li>
     </ul>
+
+    <h2>The State of Perl in 2025</h2>
+
+    <p>
+      Contrary to rumors of Perl's decline, the language is experiencing a remarkable resurgence.
+      In September 2025, Perl jumped from 27th to 10th place in the TIOBE Index—one of the most
+      dramatic gains in the index's history. This comeback reflects the enduring value of Perl
+      in specific domains where newer languages haven't been able to compete.
+    </p>
+
+    <p>
+      Organizations in finance, telecommunications, bioinformatics, and enterprise infrastructure
+      continue to rely on Perl for mission-critical systems. With over 37 years of development
+      and more than 200,000 modules on CPAN, Perl offers a battle-tested ecosystem that newer
+      languages simply cannot match.
+    </p>
+
+    <h2>Contact Us</h2>
+
+    <p>
+      Have questions, suggestions, or feedback? We'd love to hear from you. Reach out at
+      <a href="mailto:hello@freeperlcode.com">hello@freeperlcode.com</a>.
+    </p>
+
+    <p>
+      For the latest updates, follow us on GitHub or join our community discussions.
+    </p>
   </section>
 </Base>
-

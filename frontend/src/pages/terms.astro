@@ -1,24 +1,181 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/terms";
 ---
 
-<Base title="Terms of Service" description="Basic terms for using PerlCode.">
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+<Base
+  title="Terms of Service - Free Perl Code"
+  description="Free Perl Code terms of service: acceptable use, content ownership, limitations, and responsibilities - plus key disclaimers - so you know what to expect here."
+  canonical={canonical}
+>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
     <h1>Terms of Service</h1>
+
     <p>
-      By using PerlCode, you agree that the content is provided “as-is” with no warranty.
-      Code examples are intended for learning and may require adaptation for your environment.
+      By using Free Perl Code, you agree to these terms. If you don't agree, please don't use the site.
+      We've kept these terms simple and understandable—no pages of legal jargon.
     </p>
-    <h2>Sandbox execution</h2>
+
+    <h2>1. Content is Provided "As-Is"</h2>
+
     <p>
-      Some pages include a “Run” button. Execution is performed in a restricted sandbox with
-      limits (time/memory/network). Do not rely on it for sensitive workloads.
+      All content on Free Perl Code—including code examples, explanations, and AI-generated responses—is
+      provided for informational and learning purposes. We strive for accuracy but cannot guarantee
+      that all content is error-free or suitable for your specific situation.
     </p>
-    <h2>Acceptable use</h2>
+
+    <p>
+      Code examples may require adaptation for your environment. Always test code in a safe,
+      isolated environment before using it in production.
+    </p>
+
+    <h2>2. Code Execution</h2>
+
+    <h3>Browser-Based Execution</h3>
+
+    <p>
+      Some pages include a "Run" button that executes Perl code in your browser using WebPerl
+      (WebAssembly). This execution happens locally on your device. We are not responsible for:
+    </p>
+
     <ul>
-      <li>Do not attempt to abuse the sandbox or disrupt the service.</li>
-      <li>Do not scrape at high volume without permission.</li>
+      <li>Any damage to your system from running code</li>
+      <li>Resource consumption (CPU, memory) during execution</li>
+      <li>Results or outcomes of executed code</li>
     </ul>
+
+    <h3>Sandbox Execution</h3>
+
+    <p>
+      For server-side code execution (if available), code runs in a restricted sandbox with
+      limits on time, memory, and network access. Do not rely on this sandbox for:
+    </p>
+
+    <ul>
+      <li>Processing sensitive or confidential data</li>
+      <li>Tasks requiring specific security guarantees</li>
+      <li>Production workloads</li>
+    </ul>
+
+    <h2>3. Acceptable Use</h2>
+
+    <p>
+      You agree not to:
+    </p>
+
+    <ul>
+      <li>Attempt to bypass the sandbox or exploit security limitations</li>
+      <li>Use the service to distribute malware or harmful code</li>
+      <li>Scrape the site at high volume without permission</li>
+      <li>Abuse the AI chat feature (e.g., automated requests, spam)</li>
+      <li>Attempt to reverse-engineer the AI or bypass rate limits</li>
+    </ul>
+
+    <h2>4. AI Chat Feature</h2>
+
+    <p>
+      The AI chat assistant provides responses based on Free Perl Code content and general Perl knowledge.
+      AI responses may not always be accurate. You should:
+    </p>
+
+    <ul>
+      <li>Verify important information through official documentation</li>
+      <li>Test code examples before using in production</li>
+      <li>Use AI responses as a starting point, not definitive answers</li>
+    </ul>
+
+    <p>
+      Rate limits apply to prevent abuse. These limits are subject to change.
+    </p>
+
+    <h2>5. Intellectual Property</h2>
+
+    <h3>Your Rights</h3>
+
+    <p>
+      You retain ownership of any content you submit. By submitting content to Free Perl Code (e.g.,
+      through feedback forms or feature requests), you grant us a license to use that content
+      for improving the service.
+    </p>
+
+    <h3>Our Content</h3>
+
+    <p>
+      Free Perl Code content, including text, code, and design, is protected by copyright. You may:
+    </p>
+
+    <ul>
+      <li>Read and learn from the content</li>
+      <li>Share links to our pages</li>
+      <li>Use code examples in your own projects (with attribution appreciated)</li>
+    </ul>
+
+    <p>
+      You may not:
+    </p>
+
+    <ul>
+      <li>Republish large portions of our content without permission</li>
+      <li>Use our content to train competing AI models</li>
+      <li>Scrape and republish our content systematically</li>
+    </ul>
+
+    <h2>6. Privacy and Data</h2>
+
+    <p>
+      Your privacy is important to us. Please review our
+      <a href="/privacy">Privacy Policy</a> to understand how we handle data.
+    </p>
+
+    <h2>7. Disclaimers</h2>
+
+    <h3>No Warranty</h3>
+
+    <p>
+      Free Perl Code is provided "as-is" without warranties of any kind, express or implied. We don't
+      guarantee:
+    </p>
+
+    <ul>
+      <li>Uninterrupted or error-free operation</li>
+      <li>That defects will be corrected</li>
+      <li>The accuracy or reliability of content</li>
+    </ul>
+
+    <h3>Limitation of Liability</h3>
+
+    <p>
+      To the fullest extent permitted by law, Free Perl Code and its operators shall not be liable for
+      any indirect, incidental, special, or consequential damages resulting from use or inability
+      to use the service.
+    </p>
+
+    <h2>8. Changes to These Terms</h2>
+
+    <p>
+      We may update these terms from time to time. Significant changes will be announced on the
+      site. Continued use after changes constitutes acceptance of the new terms.
+    </p>
+
+    <h2>9. Governing Law</h2>
+
+    <p>
+      These terms are governed by applicable laws. Any disputes shall be resolved through good
+      faith negotiation whenever possible.
+    </p>
+
+    <h2>10. Contact</h2>
+
+    <p>
+      If you have questions about these terms, please contact us at
+      <a href="mailto:hello@freeperlcode.com">hello@freeperlcode.com</a>.
+    </p>
+
+    <hr />
+
+    <p class="text-sm text-gray-600 dark:text-gray-400">
+      Last updated: December 2025
+    </p>
   </section>
 </Base>
-

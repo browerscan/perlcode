@@ -1,4 +1,5 @@
 import { randomUUID } from "crypto";
+import { getEnv } from "./env";
 
 export interface ExecutionResult {
   success: boolean;
@@ -12,6 +13,7 @@ export interface ExecutionResult {
 }
 
 let cachedPerlVersionByImage: Record<string, string> = {};
+const env = getEnv();
 
 async function runCommandWithTimeout(args: {
   cmd: string[];
@@ -201,9 +203,9 @@ export async function executePerlInSandbox(
   const pidsLimit = options.pidsLimit ?? 64;
   const mode =
     options.mode ??
-    (process.env.PERLCODE_EXECUTION_MODE === "local" ? "local" : "docker");
+    env.PERLCODE_EXECUTION_MODE;
   const allowLocalFallback =
-    options.allowLocalFallback ?? process.env.PERLCODE_ALLOW_LOCAL_PERL === "1";
+    options.allowLocalFallback ?? env.PERLCODE_ALLOW_LOCAL_PERL;
 
   if (typeof code !== "string" || code.trim().length === 0) {
     return {

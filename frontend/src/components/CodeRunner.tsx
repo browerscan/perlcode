@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 
-const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.perlcode.dev";
+const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.freeperlcode.com";
 
 declare global {
   interface Window {

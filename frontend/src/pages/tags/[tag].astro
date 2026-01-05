@@ -1,12 +1,15 @@
 ---
-import Base from "@layouts/Base.astro";
-import { isIndexableQuestion, loadQuestions } from "@/lib/generated";
+import Base from "../../layouts/Base.astro";
+import { isIndexableQuestion, loadQuestions } from "../../lib/generated";
 
 export async function getStaticPaths() {
   const questions = await loadQuestions();
   const tags = new Set<string>();
   for (const q of questions.filter(isIndexableQuestion)) {
-    for (const tag of q.tags || []) tags.add(tag);
+    for (const tag of q.tags || []) {
+      // Only valid URL-safe tags
+      if (tag && /^[a-z0-9-]+$/i.test(tag)) tags.add(tag);
+    }
   }
   return [...tags].sort().map((tag) => ({ params: { tag } }));
 }
@@ -48,4 +51,3 @@ const matches = questions
     )}
   </section>
 </Base>
-

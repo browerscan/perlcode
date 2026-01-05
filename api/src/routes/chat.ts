@@ -165,7 +165,7 @@ chatRoute.post("/", async (c) => {
           sessionId: session.id,
           role: "assistant",
           content: fullContent,
-          model: "grok-4-fast-non-reasoning",
+          model: "openrouter/gemini-2.0-flash-exp",
           latencyMs: latency,
           contextQuestionIds: contextQuestions.map((q) => q.id),
         });

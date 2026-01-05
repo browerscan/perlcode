@@ -1,6 +1,6 @@
 ---
 import Base from './Base.astro';
-import CodeRunner from '@components/CodeRunner';
+import CodeRunner from '../components/CodeRunner';
 
 interface Props {
   title: string;
@@ -46,7 +46,59 @@ const difficultyColors = {
   advanced: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
 };
 
-const canonical = `https://perlcode.dev/questions/${slug}`;
+const canonical = `https://freeperlcode.com/questions/${slug}`;
+const cleanText = (value: string) =>
+  value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+const questionText = cleanText(question);
+const answerText = cleanText(answer).slice(0, 1200);
+const publishedDate = publishedAt ? new Date(publishedAt).toISOString() : null;
+
+// Generate structured data for the question
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "QAPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": title,
+    "text": questionText,
+    "answerCount": 1,
+    ...(publishedDate ? { "dateCreated": publishedDate } : {}),
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": answerText,
+      ...(publishedDate ? { "dateCreated": publishedDate } : {}),
+      "author": {
+        "@type": "Organization",
+        "name": "Free Perl Code"
+      }
+    }
+  }
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freeperlcode.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Questions",
+      "item": "https://freeperlcode.com/questions"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": title,
+      "item": canonical
+    }
+  ]
+};
 ---
 
 <Base
@@ -55,6 +107,10 @@ const canonical = `https://perlcode.dev/questions/${slug}`;
   canonical={canonical}
   robots={robots}
 >
+  <!-- Structured Data for FAQ/Question -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+
   <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Breadcrumb -->
     <nav class="mb-6 text-sm">

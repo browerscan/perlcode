@@ -1,10 +1,12 @@
 ---
-import QuestionLayout from "@layouts/Question.astro";
-import { isIndexableQuestion, loadQuestions } from "@/lib/generated";
+import QuestionLayout from "../../layouts/Question.astro";
+import { isIndexableQuestion, loadQuestions } from "../../lib/generated";
 
 export async function getStaticPaths() {
   const questions = await loadQuestions();
-  return questions.map((q) => ({
+  // Filter out invalid slugs
+  const valid = questions.filter((q) => q.slug && /^[a-z0-9-]+$/i.test(q.slug));
+  return valid.map((q) => ({
     params: { slug: q.slug },
     props: { q },
   }));
@@ -42,4 +44,3 @@ const relatedQuestions = allQuestions
   codeRuntimeMs={q.code_runtime_ms}
   perlVersion={q.perl_version}
 />
-

@@ -1,22 +1,249 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../../layouts/Base.astro";
+import { loadCategories } from "../../lib/generated";
+
+const categories = await loadCategories();
+
+const canonical = "https://freeperlcode.com/functions";
 ---
 
 <Base
-  title="Functions"
-  description="A curated index of common Perl built-ins and idioms (in progress)."
-  robots="noindex,follow"
+  title="Perl Functions Reference - Built-ins & Patterns"
+  description="Perl function reference for core and common utilities-syntax, parameters, return values, pitfalls, context rules, and examples you can paste into code."
+  canonical={canonical}
 >
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h1 class="text-3xl font-bold mb-4">Functions</h1>
-    <div class="p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
-      <p class="text-gray-700 dark:text-gray-300">
-        This section is being built. For now, use Search and Topics.
-      </p>
-      <div class="mt-4">
-        <a href="/search" class="text-perl-500 hover:underline">Go to search →</a>
+    <h1 class="text-3xl font-bold mb-4">Perl Functions Reference: Built-In Functions, Syntax, and Practical Examples</h1>
+
+    <p class="text-gray-600 dark:text-gray-400 mb-4">
+      Welcome to Free Perl Code's <strong>Perl functions reference</strong>-a fast, searchable guide to the
+      <strong>built-in functions</strong> you use every day, with clear explanations, edge cases, and
+      copy-paste-ready <strong>Perl examples</strong>. Whether you're learning the language from scratch
+      or leveling up an existing codebase, this page is designed as a friendly <strong>Perl tutorial</strong>
+      that helps you move from "I've seen this function" to "I can use it correctly under pressure."
+    </p>
+
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Perl's standard library is famously rich: concise text processing, flexible data structures, and powerful
+      file and system utilities. The trick is knowing which function fits your problem, what it returns in scalar
+      vs list context, and how it behaves with real-world input (empty strings, undefined values, Unicode, large
+      files, and messy logs). This reference focuses on the essentials: what a function does, what it expects,
+      what it returns, and common patterns you can reuse immediately.
+    </p>
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">What You'll Find in This Functions Guide</h2>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-perl-500">String Functions</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Need to clean input, format output, or extract a value from text? Perl shines here. Learn how to use
+          string functions like <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">length</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">substr</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">index</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">uc</code>,
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">lc</code>, and <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">sprintf</code> to transform data safely. You'll also see practical notes on
+          trimming whitespace, handling undefined values, and building readable output for CLIs and web responses.
+        </p>
       </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-perl-500">Array Functions</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Arrays power most everyday Perl workflows: collecting records, iterating results, batching jobs, and
+          assembling output. This section covers array functions such as <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">push</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">pop</code>,
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">shift</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">unshift</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">splice</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">sort</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">grep</code>,
+          and <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">map</code>. Each entry includes common idioms (filtering, transforming, deduplicating) and
+          examples that emphasize readability and performance.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-perl-500">Hash Functions</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Hashes are Perl's go-to structure for lookups, grouping, counting, and configuration. Explore patterns for
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">keys</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">values</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">each</code>, and safe existence checks with
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">exists</code> and <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">defined</code>. You'll find examples for frequency tables, grouping rows by
+          a field, merging options, and building robust defaults-exactly the kinds of tasks you hit in scripts and
+          production services.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-perl-500">File Functions</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          From simple scripts to ETL pipelines, file work is unavoidable. Learn reliable approaches using
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">open</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">close</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">readline</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">print</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">printf</code>,
+          <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">seek</code>, and file tests like <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">-e</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">-f</code>, and <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">-d</code>. We also
+          highlight safe patterns for encoding, line-by-line processing, and error handling so your tools behave well
+          on servers and in cron jobs.
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="text-xl font-semibold mb-2 text-perl-500">Regex and Pattern Matching</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Perl's regex engine is legendary, and the right function-level building blocks make it even more effective.
+          This guide includes idioms with <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">split</code>, <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">join</code>, and match operators for extracting,
+          validating, and rewriting text. You'll see examples for parsing logs, validating user input, and performing
+          targeted substitutions-without turning your code into an unreadable wall of punctuation.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-xl bg-perl-50 dark:bg-dark-800 border border-perl-200 dark:border-dark-700">
+        <h3 class="text-xl font-semibold mb-2">Learn Faster with a Reference + Tutorial Approach</h3>
+        <p class="text-gray-700 dark:text-gray-300">
+          Use this page as both a <strong>Perl tutorial</strong> and a quick <strong>Perl functions reference</strong>:
+          skim the category you need, open a function entry, and grab a working snippet. If you're new to Perl, start
+          with strings and arrays, then move into hashes, file handling, and regex. If you're experienced, jump
+          straight to the function you need and compare return values, contexts, and gotchas. Either way, you'll build
+          real confidence with <strong>Perl examples</strong> grounded in practical tasks and <strong>built-in functions</strong>
+          you can rely on.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4">Function Categories</h2>
+
+      {categories.length === 0 ? (
+        <div class="p-6 rounded-xl border border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
+          <p class="text-gray-700 dark:text-gray-300">
+            No categories exported yet. Run the data pipeline first.
+          </p>
+        </div>
+      ) : (
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {categories.map((c) => (
+            <a
+              href={`/topics/${c.slug}`}
+              class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 hover:border-perl-500 dark:hover:border-perl-500 transition-colors bg-white dark:bg-dark-900"
+            >
+              <div class="font-semibold mb-2">{c.name}</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">
+                {c.indexable} published • {c.verified} verified
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="mb-10">
+      <h2 class="text-xl font-bold mb-4">Common Perl Built-in Functions</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">String Functions</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">length</code> - Get string length</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">substr</code> - Extract substring</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">index</code> - Find substring position</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">uc</code> / <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">lc</code> - Change case</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">split</code> - Split string into list</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">join</code> - Join list into string</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">Array Functions</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">push</code> - Add element to end</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">pop</code> - Remove last element</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">shift</code> - Remove first element</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">unshift</code> - Add to beginning</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">splice</code> - Remove/replace elements</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">sort</code> - Sort array</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">Hash Functions</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">keys</code> - Get all keys</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">values</code> - Get all values</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">each</code> - Iterate key-value pairs</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">exists</code> - Check key existence</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">delete</code> - Remove key</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">File Functions</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">open</code> - Open file handle</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">close</code> - Close file handle</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">readline</code> / <code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">&lt;&gt;</code> - Read line</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">print</code> - Write to file</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">say</code> - Write with newline</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">eof</code> - Check end of file</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">Regular Expressions</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">m//</code> - Pattern match</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">s///</code> - Substitution</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">tr///</code> - Transliteration</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">qr//</code> - Quote regex</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">split</code> - Split by pattern</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">grep</code> - Filter by pattern</li>
+          </ul>
+        </div>
+
+        <div class="p-5 rounded-xl border border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-900">
+          <h3 class="font-semibold mb-3 text-perl-500">Special Variables</h3>
+          <ul class="space-y-2 text-sm">
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">$_</code> - Default variable</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">@_</code> - Subroutine arguments</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">$.</code> - Current line number</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">$!</code> - System error string</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">$?</code> - Child error status</li>
+            <li><code class="bg-gray-100 dark:bg-dark-800 px-1 rounded">@ARGV</code> - Command line args</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 rounded-xl bg-perl-50 dark:bg-dark-800 border border-perl-200 dark:border-dark-700">
+      <h2 class="text-xl font-bold mb-3">Looking for a Specific Function?</h2>
+      <p class="text-gray-700 dark:text-gray-300 mb-4">
+        Use our AI-powered search to find detailed explanations and examples for any Perl function.
+        Just describe what you're looking for in plain English.
+      </p>
+      <a
+        href="/search"
+        class="inline-flex items-center px-4 py-2 bg-perl-500 text-white rounded-lg hover:bg-perl-600 transition-colors"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        Search Functions
+      </a>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl font-bold mb-4">Related Resources</h2>
+      <ul class="space-y-2">
+        <li>
+          <a href="/topics" class="text-perl-500 hover:underline">
+            Browse by Topic &rarr;
+          </a>
+        </li>
+        <li>
+          <a href="/questions" class="text-perl-500 hover:underline">
+            All Questions &rarr;
+          </a>
+        </li>
+        <li>
+          <a href="https://perldoc.perl.org" target="_blank" rel="noopener" class="text-perl-500 hover:underline">
+            Official Perl Documentation &rarr;
+          </a>
+        </li>
+        <li>
+          <a href="https://metacpan.org" target="_blank" rel="noopener" class="text-perl-500 hover:underline">
+            MetaCPAN &rarr;
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 </Base>
-

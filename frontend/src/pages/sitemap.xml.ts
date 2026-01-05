@@ -3,7 +3,7 @@ import {
   isIndexableQuestion,
   loadCategories,
   loadQuestions,
-} from "@/lib/generated";
+} from "../lib/generated";
 
 function xmlEscape(s: string): string {
   return s
@@ -35,9 +35,13 @@ export const GET: APIRoute = async ({ site }) => {
   add("/");
   add("/topics");
   add("/questions");
+  add("/functions");
+  add("/search");
   add("/about");
   add("/privacy");
   add("/terms");
+  add("/compare/perl-vs-python");
+  add("/compare/perl-vs-ruby");
 
   // Topic hubs (only if they have indexable content)
   for (const c of categories) {

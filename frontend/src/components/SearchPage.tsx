@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "preact/hooks";
 
-const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.perlcode.dev";
+const API_BASE = import.meta.env.PUBLIC_API_URL || "https://api.freeperlcode.com";
+const MIN_QUERY = 2;
 
 type SearchResult = {
   slug: string;
@@ -15,15 +16,30 @@ export default function SearchPage() {
   const [suggestions, setSuggestions] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const debouncedQuery = useMemo(() => query.trim(), [query]);
+
+  const updateUrl = (searchQuery: string) => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (searchQuery) {
+      params.set("q", searchQuery);
+    } else {
+      params.delete("q");
+    }
+    const next = `${window.location.pathname}${
+      params.toString() ? "?" + params.toString() : ""
+    }`;
+    window.history.replaceState({}, "", next);
+  };
 
   useEffect(() => {
     let cancelled = false;
 
     const run = async () => {
       const q = debouncedQuery;
-      if (q.length < 2) {
+      if (q.length < MIN_QUERY) {
         setSuggestions([]);
         return;
       }
@@ -50,10 +66,18 @@ export default function SearchPage() {
 
   const doSearch = async (q?: string) => {
     const searchQuery = (q ?? query).trim();
-    if (searchQuery.length < 2) return;
+    if (searchQuery.length < MIN_QUERY) {
+      setResults([]);
+      setHasSearched(false);
+      updateUrl("");
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setSuggestions([]);
+    setHasSearched(true);
+    updateUrl(searchQuery);
 
     try {
       const res = await fetch(
@@ -72,21 +96,38 @@ export default function SearchPage() {
     }
   };
 
-  return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-bold mb-6">Search</h1>
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    if (q && q.trim().length >= MIN_QUERY) {
+      setQuery(q);
+      void doSearch(q);
+    }
+  }, []);
 
-      <div className="relative">
+  return (
+    <div className="space-y-8">
+      <form
+        className="relative"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void doSearch();
+        }}
+      >
+        <label htmlFor="search-input" className="sr-only">
+          Search Free Perl Code
+        </label>
         <input
+          id="search-input"
           value={query}
           onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
-          onKeyDown={(e) => e.key === "Enter" && doSearch()}
           placeholder='Try: "regex match operator"'
           className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-dark-600 bg-white dark:bg-dark-900 focus:ring-2 focus:ring-perl-500 focus:border-transparent outline-none"
         />
         <button
-          onClick={() => doSearch()}
-          disabled={isLoading || query.trim().length < 2}
+          type="submit"
+          disabled={isLoading || query.trim().length < MIN_QUERY}
           className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 rounded-lg bg-perl-500 text-white hover:bg-perl-600 transition-colors disabled:opacity-50"
         >
           {isLoading ? "Searching…" : "Search"}
@@ -97,9 +138,10 @@ export default function SearchPage() {
             {suggestions.map((s) => (
               <button
                 key={s.slug}
+                type="button"
                 onClick={() => {
                   setQuery(s.title);
-                  doSearch(s.title);
+                  void doSearch(s.title);
                 }}
                 className="block w-full text-left px-4 py-3 hover:bg-gray-50 dark:hover:bg-dark-800 transition-colors"
               >
@@ -108,11 +150,15 @@ export default function SearchPage() {
             ))}
           </div>
         )}
-      </div>
+      </form>
 
-      {error && <div className="mt-4 text-sm text-red-600">{error}</div>}
+      {error && (
+        <div className="text-sm text-red-600" role="status">
+          {error}
+        </div>
+      )}
 
-      <div className="mt-8 space-y-3">
+      <div className="space-y-3">
         {results.map((r) => (
           <a
             key={r.slug}
@@ -128,7 +174,7 @@ export default function SearchPage() {
           </a>
         ))}
 
-        {!isLoading && results.length === 0 && query.trim().length >= 2 && (
+        {!isLoading && hasSearched && results.length === 0 && (
           <div className="text-sm text-gray-600 dark:text-gray-400">
             No results.
           </div>

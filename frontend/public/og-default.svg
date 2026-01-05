@@ -1,0 +1,98 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e68a0b"/>
+      <stop offset="100%" style="stop-color:#f4a534"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative code lines (left side) -->
+  <g opacity="0.15" fill="#e68a0b" font-family="monospace" font-size="14">
+    <text x="40" y="80">#!/usr/bin/perl</text>
+    <text x="40" y="100">use strict;</text>
+    <text x="40" y="120">use warnings;</text>
+    <text x="40" y="160">my $code = "Free";</text>
+    <text x="40" y="180">print $code;</text>
+    <text x="40" y="220">sub learn_perl {</text>
+    <text x="40" y="240">  return "wisdom";</text>
+    <text x="40" y="260">}</text>
+  </g>
+
+  <!-- Decorative code lines (right side) -->
+  <g opacity="0.15" fill="#e68a0b" font-family="monospace" font-size="14">
+    <text x="950" y="400">my @skills = qw(</text>
+    <text x="950" y="420">  regex text</text>
+    <text x="950" y="440">  automation</text>
+    <text x="950" y="460">);</text>
+    <text x="950" y="500">foreach (@skills) {</text>
+    <text x="950" y="520">  master($_);</text>
+    <text x="950" y="540">}</text>
+  </g>
+
+  <!-- Accent line top -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accentGradient)"/>
+
+  <!-- Perl Camel silhouette (simplified) -->
+  <g transform="translate(150, 280)" opacity="0.9">
+    <path d="M80 0 C90 -5 100 0 105 10 L110 25 C115 30 120 28 125 30 L130 35 C128 40 125 42 120 42 L115 45 L115 80 L105 80 L105 50 L95 50 L95 80 L85 80 L85 50 L75 50 L75 80 L65 80 L65 45 L60 42 C55 42 52 40 50 35 L55 30 C60 28 65 30 70 25 L75 10 C80 0 70 5 80 0 Z"
+          fill="#e68a0b" filter="url(#glow)"/>
+  </g>
+
+  <!-- Main brand name -->
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#ffffff">
+    Free Perl Code
+  </text>
+
+  <!-- Orange underline accent -->
+  <rect x="300" y="310" width="600" height="6" rx="3" fill="url(#accentGradient)"/>
+
+  <!-- Tagline -->
+  <text x="600" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="#a0a0b0">
+    AI-Powered Perl Knowledge Base
+  </text>
+
+  <!-- Feature badges -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="500">
+    <!-- Badge 1 -->
+    <rect x="280" y="440" width="140" height="40" rx="20" fill="#e68a0b" opacity="0.2"/>
+    <rect x="280" y="440" width="140" height="40" rx="20" fill="none" stroke="#e68a0b" stroke-width="1.5"/>
+    <text x="350" y="466" text-anchor="middle" fill="#e68a0b">3000+ Q&amp;A</text>
+
+    <!-- Badge 2 -->
+    <rect x="450" y="440" width="140" height="40" rx="20" fill="#e68a0b" opacity="0.2"/>
+    <rect x="450" y="440" width="140" height="40" rx="20" fill="none" stroke="#e68a0b" stroke-width="1.5"/>
+    <text x="520" y="466" text-anchor="middle" fill="#e68a0b">RAG Chat</text>
+
+    <!-- Badge 3 -->
+    <rect x="620" y="440" width="160" height="40" rx="20" fill="#e68a0b" opacity="0.2"/>
+    <rect x="620" y="440" width="160" height="40" rx="20" fill="none" stroke="#e68a0b" stroke-width="1.5"/>
+    <text x="700" y="466" text-anchor="middle" fill="#e68a0b">Verified Code</text>
+
+    <!-- Badge 4 -->
+    <rect x="810" y="440" width="120" height="40" rx="20" fill="#e68a0b" opacity="0.2"/>
+    <rect x="810" y="440" width="120" height="40" rx="20" fill="none" stroke="#e68a0b" stroke-width="1.5"/>
+    <text x="870" y="466" text-anchor="middle" fill="#e68a0b">Free</text>
+  </g>
+
+  <!-- URL at bottom -->
+  <text x="600" y="580" text-anchor="middle" font-family="monospace" font-size="24" fill="#606070">
+    freeperlcode.com
+  </text>
+
+  <!-- Accent line bottom -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#accentGradient)"/>
+</svg>

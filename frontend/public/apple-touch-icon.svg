@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <!-- Apple Touch Icon - larger with rounded rect background -->
+  <rect width="180" height="180" rx="40" fill="#1a1a2e"/>
+  <text x="90" y="130" font-family="ui-monospace,monospace" font-size="120" font-weight="700" fill="#e68a0b" text-anchor="middle">$</text>
+  <rect x="10" y="10" width="160" height="160" rx="35" fill="none" stroke="#e68a0b" stroke-width="4" opacity="0.3"/>
+</svg>

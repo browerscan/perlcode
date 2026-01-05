@@ -7,6 +7,7 @@ import {
   insertCodeRun,
 } from "../lib/db";
 import { executePerlInDockerSandbox } from "../lib/sandbox";
+import { getEnv } from "../env";
 
 const DEFAULT_DAILY_LIMIT = 20;
 const DEFAULT_CONCURRENCY = 2;
@@ -41,7 +42,7 @@ class Semaphore {
 }
 
 const executionSemaphore = new Semaphore(
-  Number(process.env.EXECUTION_CONCURRENCY || DEFAULT_CONCURRENCY),
+  getEnv().EXECUTION_CONCURRENCY || DEFAULT_CONCURRENCY,
 );
 
 export const executeRoute = new Hono();
@@ -60,9 +61,11 @@ executeRoute.post("/", async (c) => {
       return c.json({ error: "Session token is required" }, 400);
     }
 
+    const { DAILY_EXECUTION_LIMIT, EXECUTION_TIMEOUT_MS, EXECUTION_IMAGE } =
+      getEnv();
     const dailyLimit = Math.max(
       1,
-      Number(process.env.DAILY_EXECUTION_LIMIT || DEFAULT_DAILY_LIMIT),
+      DAILY_EXECUTION_LIMIT || DEFAULT_DAILY_LIMIT,
     );
 
     const clientIP =
@@ -97,11 +100,8 @@ executeRoute.post("/", async (c) => {
 
     const release = await executionSemaphore.acquire();
     try {
-      const timeoutMs = Math.max(
-        250,
-        Number(process.env.EXECUTION_TIMEOUT_MS || "2000"),
-      );
-      const image = process.env.EXECUTION_IMAGE || "perl:5.38-slim";
+      const timeoutMs = Math.max(250, EXECUTION_TIMEOUT_MS || 2000);
+      const image = EXECUTION_IMAGE || "perl:5.38-slim";
 
       const result = await executePerlInDockerSandbox(q.codeSnippet, {
         timeoutMs,
