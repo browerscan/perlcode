@@ -1,4 +1,6 @@
 ---
+import CookieConsent from '../components/CookieConsent';
+
 interface Props {
   title: string;
   description?: string;
@@ -15,8 +17,9 @@ const {
   robots = 'index,follow',
 } = Astro.props;
 
-const siteTitle = 'PerlCode';
+const siteTitle = 'Free Perl Code';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+const resolvedUrl = canonical ?? Astro.url.href;
 ---
 
 <!doctype html>
@@ -32,20 +35,22 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={robots} />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Canonical -->
     {canonical && <link rel="canonical" href={canonical} />}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={resolvedUrl} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:site_name" content={siteTitle} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:url" content={resolvedUrl} />
     <meta property="twitter:title" content={fullTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(ogImage, Astro.site)} />
@@ -56,7 +61,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
-    <meta name="theme-color" content="#3B82F6" />
+    <meta name="theme-color" content="#e68a0b" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,7 +91,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
           <div class="flex items-center justify-between h-16">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2 text-xl font-bold">
-              <span class="text-perl-500">Perl</span><span>Code</span>
+              <span class="text-perl-500">Free Perl</span><span>Code</span>
             </a>
 
             <!-- Navigation -->
@@ -246,13 +251,37 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
             class="mt-8 pt-8 border-t border-gray-200 dark:border-dark-700 text-center text-sm text-gray-600 dark:text-gray-400"
           >
             <p>
-              &copy; {new Date().getFullYear()} PerlCode. The AI that actually understands
+              &copy; {new Date().getFullYear()} Free Perl Code. The AI that actually understands
               Perl.
+            </p>
+            <p class="mt-2">
+              <a href="mailto:hello@freeperlcode.com" class="hover:text-perl-500 transition-colors">
+                hello@freeperlcode.com
+              </a>
             </p>
           </div>
         </div>
       </footer>
     </slot>
+
+    <!-- Structured Data -->
+    <script is:inline type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Free Perl Code",
+        "url": "https://freeperlcode.com",
+        "description": "AI-powered Perl knowledge base with 3,000+ verified questions and runnable code examples.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://freeperlcode.com/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Cookie Consent -->
+    <CookieConsent client:load />
 
     <!-- Theme toggle script -->
     <script is:inline>
