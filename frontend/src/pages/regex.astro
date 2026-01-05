@@ -61,19 +61,19 @@ const canonical = "https://freeperlcode.com/regex";
       </thead>
       <tbody>
         <tr>
-          <td><code>\d</code></td>
+          <td><code>\\d</code></td>
           <td>Digits [0-9]</td>
-          <td><code>\D</code> - non-digits</td>
+          <td><code>\\D</code> - non-digits</td>
         </tr>
         <tr>
-          <td><code>\w</code></td>
+          <td><code>\\w</code></td>
           <td>Word characters [a-zA-Z0-9_]</td>
-          <td><code>\W</code> - non-word</td>
+          <td><code>\\W</code> - non-word</td>
         </tr>
         <tr>
-          <td><code>\s</code></td>
+          <td><code>\\s</code></td>
           <td>Whitespace [ \t\n\r\f]</td>
-          <td><code>\S</code> - non-whitespace</td>
+          <td><code>\\S</code> - non-whitespace</td>
         </tr>
       </tbody>
     </table>
@@ -144,7 +144,7 @@ const canonical = "https://freeperlcode.com/regex";
 
     <p><strong>Examples:</strong></p>
     <ul>
-      <li><code>if ($text =~ /(\d{4})-(\d{2})-(\d{2})/)</code> - Captures year, month, day as <code>$1</code>, <code>$2</code>, <code>$3</code></li>
+      <li><code>if ($text =~ /(\\d{4})-(\\d{2})-(\\d{2})/)</code> - Captures year, month, day as <code>$1</code>, <code>$2</code>, <code>$3</code></li>
       <li><code>$&</code> - The entire matched string</li>
       <li><code>$`</code> - Text before the match</li>
       <li><code>$'</code> - Text after the match</li>
@@ -162,8 +162,8 @@ const canonical = "https://freeperlcode.com/regex";
       <li><code>$text =~ s/foo/bar/</code> - Replace first "foo" with "bar"</li>
       <li><code>$text =~ s/foo/bar/g</code> - Global replacement (all occurrences)</li>
       <li><code>$text =~ s/foo/bar/i</code> - Case-insensitive replacement</li>
-      <li><code>$text =~ s/\s+/ /g</code> - Replace multiple whitespace with single space</li>
-      <li><code>$name =~ s/(\w+),\s+(\w+)/$2 $1/</code> - Swap "Last, First" to "First Last"</li>
+      <li><code>$text =~ s/\\s+/ /g</code> - Replace multiple whitespace with single space</li>
+      <li><code>$name =~ s/(\\w+),\\s+(\\w+)/$2 $1/</code> - Swap "Last, First" to "First Last"</li>
     </ul>
 
     <h2>Useful Regex Modifiers</h2>
@@ -207,12 +207,12 @@ const canonical = "https://freeperlcode.com/regex";
 
     <h3>Email Validation</h3>
     <p>
-      Basic email pattern: <code>/^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/</code>
+      Basic email pattern: <code>/^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$/</code>
     </p>
 
     <h3>URL Extraction</h3>
     <p>
-      Find URLs: <code>/(https?:\/\/[\w\-\.~:\/?#\[\]@!\$&'()*+,;=]+)/g</code>
+      Find URLs: <code>/(https?:\/\/[\\w\-\\.~:\/?#\[\]@!\$&'()*+,;=]+)/g</code>
     </p>
 
     <h3>Log Parsing</h3>
@@ -237,7 +237,7 @@ const canonical = "https://freeperlcode.com/regex";
     <h3>Named Capture Groups (Perl 5.10+)</h3>
     <p>
       Instead of <code>$1</code>, <code>$2</code>, use descriptive names:
-      <code>/(?<name>\w+):\s+(?<age>\d+)/</code> then access via <code>$+{name}</code>
+      <code>/(?<name>\\w+):\\s+(?<age>\\d+)/</code> then access via <code>$+{name}</code>
     </p>
 
     <h2>Common Patterns Reference</h2>
@@ -251,11 +251,11 @@ const canonical = "https://freeperlcode.com/regex";
       </thead>
       <tbody>
         <tr>
-          <td><code>^\d+$</code></td>
+          <td><code>^\\d+$</code></td>
           <td>Whole positive integer</td>
         </tr>
         <tr>
-          <td><code>^\w+@\w+\.\w+</code></td>
+          <td><code>^\\w+@\\w+\\.\\w+</code></td>
           <td>Simple email format</td>
         </tr>
         <tr>
@@ -263,11 +263,11 @@ const canonical = "https://freeperlcode.com/regex";
           <td>HTTP or HTTPS URL</td>
         </tr>
         <tr>
-          <td><code>^\d{3}-\d{2}-\d{4}$</code></td>
+          <td><code>^\\d{3}-\\d{2}-\\d{4}$</code></td>
           <td>SSN format</td>
         </tr>
         <tr>
-          <td><code>^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$</code></td>
+          <td><code>^\(?\\d{3}\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$</code></td>
           <td>US phone number</td>
         </tr>
       </tbody>
