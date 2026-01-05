@@ -1,29 +1,420 @@
 ---
-import Base from "@layouts/Base.astro";
+import Base from "../layouts/Base.astro";
+
+const canonical = "https://freeperlcode.com/regex";
 ---
 
 <Base
-  title="Perl Regex Guide"
-  description="A practical Perl regular expression guide with runnable examples."
+  title="Perl Regular Expressions - Complete Guide with Examples"
+  description="Master Perl regex with practical examples. Learn pattern matching, substitutions, capture groups, character classes, quantifiers, and advanced text processing techniques."
+  canonical={canonical}
 >
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
-    <h1>Perl Regex Guide</h1>
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
+    <h1>Perl Regular Expressions: The Complete Guide</h1>
+
     <p>
-      Perl’s regex engine is one of the reasons Perl is still a powerhouse for text processing.
-      This page is a lightweight hub; deep-dives live in individual Q&amp;A pages.
+      Perl's regex engine is legendary. For over 35 years, it has been the gold standard for
+      pattern matching, inspiring regex implementations in Python, JavaScript, Java, and countless
+      other languages. This guide shows you how to use Perl regex effectively in real-world
+      text processing tasks.
     </p>
-    <h2>Quick examples</h2>
+
+    <h2>Why Perl Regex is Different</h2>
+
+    <p>
+      Unlike other languages where regex is an add-on library, Perl integrates regular expressions
+      directly into the language syntax. This integration makes regex operations concise, readable,
+      and powerful. The regex operators (<code>=~</code> for matching, <code>!~</code> for
+      non-matching) work seamlessly with Perl's control structures.
+    </p>
+
+    <h2>The Basic Matching Operator</h2>
+
+    <p>
+      The match operator <code>m//</code> searches a string for a pattern. By default, it searches
+      the <code>$_</code> variable, but you can bind it to any variable using <code>=~</code>.
+    </p>
+
+    <h3>Basic Pattern Matching</h3>
     <pre><code class="language-perl">use strict;
 use warnings;
 
-	my $s = "Perl 5.38";
-	if ($s =~ /perl\\s+(\\d+\\.\\d+)/i) &#123;
-	  print "version=$1\\n";
-	&#125;</code></pre>
-    <h2>Next steps</h2>
+my $text = "Perl 5.38 was released in 2023";
+
+# Simple match - returns true if pattern found
+if ($text =~ /Perl/) {
+    print "Found 'Perl'\n";
+}
+
+# Case-insensitive match with /i modifier
+if ($text =~ /perl/i) {
+    print "Found 'perl' (case-insensitive)\n";
+}
+
+# Matching with capture groups
+if ($text =~ /Perl\s+(\d+\.\d+)/) {
+    print "Version: $1\n";  # $1 contains the captured group
+}</code></pre>
+
+    <h2>Character Classes</h2>
+
+    <p>
+      Character classes let you match any character from a set. Perl provides predefined classes
+      for common patterns like digits, whitespace, and word characters.
+    </p>
+
+    <h3>Character Class Examples</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $data = "user@example.com 123-456-7890";
+
+# Predefined character classes
+\d    # Matches any digit [0-9]
+\w    # Matches any word character [a-zA-Z0-9_]
+\s    # Matches any whitespace [ \t\n\r\f]
+
+# Negated classes
+\D    # Matches any non-digit
+\W    # Matches any non-word character
+\S    # Matches any non-whitespace
+
+# Custom character classes
+[aeiou]       # Matches any vowel
+[^aeiou]      # Matches any non-vowel
+[a-zA-Z]      # Matches any letter
+[0-9a-fA-F]   # Matches any hexadecimal digit
+
+# Extract email and phone
+if ($data =~ /([\w.-]+@[\w.-]+)/) {
+    print "Email: $1\n";
+}
+
+if ($data =~ /(\d{3}-\d{3}-\d{4})/) {
+    print "Phone: $1\n";
+}</code></pre>
+
+    <h2>Quantifiers</h2>
+
+    <p>
+      Quantifiers specify how many times a pattern should match. Understanding greedy vs non-greedy
+      matching is crucial for correct regex behavior.
+    </p>
+
+    <h3>Quantifier Examples</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $html = '&lt;div&gt;Content&lt;/div&gt;&lt;div&gt;More&lt;/div&gt;';
+
+# Greedy quantifiers (default)
+*     # Match 0 or more times
++     # Match 1 or more times
+?     # Match 0 or 1 time
+{n}   # Match exactly n times
+{n,}  # Match n or more times
+{n,m} # Match n to m times
+
+# Greedy match - grabs too much
+if ($html =~ /&lt;div&gt;.*&lt;\/div&gt;/) {
+    print "Greedy: $&amp;\n";  # Matches entire string
+}
+
+# Non-greedy (minimal) matching
+if ($html =~ /&lt;div&gt;.*?&lt;\/div&gt;/) {
+    print "Non-greedy: $&amp;\n";  # Matches first div only
+}</code></pre>
+
+    <h2>Capture Groups and Backreferences</h2>
+
+    <p>
+      Capture groups let you extract parts of a match. Parentheses <code>()</code> create capturing
+      groups, and you reference the captured content with <code>$1</code>, <code>$2</code>, etc.
+    </p>
+
+    <h3>Capture Group Examples</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $log = "2025-01-05 10:30:45 [ERROR] Database connection failed";
+
+# Multiple capture groups
+if ($log =~ /^(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})\s+\[(\w+)\]\s+(.*)$/) {
+    print "Date: $1\n";
+    print "Time: $2\n";
+    print "Level: $3\n";
+    print "Message: $4\n";
+}
+
+# Named capture groups (Perl 5.10+)
+my $text = "John: 25 years old";
+if ($text =~ /^(?&lt;name&gt;\w+):\s+(?&lt;age&gt;\d+)\s+years/) {
+    print "Name: $+{name}, Age: $+{age}\n";
+}</code></pre>
+
+    <h2>Substitutions with s///</h2>
+
+    <p>
+      The substitution operator <code>s///</code> finds and replaces text. Combined with regex
+      patterns, it's incredibly powerful for text transformation.
+    </p>
+
+    <h3>Substitution Examples</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $text = "Hello perl programmers";
+
+# Simple substitution
+$text =~ s/perl/Perl/;
+print "$text\n";  # Hello Perl programmers
+
+# Global substitution with /g
+my $colors = "red blue red green red";
+$colors =~ s/red/yellow/g;
+print "$colors\n";  # yellow blue yellow green yellow
+
+# Case-insensitive substitution
+$text =~ s/PROGRAMMERS/Developers/i;
+print "$text\n";  # Hello Perl Developers
+
+# Using capture groups in replacement
+my $name = "Smith, John";
+$name =~ s/(\w+),\s+(\w+)/$2 $1/;
+print "$name\n";  # John Smith
+
+# Removing extra whitespace
+my $messy = "too    many   spaces";
+$messy =~ s/\s+/ /g;
+print "$messy\n";  # too many spaces</code></pre>
+
+    <h2>Splitting and Joining</h2>
+
+    <p>
+      <code>split()</code> uses regex to break strings into parts, while <code>join()</code>
+      combines array elements into a string.
+    </p>
+
+    <h3>Split and Join Examples</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+# Split on whitespace
+my $line = "one  two\tthree\nfour";
+my @words = split(/\s+/, $line);
+print join(", ", @words), "\n";  # one, two, three, four
+
+# Split on comma with optional spaces
+my $csv = "apple, banana, cherry, date";
+my @fruits = split(/,\s*/, $csv);
+foreach my $fruit (@fruits) {
+    print "- $fruit\n";
+}
+
+# Parse key-value pairs
+my $config = "host=localhost|port=3306|database=test";
+my %settings;
+foreach my $pair (split(/\|/, $config)) {
+    my ($key, $value) = split(/=/, $pair);
+    $settings{$key} = $value;
+}
+print "Host: $settings{host}\n";</code></pre>
+
+    <h2>Practical Regex Examples</h2>
+
+    <h3>Validating Email Addresses</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+sub is_valid_email {
+    my ($email) = @_;
+    return $email =~ /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+}
+
+my @emails = (
+    "user@example.com",
+    "invalid@",
+    "test.user@domain.co.uk",
+    "bad@@example.com"
+);
+
+foreach my $email (@emails) {
+    my $valid = is_valid_email($email) ? "Valid" : "Invalid";
+    print "$email: $valid\n";
+}</code></pre>
+
+    <h3>Extracting URLs from Text</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $text = "Visit https://freeperlcode.com or http://perl.org for more info";
+
+my @urls;
+while ($text =~ /(https?:\/\/[\w\-\.~:\/?#\[\]@!\$&'()*+,;=]+)/g) {
+    push @urls, $1;
+}
+
+foreach my $url (@urls) {
+    print "Found URL: $url\n";
+}</code></pre>
+
+    <h3>Log File Parsing</h3>
+    <pre><code class="language-perl">use strict;
+use warnings";
+
+# Simulated Apache log line
+my $log_line = '127.0.0.1 - - [05/Jan/2025:10:30:45 +0000] "GET /index.html HTTP/1.1" 200 2326';
+
+my $log_pattern = qr{
+    ^(\S+)                     # IP address
+    \s+\S+\s+\S+               # identd and authuser
+    \s\[([^\]]+)\]             # timestamp
+    \s+"(\w+)\s+(\S+)"         # method and path
+    \s+(\d+)\s+(\d+)           # status and size
+}x;
+
+if ($log_line =~ /$log_pattern/) {
+    print "IP: $1\n";
+    print "Time: $2\n";
+    print "Method: $3\n";
+    print "Path: $4\n";
+    print "Status: $5\n";
+    print "Bytes: $6\n";
+}</code></pre>
+
+    <h2>Advanced Perl Regex Features</h2>
+
+    <h3>Lookahead and Lookbehind Assertions</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $text = "foo123bar baz456qux";
+
+# Positive lookahead - match "foo" only if followed by "123"
+if ($text =~ /foo(?=123)/) {
+    print "Found 'foo' before '123'\n";
+}
+
+# Negative lookahead - match "bar" only if NOT followed by "456"
+if ($text =~ /bar(?!456)/) {
+    print "Found 'bar' not followed by '456'\n";
+}
+
+# Positive lookbehind - match "123" only if preceded by "foo"
+if ($text =~ /(?&lt;=foo)123/) {
+    print "Found '123' after 'foo'\n";
+}
+
+# Practical example: find numbers not preceded by $
+my $code = "price = $100 + 50";
+my @numbers = $code =~ /(?&lt;!$)\d+/g;
+print join(", ", @numbers), "\n";  # 50</code></pre>
+
+    <h3>The /x Modifier for Readable Regex</h3>
+    <pre><code class="language-perl">use strict;
+use warnings;
+
+my $date = "2025-01-05";
+
+# Hard to read
+if ($date =~ /^\d{4}-\d{2}-\d{2}$/) {
+    print "Valid date format\n";
+}
+
+# Easy to read with /x modifier
+my $date_pattern = qr{
+    ^                # Start of string
+    \d{4}            # Four digits for year
+    -                # Literal hyphen
+    \d{2}            # Two digits for month
+    -                # Literal hyphen
+    \d{2}            # Two digits for day
+    $                # End of string
+}x;
+
+if ($date =~ /$date_pattern/) {
+    print "Valid date format\n";
+}</code></pre>
+
+    <h2>Common Perl Regex Patterns</h2>
+
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-dark-700">
+      <thead class="bg-gray-50 dark:bg-dark-800">
+        <tr>
+          <th class="px-4 py-2 text-left">Pattern</th>
+          <th class="px-4 py-2 text-left">Matches</th>
+          <th class="px-4 py-2 text-left">Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>^\d+$</code></td>
+          <td>Whole number (positive integer)</td>
+          <td><code>123</code></td>
+        </tr>
+        <tr>
+          <td><code>^\w+@\w+\.\w+</code></td>
+          <td>Simple email</td>
+          <td><code>user@domain.com</code></td>
+        </tr>
+        <tr>
+          <td><code>^https?://</code></td>
+          <td>HTTP/HTTPS URL</td>
+          <td><code>https://example.com</code></td>
+        </tr>
+        <tr>
+          <td><code>^\d{3}-\d{2}-\d{4}$</code></td>
+          <td>SSN format</td>
+          <td><code>123-45-6789</code></td>
+        </tr>
+        <tr>
+          <td><code>^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$</code></td>
+          <td>US phone</td>
+          <td><code>(555) 123-4567</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Perl Regex One-Liners for Command Line</h2>
+
+    <p>
+      Perl's command-line mode makes regex operations incredibly convenient for quick text
+      processing tasks.
+    </p>
+
+    <pre><code class="language-bash"># Find lines containing "error" (case-insensitive)
+perl -ne 'print if /error/i' logfile.txt
+
+# Print lines 50-60
+perl -ne 'print if $. >= 50 && $. <= 60' file.txt
+
+# Replace "foo" with "bar" in all files
+perl -i -pe 's/foo/bar/g' *.txt
+
+# Extract email addresses from a file
+perl -ne 'print "$&amp;\n" while /[\w.-]+@[\w.-]+\.[a-z]{2,}/gi' contacts.txt
+
+# Sum values in column 3 of CSV
+perl -F, -ane '$sum += $F[2]; END { print "$sum\n"}' data.csv</code></pre>
+
+    <h2>Learn More</h2>
+
+    <p>
+      Perl's regex capabilities go far beyond what's covered here. For deeper dives into specific
+      patterns and techniques, explore our question database:
+    </p>
+
     <ul>
-      <li>Use <a href="/search">Search</a> for specific patterns.</li>
-      <li>Browse <a href="/topics/regex">Regex topics</a>.</li>
+      <li><a href="/search">Search</a> for specific regex patterns</li>
+      <li><a href="/topics/regex">Regex topics</a> for categorized tutorials</li>
+      <li><a href="/questions">All questions</a> for regex examples</li>
     </ul>
+
+    <p>
+      Remember: Perl regex is powerful, but with great power comes responsibility. Always test your
+      patterns with edge cases, use <code>use strict;</code> and <code>use warnings;</code>, and
+      consider readability when writing complex regex. The <code>/x</code> modifier is your friend
+      for maintaining complex patterns.
+    </p>
   </section>
 </Base>
