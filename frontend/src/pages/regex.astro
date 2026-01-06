@@ -51,7 +51,7 @@ const canonical = "https://freeperlcode.com/regex";
       for patterns. The binding operator connects a variable to a pattern for matching.
     </p>
 
-    <pre><code class="language-perl"># Basic pattern match
+    <pre><code class="language-perl" is:raw># Basic pattern match
 my $text = "Hello, World!";
 if ($text =~ /World/) {
     print "Found it!\n";
@@ -81,7 +81,7 @@ if ($text !~ /Goodbye/) {
       custom character classes using square brackets.
     </p>
 
-    <pre><code class="language-perl"># Predefined character classes
+    <pre><code class="language-perl" is:raw># Predefined character classes
 \d  # Digit: [0-9]
 \w  # Word character: [a-zA-Z0-9_]
 \s  # Whitespace: [ \t\n\r\f]
@@ -110,7 +110,7 @@ if ($text !~ /Goodbye/) {
       quantifiers.
     </p>
 
-    <pre><code class="language-perl"># Greedy quantifiers (match as much as possible)
+    <pre><code class="language-perl" is:raw># Greedy quantifiers (match as much as possible)
 *      # Zero or more
 +      # One or more
 ?      # Zero or one (optional)
@@ -142,7 +142,7 @@ $html =~ /&lt;.+?&gt;/;  # Non-greedy: matches "&lt;b&gt;"</code></pre>
       and can be referenced within the same regex using backreferences.
     </p>
 
-    <pre><code class="language-perl"># Basic capture groups
+    <pre><code class="language-perl" is:raw># Basic capture groups
 my $date = "2025-01-06";
 if ($date =~ /(\d{4})-(\d{2})-(\d{2})/) {
     print "Year: $1, Month: $2, Day: $3\n";
@@ -162,7 +162,7 @@ if ($text =~ /colou?r/) {
     <p>
       Named capture groups (<code>(?&lt;name&gt;...)</code>) make your regex more readable
       and maintainable. Instead of remembering that <code>$3</code> is the day, you can
-      use <code>$+{day}</code> for self-documenting code.
+      use <code>$+&#123;day&#125;</code> for self-documenting code.
     </p>
 
     <h2>Substitutions</h2>
@@ -173,7 +173,7 @@ if ($text =~ /colou?r/) {
       replacement, case-insensitive matching, and more.
     </p>
 
-    <pre><code class="language-perl"># Basic substitution
+    <pre><code class="language-perl" is:raw># Basic substitution
 my $text = "Hello, World!";
 $text =~ s/World/Perl/;
 print $text;  # "Hello, Perl!"
@@ -210,7 +210,7 @@ print $prices;  # "Item costs $11 and $27.5"</code></pre>
       without including it in the match.
     </p>
 
-    <pre><code class="language-perl"># Positive lookahead: (?=...)
+    <pre><code class="language-perl" is:raw># Positive lookahead: (?=...)
 # Match "foo" only if followed by "bar"
 $text =~ /foo(?=bar)/;
 
@@ -244,7 +244,7 @@ print $num;  # "1,234,567,890"</code></pre>
       the most commonly used modifiers:
     </p>
 
-    <pre><code class="language-perl">/i  # Case-insensitive matching
+    <pre><code class="language-perl" is:raw>/i  # Case-insensitive matching
 /g  # Global - match all occurrences
 /m  # Multi-line mode - ^ and $ match line boundaries
 /s  # Single-line mode - . matches newlines
@@ -275,13 +275,13 @@ if ($phone =~ /
     <h2>Real-World Examples</h2>
 
     <h3>Email Validation</h3>
-    <pre><code class="language-perl">my $email = 'user@example.com';
+    <pre><code class="language-perl" is:raw>my $email = 'user@example.com';
 if ($email =~ /^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$/) {
     print "Valid email\n";
 }</code></pre>
 
     <h3>Log File Parsing</h3>
-    <pre><code class="language-perl"># Apache log format parsing
+    <pre><code class="language-perl" is:raw># Apache log format parsing
 my $log = '192.168.1.1 - - [01/Jan/2025:12:00:00 +0000] "GET /page HTTP/1.1" 200 1234';
 if ($log =~ /^([\d.]+) .* \[([^\]]+)\] "(\w+) ([^"]+)" (\d+) (\d+)/) {
     my ($ip, $date, $method, $path, $status, $size) = ($1, $2, $3, $4, $5, $6);
@@ -289,7 +289,7 @@ if ($log =~ /^([\d.]+) .* \[([^\]]+)\] "(\w+) ([^"]+)" (\d+) (\d+)/) {
 }</code></pre>
 
     <h3>CSV Processing</h3>
-    <pre><code class="language-perl"># Handle quoted fields with commas
+    <pre><code class="language-perl" is:raw># Handle quoted fields with commas
 my $line = 'John,"Doe, Jr.",30,"New York"';
 my @fields = $line =~ /("(?:[^"]|"")*"|[^,]*),?/g;
 print join(" | ", @fields), "\n";</code></pre>
@@ -309,7 +309,7 @@ print join(" | ", @fields), "\n";</code></pre>
       <li><strong>Use <code>\K</code></strong> - Reset match start position for efficient substitutions</li>
     </ul>
 
-    <pre><code class="language-perl"># Precompile for reuse
+    <pre><code class="language-perl" is:raw># Precompile for reuse
 my $pattern = qr/\b\d{3}-\d{4}\b/;
 while (&lt;FILE&gt;) {
     print if /$pattern/;
@@ -366,7 +366,7 @@ $text =~ s/prefix\K-suffix/-replacement/;
           "name": "How do capture groups work in Perl regex?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Parentheses create capture groups that extract parts of a match. Captured content is stored in numbered variables ($1, $2, etc.). Perl 5.10+ also supports named capture groups with (?<name>...) syntax, accessed via $+{name}."
+            "text": "Parentheses create capture groups that extract parts of a match. Captured content is stored in numbered variables ($1, $2, etc.). Perl 5.10+ also supports named capture groups with (?<name>...) syntax, accessed via $+&#123;name&#125;."
           }
         },
         {
