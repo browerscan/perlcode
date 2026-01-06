@@ -5,8 +5,8 @@ const canonical = "https://freeperlcode.com/regex";
 ---
 
 <Base
-  title="Perl Regular Expressions Guide"
-  description="Learn Perl regex patterns, matching, substitutions, and text processing techniques."
+  title="Perl Regular Expressions Guide - Master Pattern Matching"
+  description="Complete Perl regex guide: pattern matching, substitutions, capture groups, lookahead, and real-world text processing examples with tested code snippets."
   canonical={canonical}
 >
   <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose prose-lg dark:prose-invert">
@@ -15,61 +15,369 @@ const canonical = "https://freeperlcode.com/regex";
     <p>
       Perl's regex engine is legendary. For over 35 years, it has been the gold standard for
       pattern matching, inspiring regex implementations in Python, JavaScript, Java, and countless
-      other languages.
+      other languages. When developers talk about "Perl-compatible regular expressions" (PCRE),
+      they're acknowledging Perl's foundational role in modern text processing.
+    </p>
+
+    <p>
+      This guide covers everything from basic pattern matching to advanced techniques like
+      lookahead assertions and non-greedy quantifiers. Whether you're parsing log files,
+      validating user input, or transforming data formats, Perl regex gives you the power
+      to solve complex text problems with elegant, concise code.
     </p>
 
     <h2>Why Perl Regex is Different</h2>
 
     <p>
-      Perl integrates regular expressions directly into the language syntax. The binding operators
-      work seamlessly with Perl's control structures for powerful text processing.
+      Unlike other languages where regex is an add-on library, Perl integrates regular expressions
+      directly into the language syntax. The binding operators (<code>=~</code> and <code>!~</code>)
+      work seamlessly with Perl's control structures, making text processing feel natural
+      rather than bolted on.
     </p>
 
-    <h2>Pattern Matching</h2>
+    <p>
+      In 2025, Perl jumped from 27th to 10th place in the TIOBE index, with text processing
+      cited as a key reason. As the i-Programmer blog noted: "Even in this era of AI, everything
+      is still governed by text formats; text is still the King. XML, JSON calling APIs, YAML,
+      Markdown, Log files... Perl with its first-class-citizen regular expressions, the wealth
+      of text manipulation libraries up on CPAN and its full Unicode support of all the latest
+      standards, was and is still the best."
+    </p>
+
+    <h2>Pattern Matching Basics</h2>
 
     <p>
-      Use the match operator to search strings for patterns. The binding operator connects
-      a variable to a pattern for matching.
+      Use the match operator (<code>m//</code> or simply <code>//</code>) to search strings
+      for patterns. The binding operator connects a variable to a pattern for matching.
+    </p>
+
+    <pre><code class="language-perl"># Basic pattern match
+my $text = "Hello, World!";
+if ($text =~ /World/) {
+    print "Found it!\n";
+}
+
+# Case-insensitive match with /i modifier
+if ($text =~ /world/i) {
+    print "Found (case-insensitive)!\n";
+}
+
+# Negated match - true if pattern NOT found
+if ($text !~ /Goodbye/) {
+    print "Goodbye not found\n";
+}</code></pre>
+
+    <p>
+      The match operator returns true if the pattern is found, making it perfect for
+      conditionals and loops. Combined with Perl's default variable <code>$_</code>,
+      you can write extremely concise code for processing text files line by line.
     </p>
 
     <h2>Character Classes</h2>
 
     <p>
       Character classes match sets of characters. Perl provides predefined classes for
-      common patterns like digits, whitespace, and word characters.
+      common patterns like digits, whitespace, and word characters. You can also create
+      custom character classes using square brackets.
+    </p>
+
+    <pre><code class="language-perl"># Predefined character classes
+\d  # Digit: [0-9]
+\w  # Word character: [a-zA-Z0-9_]
+\s  # Whitespace: [ \t\n\r\f]
+\D  # Non-digit: [^0-9]
+\W  # Non-word: [^a-zA-Z0-9_]
+\S  # Non-whitespace: [^ \t\n\r\f]
+
+# Custom character classes
+[aeiou]     # Match any vowel
+[^aeiou]    # Match any non-vowel (negated)
+[a-z]       # Match lowercase letter
+[A-Za-z]    # Match any letter
+[0-9a-fA-F] # Match hexadecimal digit</code></pre>
+
+    <p>
+      The uppercase versions (<code>\D</code>, <code>\W</code>, <code>\S</code>) are negated
+      versions of their lowercase counterparts. This symmetry makes Perl regex intuitive
+      once you understand the basic pattern.
     </p>
 
     <h2>Quantifiers</h2>
 
     <p>
-      Quantifiers specify how many times a pattern should match. Use asterisk for zero or more,
-      plus for one or more, and question mark for optional matches.
+      Quantifiers specify how many times a pattern element should match. Perl supports
+      both greedy (match as much as possible) and non-greedy (match as little as possible)
+      quantifiers.
+    </p>
+
+    <pre><code class="language-perl"># Greedy quantifiers (match as much as possible)
+*      # Zero or more
++      # One or more
+?      # Zero or one (optional)
+{n}    # Exactly n times
+{n,}   # At least n times
+{n,m}  # Between n and m times
+
+# Non-greedy quantifiers (add ? after)
+*?     # Zero or more (minimal)
++?     # One or more (minimal)
+??     # Zero or one (minimal)
+
+# Example: Greedy vs non-greedy
+my $html = "&lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;";
+$html =~ /&lt;.+&gt;/;   # Greedy: matches "&lt;b&gt;bold&lt;/b&gt; and &lt;i&gt;italic&lt;/i&gt;"
+$html =~ /&lt;.+?&gt;/;  # Non-greedy: matches "&lt;b&gt;"</code></pre>
+
+    <p>
+      Understanding the difference between greedy and non-greedy matching is crucial
+      for parsing structured text like HTML, XML, or log files. Greedy matching often
+      captures more than intended, while non-greedy matching stops at the first valid match.
     </p>
 
     <h2>Capture Groups</h2>
 
     <p>
-      Parentheses create capture groups that let you extract parts of a match. Reference captured
-      content using numbered variables.
+      Parentheses create capture groups that let you extract parts of a match. Captured
+      content is stored in numbered variables (<code>$1</code>, <code>$2</code>, etc.)
+      and can be referenced within the same regex using backreferences.
+    </p>
+
+    <pre><code class="language-perl"># Basic capture groups
+my $date = "2025-01-06";
+if ($date =~ /(\d{4})-(\d{2})-(\d{2})/) {
+    print "Year: $1, Month: $2, Day: $3\n";
+}
+
+# Named capture groups (Perl 5.10+)
+if ($date =~ /(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})/) {
+    print "Year: $+{year}, Month: $+{month}, Day: $+{day}\n";
+}
+
+# Non-capturing groups (for grouping without capturing)
+my $text = "color or colour";
+if ($text =~ /colou?r/) {
+    print "Found color/colour\n";
+}</code></pre>
+
+    <p>
+      Named capture groups (<code>(?&lt;name&gt;...)</code>) make your regex more readable
+      and maintainable. Instead of remembering that <code>$3</code> is the day, you can
+      use <code>$+{day}</code> for self-documenting code.
     </p>
 
     <h2>Substitutions</h2>
 
     <p>
-      The substitution operator finds and replaces text. Use modifiers for global replacement,
-      case-insensitive matching, and more.
+      The substitution operator (<code>s///</code>) finds and replaces text. It's one of
+      Perl's most powerful features for text transformation. Use modifiers for global
+      replacement, case-insensitive matching, and more.
     </p>
+
+    <pre><code class="language-perl"># Basic substitution
+my $text = "Hello, World!";
+$text =~ s/World/Perl/;
+print $text;  # "Hello, Perl!"
+
+# Global substitution with /g modifier
+my $csv = "a,b,c,d";
+$csv =~ s/,/ | /g;
+print $csv;  # "a | b | c | d"
+
+# Case-insensitive with /i modifier
+$text =~ s/perl/PERL/gi;
+
+# Using capture groups in replacement
+my $name = "Smith, John";
+$name =~ s/(\w+), (\w+)/$2 $1/;
+print $name;  # "John Smith"
+
+# Evaluate replacement as Perl code with /e modifier
+my $prices = "Item costs $10 and $25";
+$prices =~ s/\$(\d+)/"\$" . ($1 * 1.1)/ge;
+print $prices;  # "Item costs $11 and $27.5"</code></pre>
+
+    <p>
+      The <code>/e</code> modifier is particularly powerful, allowing you to execute
+      Perl code in the replacement string. This enables complex transformations that
+      would require multiple steps in other languages.
+    </p>
+
+    <h2>Lookahead and Lookbehind Assertions</h2>
+
+    <p>
+      Lookahead and lookbehind assertions match positions in the string without consuming
+      characters. They're essential for complex pattern matching where you need context
+      without including it in the match.
+    </p>
+
+    <pre><code class="language-perl"># Positive lookahead: (?=...)
+# Match "foo" only if followed by "bar"
+$text =~ /foo(?=bar)/;
+
+# Negative lookahead: (?!...)
+# Match "foo" only if NOT followed by "bar"
+$text =~ /foo(?!bar)/;
+
+# Positive lookbehind: (?&lt;=...)
+# Match "bar" only if preceded by "foo"
+$text =~ /(?&lt;=foo)bar/;
+
+# Negative lookbehind: (?&lt;!...)
+# Match "bar" only if NOT preceded by "foo"
+$text =~ /(?&lt;!foo)bar/;
+
+# Practical example: Add commas to numbers
+my $num = "1234567890";
+$num =~ s/(?&lt;=\d)(?=(\d{3})+$)/,/g;
+print $num;  # "1,234,567,890"</code></pre>
+
+    <p>
+      Lookahead and lookbehind are zero-width assertions, meaning they don't consume
+      characters from the input string. This makes them perfect for inserting text
+      at specific positions or validating context without affecting the match result.
+    </p>
+
+    <h2>Common Modifiers</h2>
+
+    <p>
+      Perl regex modifiers control how patterns are interpreted and matched. Here are
+      the most commonly used modifiers:
+    </p>
+
+    <pre><code class="language-perl">/i  # Case-insensitive matching
+/g  # Global - match all occurrences
+/m  # Multi-line mode - ^ and $ match line boundaries
+/s  # Single-line mode - . matches newlines
+/x  # Extended mode - allows whitespace and comments
+/e  # Evaluate replacement as Perl code (s/// only)
+/r  # Return modified string, don't modify original (Perl 5.14+)
+
+# Extended mode example for readable regex
+my $phone = "555-123-4567";
+if ($phone =~ /
+    ^           # Start of string
+    (\d{3})     # Area code
+    -           # Separator
+    (\d{3})     # Exchange
+    -           # Separator
+    (\d{4})     # Subscriber number
+    $           # End of string
+/x) {
+    print "Valid phone: $1-$2-$3\n";
+}</code></pre>
+
+    <p>
+      The <code>/x</code> modifier is particularly valuable for complex patterns. It
+      allows you to add whitespace and comments, making your regex self-documenting
+      and much easier to maintain.
+    </p>
+
+    <h2>Real-World Examples</h2>
+
+    <h3>Email Validation</h3>
+    <pre><code class="language-perl">my $email = 'user@example.com';
+if ($email =~ /^[\w.+-]+@[\w.-]+\.[a-zA-Z]{2,}$/) {
+    print "Valid email\n";
+}</code></pre>
+
+    <h3>Log File Parsing</h3>
+    <pre><code class="language-perl"># Apache log format parsing
+my $log = '192.168.1.1 - - [01/Jan/2025:12:00:00 +0000] "GET /page HTTP/1.1" 200 1234';
+if ($log =~ /^([\d.]+) .* \[([^\]]+)\] "(\w+) ([^"]+)" (\d+) (\d+)/) {
+    my ($ip, $date, $method, $path, $status, $size) = ($1, $2, $3, $4, $5, $6);
+    print "IP: $ip, Status: $status\n";
+}</code></pre>
+
+    <h3>CSV Processing</h3>
+    <pre><code class="language-perl"># Handle quoted fields with commas
+my $line = 'John,"Doe, Jr.",30,"New York"';
+my @fields = $line =~ /("(?:[^"]|"")*"|[^,]*),?/g;
+print join(" | ", @fields), "\n";</code></pre>
+
+    <h2>Performance Tips</h2>
+
+    <p>
+      Regex performance matters when processing large files or running patterns millions
+      of times. Here are key optimization strategies:
+    </p>
+
+    <ul>
+      <li><strong>Anchor patterns</strong> - Use <code>^</code> and <code>$</code> when possible to prevent unnecessary backtracking</li>
+      <li><strong>Avoid catastrophic backtracking</strong> - Patterns like <code>(a+)+</code> can cause exponential time complexity</li>
+      <li><strong>Use atomic groups</strong> - <code>(?&gt;...)</code> prevents backtracking into the group</li>
+      <li><strong>Precompile patterns</strong> - Use <code>qr//</code> to compile regex once and reuse</li>
+      <li><strong>Use <code>\K</code></strong> - Reset match start position for efficient substitutions</li>
+    </ul>
+
+    <pre><code class="language-perl"># Precompile for reuse
+my $pattern = qr/\b\d{3}-\d{4}\b/;
+while (&lt;FILE&gt;) {
+    print if /$pattern/;
+}
+
+# Use \K to simplify substitutions
+$text =~ s/prefix\K-suffix/-replacement/;
+# Equivalent to: s/(prefix)-suffix/$1-replacement/</code></pre>
 
     <h2>Learn More</h2>
 
     <p>
-      Explore our question database for specific regex patterns and techniques:
+      Explore our question database for specific regex patterns and techniques. Free Perl Code
+      has hundreds of verified examples covering everything from basic matching to advanced
+      text transformations.
     </p>
 
     <ul>
-      <li><a href="/search">Search</a> for specific regex patterns</li>
+      <li><a href="/search?q=regex">Search</a> for specific regex patterns</li>
       <li><a href="/topics/regex">Regex topics</a> for categorized tutorials</li>
       <li><a href="/questions">All questions</a> for regex examples</li>
     </ul>
+
+    <p>
+      Need help with a specific regex problem? Use our AI chat assistant to get instant
+      answers grounded in verified Perl code examples.
+    </p>
   </section>
+
+  <!-- FAQ Structured Data -->
+  <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes Perl regex different from other languages?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Perl integrates regular expressions directly into the language syntax with binding operators (=~ and !~), making text processing feel natural. Perl's regex engine inspired PCRE (Perl-Compatible Regular Expressions) used in Python, JavaScript, and many other languages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between greedy and non-greedy quantifiers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Greedy quantifiers (*, +, ?) match as much as possible, while non-greedy quantifiers (*?, +?, ??) match as little as possible. Add ? after a greedy quantifier to make it non-greedy. This is crucial for parsing structured text like HTML."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do capture groups work in Perl regex?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Parentheses create capture groups that extract parts of a match. Captured content is stored in numbered variables ($1, $2, etc.). Perl 5.10+ also supports named capture groups with (?<name>...) syntax, accessed via $+{name}."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are lookahead and lookbehind assertions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lookahead (?=...) and lookbehind (?<=...) are zero-width assertions that match positions without consuming characters. Positive versions check if a pattern exists, negative versions (?!...) and (?<!...) check if it doesn't exist."
+          }
+        }
+      ]
+    }
+  </script>
 </Base>

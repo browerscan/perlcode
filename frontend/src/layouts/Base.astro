@@ -1,5 +1,5 @@
 ---
-// import CookieConsent from '../components/CookieConsent.tsx';
+import CookieConsent from '../components/CookieConsent.tsx';
 import ChatWidget from '../components/ChatWidget.tsx';
 
 interface Props {
@@ -282,7 +282,7 @@ const resolvedUrl = canonical ?? Astro.url.href;
     </script>
 
     <!-- Cookie Consent -->
-    <!-- <CookieConsent client:load /> -->
+    <CookieConsent client:load />
 
     <!-- AI Chat Widget -->
     <ChatWidget client:load />

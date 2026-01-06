@@ -40,6 +40,7 @@ export const GET: APIRoute = async ({ site }) => {
   add("/about");
   add("/privacy");
   add("/terms");
+  add("/regex");
   add("/compare/perl-vs-python");
   add("/compare/perl-vs-ruby");
 
